@@ -1,0 +1,22 @@
+<view class="voucherSearch">
+    <search-page searchtext="{{searchtext}}"
+                 bind:inputComfirm="inputComfirm"
+                 bind:cancelSearch="cancelSearch"
+                 bind:inputChange="inputChange"></search-page>
+    <view class="tip">
+        此券仅限赠送已注册“天津机场贵宾服务”微信公众号的会员客户，若未注册，请在首页进行会员注册
+    </view>
+    <i-toast id="toast"></i-toast>
+    <i-modal  visible="{{personInfoVisible}}" actions="{{actions}}"  bind:click="confirmSearch">
+        <view class="otherinfo_box">
+            <view class="cell">
+                <view>姓名：</view>
+                <view>{{data.name}}</view>
+            </view>
+            <view class="cell">
+                <view>身份证号：</view>
+                <view>{{data.idno}}</view>
+            </view>
+        </view>
+    </i-modal>
+</view>

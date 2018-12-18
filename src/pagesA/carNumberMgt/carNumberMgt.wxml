@@ -1,0 +1,39 @@
+<view id="carNumberMgt">
+    <view class="addCarNumber" bindtap="_operationCar" data-state="{{true}}">
+        <i-icon class="add-icon" type="add" size="18" color="#FFF" />
+        <text >新增车辆</text>
+    </view>
+
+    <view class="carList {{carList.length > 0 ? 'carList-show' : ''}}">
+        <view class="carItem" wx:for="{{carList}}" wx:key="{{index}}">
+            <view class="car-title">
+                <text class="number">{{item.carNum}}</text>
+                <text class="index">{{index+1}}</text>
+            </view>
+            <view class="operation">
+                <view class="edit" bindtap="_editCarNumber" data-number="{{item.carNum}}" data-id="{{item.id}}">
+                    <i-icon class="edit-icon" type="editor" size="18" color="#B99156" />
+                    <text class="">编辑</text>
+                </view>
+                <view class="del" bindtap="_delCarNumber" data-car="{{item.carNum}}">
+                    <i-icon class="del-icon" type="trash" size="20" color="#B99156" />
+                    <text class="">删除</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="operationDialog {{isOperation ? 'operationDialog-show' : ''}}">
+        <i-icon bindtap="_operationCar" data-state="{{false}}" class="close-icon" type="close" size="20" color="#B99156" />
+        <view class="input-view">
+            <i-input value="{{ operationCarNum }}" type="textarea" bind:change="_operationInput" data-state="{{true}}" title="车牌照号" placeholder="请输入车牌照号" />
+            <i-icon wx:if="{{operationCarNum != ''}}" bindtap="_operationInput" data-state="{{false}}" class="del-input-icon" type="delete_fill" size="18" color="#B99156" />
+        </view>
+        <view class="operationBtns" bindtap="_operateCarNumber">{{operateType == 'edit' ? '确认修改' : '确认添加'}}</view> 
+    </view>
+    <i-modal title="删除确认" visible="{{ delDialogState }}" actions="{{ delDialogData }}" bind:click="_handleClickDelDialog">
+        <view>删除后无法恢复哦</view>
+    </i-modal>
+    <i-toast id="toast" />
+    <i-message id="message" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

@@ -1,0 +1,4 @@
+<view class="cardList">
+    <card-panel wx:for="{{cards}}" wx:key="cardlist{{index}}" list="{{item}}"  data-cardno="{{item.cardNo}}" bindtap="goCardDetail" ></card-panel>
+    <i-toast id="toast"/>
+</view>

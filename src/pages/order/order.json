@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText":"我的订单",
+    "usingComponents":{
+        "unionhuatong-footer" : "../../components/footer/footer",
+        "order-common":"../../components/orderCommon/orderCommon",
+        "card-info":"../../components/cardInfo/cardInfo",
+        "i-toast": "../../components/iview/toast/index",
+        "search-page":"../../components/searchPage/searchPage"
+    }
+}

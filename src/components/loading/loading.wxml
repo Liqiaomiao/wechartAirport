@@ -1,0 +1,7 @@
+<view class="common-load" wx:if="{{state}}">
+    <view class="load-con">
+        <i class="iconfont icon-plan con-icon"></i>
+        <view class="con-text">{{content}}</view>
+    </view>
+    <view class="mask"></view>
+</view>

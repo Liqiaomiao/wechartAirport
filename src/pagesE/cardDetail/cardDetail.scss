@@ -1,0 +1,55 @@
+@import "../../assets/css/common";
+.setimg{
+  width: 525rpx;height:332rpx;
+}
+.trangle{
+  display: block;
+  content: '';
+  border: 16rpx solid transparent;
+  border-bottom: 16rpx solid #efefef;
+  position: absolute;
+  bottom: 100%;
+  left: 160rpx;
+}
+.cardDetail{
+  font-size: 30rpx;
+  padding-bottom: $pd140;
+  .detail-hd{position: relative;
+    @extend  .setimg;
+    margin: 20rpx auto;
+    image{ @extend  .setimg}
+    text{position: absolute;bottom: 18%;color:#f6af3f;font-size:46rpx;font-weight:bold;width: 100%;text-align: center;
+      left:0;
+    }
+  }
+  .introduction{
+    margin: 0  20rpx 20rpx 20rpx;background:$color-gray;position: relative;
+    .cell{display: flex;line-height: 80rpx;border-bottom: 1px solid #ddd;
+      &:last-child{border-bottom: none}
+      .cell-hd{
+        color: $color-888;
+        margin-left:113rpx;
+        width:160rpx;
+      }
+      .cell-bd{color: $color-aaa}
+    }
+    &:before{
+      @extend .trangle;
+    }
+  }
+  .detail{
+    position: relative;
+    .cell{color:$color-555;
+      display: flex;padding: 10rpx 40rpx;justify-content: space-between;align-items: center;
+      text{color:$color-888;font-size: 28rpx;}
+      &:nth-child(2n+1){background: $color-gray}
+    }
+    &:before{
+      @extend  .trangle;
+
+    }
+  }
+  .btn-area{padding:20rpx 20rpx 0 20rpx;
+    button{margin-bottom: 10rpx;}
+  }
+}

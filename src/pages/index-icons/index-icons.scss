@@ -1,0 +1,133 @@
+@import "../../assets/css/common";
+@import "../../assets/iconfont-svg/iconfont-svg.scss";
+$operate-color : #b99156;//#80848f;
+$backgroundColor:#CFCFCF;
+.indexicons{
+  background: #fff;
+  // padding:20rpx 0 50rpx 0;
+  padding:10rpx 0;
+  position:relative;
+  // .flex-wrp{
+  //   display:flex;
+  //   flex-wrap: wrap;
+  //   background: #fff;
+  //   border-top-left-radius: 20rpx;
+  //   border-top-right-radius: 20rpx;
+  //   border-bottom: 1px solid $line-color;
+  //   .flex-item{
+  //     width: 25%;
+  //     height:182rpx;
+  //     display: flex;
+  //     flex-direction: column;
+  //     justify-content: center;
+  //     text-align: center;
+  //     .flex-dsc{
+  //       color:$icon-color;
+  //       font-size: 28rpx;
+  //     }
+  //   }
+  // }
+  .operate-swiper{
+    // height:220rpx;
+    height:400rpx;
+  }
+  .borders{
+    // border-right:1rpx solid #e9eaec;
+  }
+  .home-operate{
+    // height:100%;
+    height: 200rpx;
+    padding:0 30rpx;
+    width:126rpx;
+    float:left;
+    text-align:center;
+    .operateIndex{
+      opacity:.3;
+      color:#80848f;
+      font-size:30rpx;
+      text-align:left;
+      // padding-top:10rpx;
+    }
+    .operateText{
+      // padding:10rpx 0 20rpx 0;
+      padding:10rpx 0 20rpx 0;
+      font-size:30rpx;
+      // opacity:.35;
+      color: #845d2a;
+      text-align:left;
+    }
+  }
+  .icon-register:before{
+    content:'\e662';
+    font-size:70rpx;
+    color: $operate-color;
+  }
+  .icon-chanpingoumai:before{
+    content:'\e642';
+    font-size:70rpx;
+    color: $operate-color;
+  }
+  .icon-kuaisuchongzhi:before{
+    content:'\e646';
+    font-size:70rpx;
+    color: $operate-color;
+  }
+  .icon-quanbuyuyue:before{
+    content:'\e673';
+    font-size:70rpx;
+    color: $operate-color;
+  }
+  .icon-jiaoyimingxi1:before{
+    content:'\e649';
+    font-size:70rpx;
+    color: $operate-color;
+  }
+  .icon-dingdanchaxun1:before{
+    content:'\e608';
+    font-size:70rpx;
+    color: $operate-color;
+  }
+  .icon-yijiandaohang:before{
+    content:'\e643';
+    font-size:70rpx;
+    color: $operate-color;
+  }
+  .icon-hangbanchaxun:before{
+    content:'\e641';
+    font-size:70rpx;
+    color: $operate-color;
+  }
+  .dots {
+
+    width: 100%;
+    height: 10rpx;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 50%;
+    bottom: 20rpx;
+    flex-wrap: nowrap;
+    justify-content: center;
+    transform: translateX(-50%);
+
+     /*未选中时的小圆点样式 */
+
+    .dot {
+        width: 20rpx;
+        height: 10rpx;
+        border-radius: 10rpx;
+        margin-right: 20rpx;
+        background-color: $backgroundColor;
+        align-items:center;
+        transition: width .5s ease-out;
+    }
+    
+    /*选中以后的小圆点样式  */
+    
+    .active {
+        width: 40rpx;
+        background-color: $color-gold;
+    }
+}
+
+}

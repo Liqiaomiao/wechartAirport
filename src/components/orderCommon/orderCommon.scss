@@ -1,0 +1,38 @@
+@import "../../assets/css/common";
+@import "../../assets/iconfont-svg/iconfont-svg";
+$info-height:70rpx;
+.radius-right-30{border-top-right-radius: $info-height/2;border-bottom-right-radius:$info-height/2}
+.Triangle{
+  display: block;content: "";border: 12rpx solid transparent;width: 0;height: 0;position:absolute;font-size: 0
+}
+.userInfo_ctx{background: $background-color-service;padding:40rpx 20rpx 0 40rpx;
+  &.pt10{padding-top: 10rpx;}
+  &.order-info{background: none;
+    .userInfo{border-bottom: 1px solid #fff;padding-bottom: 20rpx;}
+  }
+}
+
+.userInfo{
+  border: 1px solid #fff;border-bottom: 0;background:$background-color-service;padding:40rpx 0;
+  .panel-hd{background: #fff;width:100%;transform: translate(-20rpx,0);box-sizing: border-box;height: $info-height;@extend .radius-right-30;
+    &>view{
+      line-height: $info-height;
+    }
+
+    .hd{font-size: 32rpx;color: #fff;background: $color-gold;float: left;position: relative;@extend .radius-right-30;
+      padding: 0 40rpx;
+      &:before{border-top:12rpx solid $color-gold-darken;top: 100%;left: 0;@extend .Triangle}
+      &:after{border-right:12rpx solid $color-gold-darken;top: 100%;left:0;@extend .Triangle}
+    }
+    .ft{font-size: 30rpx;color:#7b7565;float: right;
+      padding: 0 20rpx;}
+  }
+  .panel-bd{
+    .cell{display: flex;font-size: 30rpx;margin: 20rpx 0;
+      .cell-hd{color:#7b7463;font-weight: bold;width: 200rpx;padding-left: 40rpx;}
+      .cell-ft{color:#7b7565;
+        .tab{background:$tag-color-primary;border-radius: 2px;color:#fff;margin-right: 5px;font-size:24rpx;padding: 4rpx 10rpx;line-height: 1 }
+      }
+    }
+  }
+}

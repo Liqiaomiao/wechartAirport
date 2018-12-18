@@ -1,0 +1,38 @@
+<view class="serviceReservationTel">
+    <view class="panel-hd">
+        <view class="phones" wx-if="{{cellPhoneNum.length>0}}">
+            <view class="cell-hd"> 电话预约：</view>
+            <view class="cell-bd">
+                <view wx:for="{{cellPhoneNum}}" wx:key="{{index}}">{{item.text}}</view>
+            </view>
+
+        </view>
+    </view>
+    <view class="panel-bd">
+        <view class="tips">温馨提示：尊敬的客户，增值服务、异地机场服务等请拨打电话预约</view>
+        <view class="panel-desc">
+            <view class="btn-area" >
+                <button class="btn-default" bindtap="cellPhone"><i class="iconfont "></i>拨打电话预约</button>
+            </view>
+            <view class="panel-lists">
+                <view class="panel-list" wx:for="{{serverName}}" wx:key="{{index}}">{{item.name}}</view>
+            </view>
+
+        </view>
+    </view>
+    <view class="popover" wx-if="{{popoverVisible}}">
+        <view class="cells">
+            <i class="iconfont close" bindtap="closePop"></i>
+            <view class="cellList" wx:for="{{cellPhoneNum}}">
+                <view class="cell-hd">客服{{index+1}}</view>
+                <view class="cell-bd">{{item.text}}</view>
+                <view class="cell-ft" bindtap="callPhone" id="{{item.text}}">
+                    <button class="btn-default"><i class="iconfont"></i></button>
+                </view>
+            </view>
+
+        </view>
+        <view class="masklayer" bindtap="closePop"></view>
+    </view>
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

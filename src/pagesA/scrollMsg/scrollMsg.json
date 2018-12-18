@@ -1,0 +1,9 @@
+{
+    "usingComponents":{
+        "i-cell": "../../components/iview/cell/index",
+        "unionhuatong-load" : "../../components/loading/loading",
+        "i-icon": "../../components/iview/icon/index",
+        "i-toast": "../../components/iview/toast/index",
+        "parse-html" : "../../components/parseHtml/parseHtml"
+    }
+}

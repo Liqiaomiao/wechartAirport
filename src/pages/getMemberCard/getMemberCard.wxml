@@ -1,0 +1,97 @@
+<view class="checkNumber">
+    <view class="cardImgTitle"><text wx:if="{{ifGetCard}}">恭喜您已经领取了</text><text wx:else>待领取</text> {{cardData.CardType}} - {{cardData.CardTypeName}}</view>
+    <view class="panel-hd">
+        <view class="panel-hd-container">
+            <image src="{{cardData.showImg}}" ></image>
+            <text class="imgNumber">{{cardData.cardNoFormat}}</text>
+        </view>
+    </view>
+    <scroll-view scroll-y scroll-with-animation scroll-into-view="{{toView}}"  class="scroll-container">
+        <view class="panel-bd">
+            <view class="panel-border" id="top">
+                <!--用户信息-->
+                <view class="panel-bd-hd">
+                    <view class="flex-grow-1">请选择</view>
+                    <radio-group class="flex-grow-2 radio_container" bindchange="radioChange">
+                        <label wx:for="{{items}}" wx:key="{{item.value}}">
+                            <view class="label_radio">
+                                <radio value="{{item.value}}" checked="{{item.value == current ? true : false}}" />
+                                <view class="fake iconfont {{item.value == current ? 'radio-checked' : ''}}" ></view>
+                            </view>
+                            <view class="label_text">{{item.name}}</view>
+                            <view class="triangle" wx:if="{{item.value==current}}"></view>
+                        </label>
+                    </radio-group>
+                </view>
+                <view class="panel-bd-bd">
+                    <form class="user-info">
+                        <view class="cell" >
+                            <text>姓名</text>
+                            <input value="{{cardData.RealName}}" data-name="name" disabled="{{current == 'self'}}" placeholder="请输入姓名"  bindinput="inputChange"/>
+                            <icon class="icon-small" type="cancel" size="23" color="#555" wx:if="{{current != 'self' && cardData.RealName != ''}}" data-for="name" bindtap="clear"></icon>
+                        </view>
+                        <view  class="cell" >
+                            <text>手机号</text>
+                            <input value="{{cardData.CellPhone}}" type="number"  data-name="phone" disabled="{{current == 'self'}}"  placeholder="请输入手机号" bindinput="inputChange"/>
+                            <icon class="icon-small" type="cancel" size="23" color="#555" wx:if="{{current != 'self' && cardData.CellPhone != ''}}" data-for="phone"  bindtap="clear"></icon>
+                        </view>
+                        <view  class="cell" >
+                            <text>身份证号</text>
+                            <input value="{{cardData.IdCardno}}" type="idcard" data-name="userInfoID"  maxlength="18" placeholder="请输入身份证号" bindinput="inputChange"/>
+                            <icon class="icon-small" type="cancel" size="23" color="#555" wx:if="{{current != 'self' && cardData.IdCardno != ''}}" data-for="userInfoID"  bindtap="clear"></icon>
+                        </view>
+                        <view  class="cell" >
+                            <text>购卡推荐人</text>
+                            <input value="{{cardData.buyReferrer}}" data-name="userInfoBuyReferrer" placeholder="请输入购卡推荐人" bindinput="inputChange"/>
+                            <icon class="icon-small" type="cancel" size="23" color="#555" wx:if="{{current != 'self' && cardData.buyReferrer != ''}}" data-for="userInfoBuyReferrer"  bindtap="clear"></icon>
+                        </view>
+                    </form>
+                </view>
+            </view>
+            <view class="panel-border">
+                <view class="panel-title"><text class="left">随机生成(免费)</text><text class="right" bindtap="_getCardRandNum">换一批</text></view>
+                <view class="panel-body">
+                    <view class="num current">{{cardData.cardNoFormat}}</view>
+                </view>
+            </view>
+            <view class="read">
+                <view class="">
+                    <checkbox-group bindchange="checkboxChange">
+                        <checkbox value="{{hasRead}}" checked="{{hasRead}}" ></checkbox>
+                    </checkbox-group>
+                    <view class="fake iconfont {{hasRead ? 'radio-checked' : ''}}" ></view>
+                </view>
+                <view class="label_text">我已阅读 <text bindtap="_lookGetCard">领卡协议</text></view>
+            </view>
+            <view class="vipCardIntroduce" id="getCard">
+                <view>一、领取的会员卡续费及使用标准： </view>
+                <view>1、领取的VIP-贵宾个人卡卡内无余额，可体验贵宾商务区服务1人次，限天津机场进出港使用，不可使用过夜停车和异地服务. </view>
+                <view>2、在持卡本人出行使用时，若携带随行需充值激活卡片后方可继续使用。 </view>
+                <view>3、领取的VIP-贵宾个人卡有效期为客户领取后的一年内有效。 </view>
+                <view>4、1人次用完后，客户可通过充值继续使用，1000元起充，充值一次满3600元可免交首年年费，不满3600元需要扣除第一年年费，后续将每年自动扣除360元年费，若卡内余额不足年费扣除，系统则会自动停止会员卡的使用。 </view>
+                <view>5、天津机场贵宾公司有最终解释权。 </view>
+                <view>二、会员在续费后的服务内容及收费标准：充值一次满3600元可免交首年年费，不满3600元需要扣除第一年年费，后续将每年自动扣除360元年费。会员及其随行可享受天津机场和全国各签约机场的贵宾接送机服务和嘉宾进出港服务。 </view>
+                <view>1、天津贵宾服务收费标准： </view>
+                <view>（1）贵宾接/送机服务：300元/人次,服务时限为2小时，超时重新结费。 </view>
+                <view>（2）免费停车服务：会员在使用本地服务同时，同一航班每批次客人可在服务当次享受一辆车72小时免费停放。 </view>
+                <view>2、天津嘉宾服务收费标准： </view>
+                <view>（1）嘉宾进/出港服务：200元/人次，单人次时限为3小时，超时重新结费。 </view>
+                <view>3、全国签约机场收费标准：以各签约机场签约价格为准。 </view>
+            </view>
+        </view>
+    </scroll-view> 
+    <button wx:if="{{!ifGetCard}}" class="btn-default next" bindtap="_getCard">领会员卡</button>
+    <view wx:else class="next_operate">
+        <button class="btn-default next_server" bindtap="_nowRouter" data-type="server">立即预约</button>
+        <button class="btn-default next_get" bindtap="_nowRouter" data-type="fast">续费3600元首年免年费</button>
+    </view>
+    <i-modal visible="{{ getCardVis }}" title="领取成功"  ok-text="知道了" show-cancel="{{false}}" bind:ok="_hiddenGetCard">
+        <view class="getCard">
+            <view>卡号：{{getCardData.cardno}}</view>
+            <view>卡类型：{{getCardData.cardTypeName}}</view>
+            <view>有效期：{{getCardData.selledDate}} 至 {{getCardData.deadlineDate}}</view>
+        </view>
+    </i-modal>
+    <i-toast id="toast"/>
+    <unionhuatong-load id="load" />
+</view>

@@ -1,0 +1,6 @@
+{
+  "component":true,
+  "usingComponents":{
+     "i-toast": "../../components/iview/toast/index"
+  }
+}

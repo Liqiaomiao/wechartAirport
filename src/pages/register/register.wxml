@@ -1,0 +1,133 @@
+<view id="register">
+    <image class="banner" src="{{bannerImg}}" />
+    <view wx:if="{{!isRegister}}">
+        <view class="titles">{{tabName == 'news' ? '新会员注册' : '老会员绑定'}}</view>
+        <view class="tabs">
+            <view bindtap="_setTabs" data-type="news" class="item {{tabName == 'news' ? 'checkItem' : ''}}">新会员注册</view>
+            <view bindtap="_setTabs" data-type="olds" class="item items {{tabName == 'olds' ? 'checkItem' : ''}}">老会员绑定</view>
+        </view>
+        <view class="regForm">
+            <view class="forms" wx:if="{{tabName != 'olds'}}">
+                <input value="{{formName}}" bindinput="_handleInput" data-type="name" type="text" class="inputs" placeholder="请输入姓名" />
+            </view>
+            <view class="forms">
+                <input value="{{formPhone}}" bindinput="_handleInput" data-type="phone" type="number" class="inputs" placeholder="请输入手机号" />
+            </view>
+            <view class="forms form-display">
+                <input value="{{formCode}}" bindinput="_handleInput" data-type="code" maxlength="6" type="number" class="inputs" placeholder="请输入验证码" />
+                <text bindtap="_getSms" class="rg-code {{rgCode != '获取验证码' ? 'rg-color' : ''}}">{{rgCode}}</text>
+            </view>
+        </view>
+        <view bindtap="_register" class="registerNow">立即注册</view>
+        <label class="radios">
+            <radio bindtap="_radioCheck" color="#b99156" checked="{{registerChecked}}"/><view >我已阅读<text style="color:#b99156;" data-type="open" bindtap="_seeRegister">注册协议</text></view>
+        </label>
+    </view>
+    <view  wx:if="{{isRegister}}">
+        <view class="titles">已注册会员</view>
+        <view class="noRegisterShowCon">
+            <view class="tipsCon">姓名：<text>{{registerName}}</text></view>
+            <view class="tipsCon">手机号：<text>{{registerPhone}}</text></view>
+            <view class="tipsCon">尊敬的客户，您已经注册认证成功，欢迎您使用【天津机场贵宾服务VIP】小程序</view>
+        </view>
+        <view class="btns">
+            <view class="btn" wx:if="{{canGetCard}}" bindtap="_getMemberCard"> 领会员卡 </view>
+            <view class="btn" bindtap="_exitLogin"> 返回首页 </view>
+            <!-- <view class="btn" data-type="exit" bindtap="_exitLogin"> 退出登录 </view> -->
+        </view>
+    </view>
+    <view class="tips">*注册成为会员可以领取一下优惠</view>
+    <view class="voucher-list">
+        <!-- <view class="items">
+            <view class="detail">
+                <view class="title">VVIP</view>
+                <view class="text">XXXXXX</view>
+            </view>
+            <image class="imgs" src="{{bannerImgs}}" />
+        </view> -->
+        <image class="imgsVoucher" mode="widthFix" src="{{voucherImg}}" />
+    </view>
+    <view class="voucher-detial">
+        <view class="title">卡券说明</view>
+        <view>1、折扣优惠适用于天津机场贵宾公司服务产品结算时可享受相应折扣。</view>
+        <view>2、填开发票金额为客户实际支付金额。</view>
+        <view>2、活动时间：2018年8月18日-12月31日。</view>
+        <view>3、天津机场贵宾公司对以上内容有最终解释权。</view>
+    </view>
+    <i-modal visible="{{ getCardVis }}" title="领取成功"  ok-text="知道了" show-cancel="{{false}}" bind:ok="_hiddenGetCard">
+        <view class="getCard">
+            <view>卡号：{{getCardData.cardno}}</view>
+            <view>卡类型：{{getCardData.cardTypeName}}</view>
+            <view>有效期：{{getCardData.selledDate}} 至 {{getCardData.deadlineDate}}</view>
+        </view>
+    </i-modal>
+    <i-action-sheet visible="{{ sheetVisible }}"  show-cancel bind:cancel="_seeRegister"  mask-closable="{{ true }}">
+        <view slot="header" style="padding: 16px;">
+            <scroll-view scroll-y style="height:800rpx;">
+                <view class="reg-titles">注册服务条款</view>
+                <view class="textIndent">欢迎阅读“天津机场贵宾服务”微信公众号注册服务条款（以下简称“本服务条款”），本服务条款适用于您注册成为天津机场贵宾公司会员客户及您所使用的天津机场贵宾公司服务。</view>
+                <view class="litTitle">一、服务条款的确认</view>
+                <view class="textIndent">天津机场贵宾公司提供的服务是有偿服务，您必须完全同意下列所有服务条款并完成付费，才能享受相关服务。</view>
+                <view class="textIndent">请认真仔细阅读本服务条款。在您注册加入天津机场贵宾公司成为我们的会员客户时，即视为您已充分阅读、了解并同意接受本服务条款中的各项内容，本服务条款即刻生效。</view>
+                <view class="litTitle">二、客户资料保密</view>
+                <view class="textIndent">（一）“天津机场贵宾服务”微信公众号账号（即“天津机场贵宾服务”微信公众号用户ID）的所有权归属天津空港贵宾服务有限公司（下称“本公司”），用户完成注册申请手续后，获得“天津机场贵宾服务”微信公众号用户账号的使用权。</view>
+                <view class="textIndent">1.用户一旦注册成功，成为本“天津机场贵宾服务”微信公众号的合法用户，将得到一个密码和用户名。您可随时根据需要自主修改您的密码。</view>
+                <view class="textIndent">2.注册时，请您选择填写用户名和密码，并按页面提示提交相关信息。您对使用的用户名和密码负有保密义务，并承担在该用户名和密码下因使用所有本服务而发生的全部责任。</view>
+                <view class="textIndent">3.因计算机病毒、黑客行为或您自身对用户名和密码保护的疏忽而对您造成损失，本公司不承担任何责任。</view>
+                <view class="textIndent">4.本公司仅通过您的用户名和密码识别您的身份信息和操作指示。您应当妥善保管您的用户名和密码，对于因密码泄露所致的损失，本公司不承担任何责任。</view>
+                <view class="textIndent">5.用户不得将其账号、密码转让或出借予他人使用。</view>
+                <view class="textIndent">（二）本“天津机场贵宾服务”微信公众号不会对外公开或向第三方提供单个用户的注册资料，除非：</view>
+                <view class="textIndent">1.事先获得用户的明确授权；</view>
+                <view class="textIndent">2.通过透漏用户的个人资料，提供用户所要求的产品和服务；</view>
+                <view class="textIndent">3.维护“天津机场贵宾服务”微信公众号的合法权益；</view>
+                <view class="textIndent">4.根据有关的法律法规要求或相关政府主管部门的要求。尊重用户个人隐私信息的私有性是本公司的一贯制度，天津机场贵宾服务将采取技术措施和其他必要措施，确保用户个人隐私信息安全，防止在服务中收集的用户个人隐私信息泄露、毁损或丢失。在发生上述情形或者发现存在发生前述情形的可能时，本公司将及时采取补救措施。</view>
+                <view class="litTitle">三、客户使用规则</view>
+                <view class="textIndent">（一）用户在使用天津机场贵宾公司服务时，必须遵守中华人民共和国相关法律法规的规定，用户应同意将不会利用本服务进行任何违法或不正当的活动，包括但不限于下列行为：</view>
+                <view class="textIndent">1.上载、展示、张贴、传播或以其它方式传送含有下列内容之一的信息：</view>
+                <view class="textIndent">1）反对宪法所确定的基本原则的；</view>
+                <view class="textIndent">2）危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；</view>
+                <view class="textIndent">3）损害国家荣誉和利益的；</view>
+                <view class="textIndent">4）煽动民族仇恨、民族歧视、破坏民族团结的；</view>
+                <view class="textIndent">5）破坏国家宗教政策，宣扬邪教和封建迷信的；</view>
+                <view class="textIndent">6）散布谣言，扰乱社会秩序，破坏社会稳定的；</view>
+                <view class="textIndent">7）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；</view>
+                <view class="textIndent">8）侮辱或者诽谤他人，侵害他人合法权利的；</view>
+                <view class="textIndent">9）煽动非法集会、结社、游行、示威、聚众扰乱社会秩序的；</view>
+                <view class="textIndent">10）以非法民间组织名义活动的；</view>
+                <view class="textIndent">11）含有虚假、有害、胁迫、侵害他人隐私、骚扰、侵害、中伤、粗俗、猥亵、或其它道德上令人反感的内容；</view>
+                <view class="textIndent">12）含有中国法律、法规、规章、条例以及任何具有法律效力之规范所限制或禁止的其它内容的。</view>
+                <view class="textIndent">2.不得为任何非法目的而使用网络服务系统；</view>
+                <view class="textIndent">3.不利用“天津机场贵宾服务”微信公众号从事以下活动：</view>
+                <view class="textIndent">1）未经允许，进入计算机信息网络或者使用计算机信息网络资源的；</view>
+                <view class="textIndent">2）未经允许，对计算机信息网络功能进行删除、修改或者增加的；</view>
+                <view class="textIndent">3）未经允许，对进入计算机信息网络中存储、处理或者传输的数据和应用程序进行删除、修改或者增加的；</view>
+                <view class="textIndent">4）故意制作、传播计算机病毒等破坏性程序的；</view>
+                <view class="textIndent">5）其他危害计算机信息网络安全的行为。</view>
+                <view class="textIndent">（二）用户违反法律法规、本协议或相关的服务条款的规定，导致或产生的任何第三方主张的任何索赔、要求或损失（包括合理的律师费），用户须承担由此造成的相关损失的赔偿责任。对此，“天津机场贵宾服务”微信公众号有权视用户的行为性质，采取包括但不限于删除用户发布信息内容、暂停使用许可、终止服务、限制使用、回收“天津机场贵宾服务”微信公众号帐号、追究法律责任等措施。对恶意注册“天津机场贵宾服务”微信公众号帐号或利用“天津机场贵宾服务”微信公众号帐号进行违法活动、骚扰、欺骗其他用户以及其他违反本协议的行为，“天津机场贵宾服务”微信公众号有权收回其帐号。造成的一切损失，天津空港贵宾服务有限公司有权要求用户承担赔偿责任。同时，本公司会视司法部门的要求，协助调查。</view>
+                <view class="textIndent">（三）用户不得对本服务任何部分或本服务之使用或获得，进行复制、拷贝、出售、转售或用于任何其它商业目的。</view>
+                <view class="textIndent">（四）用户须对自己在使用“天津机场贵宾服务”微信公众号服务过程中的行为承担法律责任。用户承担法律责任的形式包括但不限于：对被侵害者直接进行赔偿，以及在本公司先行承担了因用户行为导致的行政处罚或侵权损害赔偿责任后，用户应无条件给予本公司等额赔偿等。</view>
+                <view class="litTitle">四、服务条款的修改</view>
+                <view class="textIndent">1.本公司有权随时修改本服务条款，一旦本服务条款的内容发生变动，本公司将会在“天津机场贵宾服务”微信公众号重要界面、本公司官方网站上公布修改之后的服务条款内容。</view>
+                <view class="textIndent">2.如果不同意本公司对本服务条款所做的修改，会员有权停止使用本服务。如果会员继续使用本服务，则视为会员同意并接受本公司对本服务条款所作之修改。</view>
+                <view class="litTitle">五、免责条款</view>
+                <view class="textIndent">因下列情形导致网络服务中断、终止，使您无法及时使用相关服务等风险，本公司不予承担任何责任，并不对该等风险提供任何形式的担保。</view>
+                <view class="textIndent">1.因互联网接入单位、平台支持单位、短信发送商、移动运营商等电信单位的线路故障、通讯故障的造成的信息传递异常；</view>
+                <view class="textIndent">2.因地震、台风、战争、罢工、瘟疫、爆发性和流行性传染病或其他重大疫情、火灾造成的及其他各方不能预见并且对其发生后果不能避免的不可抗力造成的网络服务异常；</view>
+                <view class="textIndent">3.因黑客攻击、网络病毒、政府管制出现的网络服务异常。</view>
+                <view class="textIndent">4.因不可抗力、机场临时管控措施、休息室饱和而使您无法使用本服务的风险，本公司不予承担任何责任，并不对该等风险提供任何形式的担保。</view>
+                <view class="litTitle">六、法律管辖使用范围</view>
+                <view class="textIndent">1.本服务条款的订立、执行、解释及争议的解决均适用中华人民共和国法律；</view>
+                <view class="textIndent">2.如发生本服务条款与中国法律相抵触时，则这些条款将完全按法律规定重新解释，而其它有效条款继续有效；</view>
+                <view class="textIndent">3.如双方就本协议内容或其执行发生任何争议，双方应尽力友好协商解决；协商不成时，任何一方均可向本公司所在地人民法院提起诉讼，您不可撤销地同意将该等争议排他地提交至本公司住所地的人民法院通过诉讼的方式解决；</view>
+                <view class="textIndent">4.本公司未行使或执行本服务条款项下的任何权利，不构成对该等权利之放弃；</view>
+                <view class="textIndent">5.如本服务条款中的任何条款无论因何种原因完全或部分无效或不具有执行力，本服务条款的其他条款仍有效并具有拘束力；</view>
+                <view class="textIndent">6.本公司保留本服务条款之解释权。</view>
+                <view class="litTitle">七、产权声明</view>
+                <view class="textIndent">本“天津机场贵宾服务”微信公众号是由天津空港贵宾服务有限公司独家承办。本“天津机场贵宾服务”微信公众号的全部内容完全由天津空港贵宾服务有限公司所有。</view>
+                <view class="textIndent">在本“天津机场贵宾服务”微信公众号中刊载的所有信息和图片除特别标明之外，版权归天津空港贵宾服务有限公司所有。未经所有者的书面署名许可，任何其他个人或组织均不得以任何形式将“天津机场贵宾服务”微信公众号的各项资源转载、复制、编辑或发布使用于其他任何场合；不得把其中任何形式的资讯散发给其他方，不可把这些信息在其他的服务器或文档中作镜像复制或保存；不得修改或再使用“天津机场贵宾服务”微信公众号中的任何资源。违者，本公司将依法追究相应的法律责任。</view>
+           </scroll-view>
+        </view>
+    </i-action-sheet>
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

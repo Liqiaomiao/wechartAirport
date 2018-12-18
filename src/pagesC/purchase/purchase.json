@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText":"天津机场贵宾服务产品",
+  "usingComponents":{
+    "i-tabs": "../../components/iview/tabs/index",
+    "i-tab": "../../components/iview/tab/index",
+    "i-toast": "../../components/iview/toast/index",
+    "unionhuatong-load" : "../../components/loading/loading",
+    "parse-html" : "../../components/parseHtml/parseHtml"
+  }
+
+}

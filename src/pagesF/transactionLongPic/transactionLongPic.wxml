@@ -1,0 +1,68 @@
+<view id="transactionLongPic">
+    <view class="fixedTab">
+        <i-tabs color="#b99156" current="{{ current }}" bindchange="_handleChange">
+            <i-tab key="today" title="今天"></i-tab>
+            <i-tab key="week" title="本周"></i-tab>
+            <i-tab key="month" title="本月"></i-tab>
+            <i-tab key="year" title="本年"></i-tab>
+            <i-tab key="self" title="自定义"></i-tab>
+        </i-tabs>
+        <view class="chooseDate {{showDateChoose ? 'showDate' : ''}}">
+            <view class="title">时间范围</view>
+            <view class="datePicker">
+                <picker data-type="start" mode="date" fields="day" value="{{pickerValue}}" start="{{startTime}}" end="{{endTime}}" bindchange="_bindDateChange" bindcancel="_bindDateCancel">
+                    <view class="dateContent" >{{chooseStartTime}}</view>
+                </picker>
+                <view>-</view>
+                <picker mode="date" data-type="end" fields="day" value="{{pickerValue}}" start="{{startTime}}" end="{{endTime}}" bindchange="_bindDateChange" bindcancel="_bindDateCancel">
+                    <view class="dateContent" >{{chooseEndTime}}</view>
+                </picker>
+            </view>
+            <view class="operations">
+                <text bindtap="_operateDate" data-type="close" class="cancelBtns">取消</text><text bindtap="_operateDate" data-type="ok" class="okBtns">确认</text>
+            </view>
+        </view>
+        <view class="searchData">
+            <text class="text">搜索完成，共计 {{dataTotal}} 条记录</text>
+            <text wx:if="{{searchState && dataTotal > 0}}" class="longPic" bindtap="_getImgSetting">生成长图</text> 
+        </view>
+    </view>
+    <view class="details">
+        <view class="nolmal" wx:if="{{pageType == 'normal'}}" wx:for="{{listData}}" wx:key="{{index}}">
+            <view class="types">{{item.actualPayFee >= 0 ? '进' : '出'}}</view>
+            <view class="items">
+                <view class="left">
+                    <text class="title">{{item.tradeName}}</text>
+                    <text class="card">[{{item.cardSeriesStr}}] [{{item.tradeTypeStr}}]</text>
+                    <text class="time">{{item.tradeTime}}</text>
+                </view>
+                <view class="right {{item.actualPayFee > 0 ? 'minus' : 'plugs'}}" wx:if="{{item.cardCat == '1' || item.cardCat != '1' && item.tradeType != '4'}}">{{item.formatPrice}}</view>
+                <view class="right" wx:elif="{{item.cardCat != '1' && item.tradeType == '4'}}">- {{item.consumeCount}} 次</view>
+                <view class="right" wx:else>不限次</view>
+            </view>
+        </view>
+        <view class="detail" wx:if="{{pageType != 'normal'}}" wx:for="{{listData}}" wx:key="{{index}}">
+            <view class="top">
+                <view class="imgs">
+                    <image src="{{item.formatImg}}" />
+                    <text >{{item.cardSeriesStr}}</text>
+                </view>
+                <view class="right {{item.actualPayFee > 0 ? 'minus' : 'plugs'}}" wx:if="{{item.cardCat == '1' || item.cardCat != '1' && item.tradeType != '4'}}">{{item.formatPrice}}</view>
+                <view class="right" wx:elif="{{item.cardCat != '1' && item.tradeType == '4'}}">- {{item.consumeCount}} 次</view>
+                <view class="right" wx:else>不限次</view>
+                <view class="tips">交易成功</view>
+            </view>
+            <i-cell-group>
+                <i-cell title="卡号" value="{{item.formatCardno}}" is-link></i-cell>
+                <i-cell title="交易方式" value="会员卡" is-link></i-cell>
+                <i-cell title="交易类型" value="服务费" is-link></i-cell>
+                <i-cell title="交易渠道" value="微信公众号" is-link></i-cell>
+                <i-cell wx:if="{{item.actualPayReward}}" title="体验金使用" value="1231233" is-link></i-cell>
+                <i-cell wx:if="{{item.actualPayPoints}}" title="积分奖励" value="1231233" is-link></i-cell>
+                <i-cell title="说明" value="预约服务消费，尾号（0008）" is-link></i-cell>
+            </i-cell-group>
+        </view>
+    </view>
+    <canvas class="canvasTranslate" style="height: {{canvasHeight}}px;" canvas-id="transactionCanvas"></canvas>
+   <i-toast id="toast" />
+</view> 

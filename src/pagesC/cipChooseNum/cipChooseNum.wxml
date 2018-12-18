@@ -1,0 +1,152 @@
+<view class="checkNumber">
+     <view class="panel-hd">
+        <view class="items">
+            <image src="{{imgUrl + cipData.cardInfos[0].CardPicWithoutNoUrl}}" ></image>
+            <view class="imgNumber">{{chooseFormatCarNum}}</view>
+            <view class="text">CIP - “易出行”卡</view>
+        </view>
+        <view class="items">
+            <image src="{{imgUrl + cipData.cardInfos[1].CardPicWithoutNoUrl}}" ></image>
+            <view class="imgNumber">{{chooseFormatPlanNum}}</view>
+            <view class="text">CIP - “易接机”卡</view>
+        </view>
+    </view>
+    <scroll-view scroll-y  class="scroll-container">
+        <view class="panel-bd">
+            <view class="panel-border">
+                <!--用户信息-->
+                <view class="panel-bd-hd">
+                    <view class="flex-grow-1">请选择</view>
+                    <radio-group class="flex-grow-2 radio_container" bindchange="radioChange">
+                        <label wx:for="{{items}}" wx:key="{{item.value}}">
+                            <view class="label_radio">
+                                <radio value="{{item.value}}" checked="{{item.value==current?true:false}}" />
+                                <view class="fake iconfont {{item.value==current?'radio-checked':''}}" ></view>
+                            </view>
+                            <view class="label_text">{{item.name}}</view>
+                            <view class="triangle" wx:if="{{item.value==current}}"></view>
+                        </label>
+                    </radio-group>
+                </view>
+                <view class="panel-bd-bd">
+                    <form class="user-info">
+                        <view class="cell" >
+                            <text>姓名</text>
+                            <input value="{{form.name}}" data-name="name" disabled="{{current=='self'}}" placeholder="请输入姓名"  bindinput="inputChange"/>
+                            <icon class="icon-small" type="cancel" size="23" color="#555" wx:if="{{current!='self'&&form.name!=''}}" data-for="name" bindtap="clear"></icon>
+                        </view>
+                        <view  class="cell" >
+                            <text>手机号</text>
+                            <input value="{{form.phone}}" type="number"  data-name="phone" disabled="{{current=='self'}}"  placeholder="请输入手机号" bindinput="inputChange"/>
+                            <icon class="icon-small" type="cancel" size="23" color="#555" wx:if="{{current!='self'&&form.phone!=''}}" data-for="phone"  bindtap="clear"></icon>
+                        </view>
+                        <view  class="cell" >
+                            <text>身份证号</text>
+                            <input value="{{form.userInfoID}}" type="idcard" data-name="userInfoID"  disabled="{{current=='self'&&userIdValid}}"  maxlength="18" placeholder="请输入身份证号" bindinput="inputChange"/>
+                            <icon class="icon-small" type="cancel" size="23" color="#555" wx:if="{{current!='self'&&form.userInfoID!=''}}" data-for="userInfoID"  bindtap="clear"></icon>
+                        </view>
+                        <view  class="cell" >
+                            <text>车牌照号</text>
+                            <input  data-name="userInfoCardNum" value="{{form.userInfoCardNum}}"    placeholder="请输入车牌照号" bindinput="inputChange"/>
+                            <icon class="icon-small" type="cancel" size="23" color="#555" wx:if="{{current!='self'&&form.userInfoCardNum!=''}}" data-for="userInfoCardNum"  bindtap="clear"></icon>
+                        </view>
+                        <view  class="cell" >
+                            <text>购卡推荐人</text>
+                            <input value="{{form.userInfoBuyReferrer}}" data-name="userInfoBuyReferrer" placeholder="请输入购卡推荐人" bindinput="inputChange"/>
+                            <icon class="icon-small" type="cancel" size="23" color="#555" wx:if="{{current!='self'&&form.userInfoBuyReferrer!=''}}" data-for="userInfoBuyReferrer"  bindtap="clear"></icon>
+                        </view>
+                    </form>
+                </view>
+            </view>
+            <view class="panel-border">
+                <view class="panel-title"><text class="left">随机生成 CIP - “易出行”卡号</text><text class="right" data-isNiceNo="0" bindtap="getcard">换一批</text></view>
+                <view class="panel-body">
+                    <view class="num {{randomht == idx?'current':''}}" wx:for="{{randomNum}}" wx:key="{{item.cardno}}" wx:for-index="idx" data-index="{{idx}}" data-num="{{item.cardno}}" bindtap="choose">{{item.cardnoFormat}}</view>
+
+                </view>
+            </view>
+            <view class="panel-border">
+                <view class="panel-title"><text class="left">随机生成 CIP - “易接机”卡号</text><text class="right" data-isNiceNo="1" bindtap="getcard">换一批</text></view>
+                <view class="panel-body">
+                    <view class="num {{randomPlan == planNum ? 'current' : ''}}" wx:for="{{randomPlanNum}}" wx:key="{{item.cardno}}" wx:for-index="planNum" data-index="{{planNum}}" data-num="{{item.cardno}}" bindtap="choosePlan">{{item.cardnoFormat}}</view>
+                </view>
+            </view>
+            <view class="read">
+                <view class="">
+                    <checkbox-group bindchange="checkboxChange">
+                        <checkbox value="{{hasRead}}" checked="{{hasRead}}" ></checkbox>
+                    </checkbox-group>
+                    <view class="fake iconfont {{ hasRead ? 'radio-checked' : ''}}" ></view>
+                </view>
+                <view class="label_text">我已阅读 <text bindtap="getProtocol">购卡协议</text></view>
+            </view>
+        </view>
+
+    </scroll-view>
+    <i-action-sheet visible="{{ visible }}"  show-cancel bind:cancel="handleCancel"  mask-closable="{{ true }}">
+        <view slot="header" style="padding: 16px;" class="protocol_bd">
+            <scroll-view scroll-y style="height:800rpx;">
+                <view class="title">购卡须知</view>
+                <view class="titles">购买服务条款</view>
+                <view class="textIndent">欢迎阅读“天津机场贵宾服务”微信公众号服务条款（以下简称“本服务条款”），本服务条款适用于您在“天津机场贵宾服务”微信公众号上购买各类服务产品后成为天津机场贵宾公司（以下简称“本公司”）会员客户及您所享受的天津机场贵宾服务。</view>
+                <view class="litTitle">一、服务条款的确认</view>
+                <view class="textIndent">天津机场贵宾公司提供的服务是有偿服务，您必须完全同意下列所有服务条款并完成付费，才能享受相关服务。</view>
+                <view class="textIndent">请认真仔细阅读本服务条款。在您购买前选择阅读本协议页面的“同意”按钮即视为您已充分阅读、了解并同意接受本服务条款中的各项内容，本服务条款即刻生效。</view>
+                <view class="litTitle">二、用户注册</view>
+                <view class="textIndent">1. 您需保障注册时提供真实、完整及准确的个人资料，并自行、及时对前述信息进行更新。</view>
+                <view class="textIndent">2. 若因您错误、不真实、不完整地提交您的个人资料，本公司有权暂停或终止向您提供本公司的服务且不进行任何补偿、赔偿。</view>
+                <view class="textIndent">3. 因您未及时更新、修正您的个人资料而延误您使用服务，本公司不承担任何责任。</view>
+                <view class="litTitle">三、服务产品</view>
+                <view class="textIndent">1. “天津机场贵宾服务”微信公众号上的各类服务产品需先购买充值会员卡，依据您所办理的会员卡类型每年收取相应的会员卡年费，年费每年自动从会员卡余额内扣除；</view>
+                <view class="textIndent">自购买会员卡之日起至使用满一年后卡内余额充足的情况下将自动扣除新一年的年费，卡内余额不足扣除新一年年费的，会员卡将停用，卡内余额为零时会员卡自动注销，本公司不再提供任何服务。会员卡使用期间，您可继续随时查询余额并充值，延续会员卡使用。</view>
+                <view class="textIndent">2. 在会员卡使用期内，您可购买本公司提供的各类服务产品及享受天津机场贵宾服务（注：需另行支付相应服务费用）</view>
+                <view class="litTitle">四、“天津机场贵宾服务”微信公众号所售各系列会员卡内服务产品概要和注意事项</view>
+                <view class="textIndent">天津机场贵宾服务，包括但不限于“预约选座打牌”、“专用值机接待”、“快捷安检通道”、“楼内电瓶/机坪摆渡”、“休息室服务”、“贵宾安检通道”、“航班登机提醒”、“贵宾车辆通道”、“贵宾车场停车”、“飞机舱门迎送”、“行李托运提取”等服务，以上服务仅限天津滨海国际机场本地贵宾服务，享受以上服务根据您所办理的会员卡类型，需另行支付相应的服务费用。
+                    “预约全球/全国服务”具体服务内容和收费标准以当地机场签订协议提供的服务标准为准。</view>
+                <view class="textIndent">1. “预约选座打牌”是指客户购买本公司各类会员产品并扣除相应的费用或次数后，本公司可提供提前电话预约选取座位并可提前打出登机牌的服务。
+                    提示注意：本项服务不支持办理春秋航班、九元航班、西藏航空、中国联合航空公司的登机牌以及国际航班、中转联程的登机牌，客户需自行至相应航空公司值机柜台，办理选座、值机手续。
+                    此外，客户选择的座位需根据航空公司空余座位以及和航空公司相关标准进行发放，本公司不保证发放客户预选的座位。</view>
+                <view class="textIndent">2. “专用值机接待”是指客户购买本公司各类会员产品并扣除相应的费用或次数后，本公司可提供天津机场国内航班专用值机接待柜台协助客户办理乘机手续（根据当天旅客出行高峰时段，客户会遇有排队办理值机手续的情况）。
+                    提示注意：本项服务不支持办理春秋航班、九元航班、西藏航空、中国联合航空公司的登机牌以及国际航班、中转联程的登机牌，客户需自行至相应航空公司值机柜台，办理选座、值机手续。
+                    此外，客户选择的座位需根据航空公司空余座位以及和航空公司相关标准进行发放，本公司不保证发放客户指定的座位。</view>
+                <view class="textIndent">3. “快捷安检通道”是指客户购买本公司各类会员产品并扣除相应的费用或次数后，本公司可提供快速办理安检通道手续服务（根据当天旅客出行高峰时段，客户会遇有排队办理安检手续的情况）。</view>
+                <view class="textIndent">4. “楼内电瓶/机坪摆渡”是指客户购买本公司各类会员产品并扣除相应的费用或次数后，本公司可提供楼内电瓶摆渡车/机坪摆渡车至相应的候机室/停机位(根据当天旅客出行高峰时段，客户会遇有排队/等候摆渡车接送的情况）。</view>
+                <view class="textIndent">5. “休息室服务”是指客户购买本公司各类会员产品并扣除相应的费用或次数后，本公司可提供头等舱/贵宾厅休息室候机服务， 头等舱休息室服务标准时间为3小时/次，贵宾厅服务标准时间为2小时/次，若使用超时，需重新刷卡。
+                    服务内容包括：候机休息、饮食品、报刊杂志、无线上网等。 若遇航班大面积延误造成休息室拥挤或接待饱和等状况，该休息室运营主管有权拒绝客户使用本服务。客户在使用休息室过程中，如出现损坏休息室物品的情况,需依据实际损失进行赔偿。
+                    异地服务具体内容以当地休息室提供的服务标准为准。</view>
+                <view class="textIndent">6. “贵宾安检通道”是指客户购买本公司贵宾类会员产品并扣除相应的费用或次数后，本公司可提供天津机场贵宾区域专用通道办理安检手续服务（根据当天旅客出行高峰时段，客户会遇有排队办理安检手续的情况）。</view>
+                <view class="textIndent">7. “航班登机提醒”是指客户购买本公司各类会员产品后，本公司可提供批量航班登机的提醒工作。若因休息室服务资源限制，无法提供专人提醒登机服务，请您自行留意航班动态信息，以防耽误登机。本公司不负责因延误登机所产生的直接与间接损失。</view>
+                <view class="textIndent">8. “贵宾车辆通道”是指客户购买本公司贵宾类会员产品并扣除相应的费用或次数后，本公司可提供天津机场贵宾专用车道通行服务，客户需提前拨打预约电话提报车号。</view>
+                <view class="textIndent">9. “贵宾车场停车”是指客户购买本公司贵宾类会员产品并扣除相应的费用或次数后，本公司可提供贵天津机场贵宾区域停车场停车（含过夜停车）的服务，客户在使用贵宾服务的同时可享受2小时免费停放，超出2小时后停车收费标准为2元/半小时。</view>
+                <view class="textIndent">10. “飞机舱门迎送”是指客户购买本公司贵宾类会员产品并扣除相应的费用或次数后，本公司可提供引导该客户至航班登机口登机或在舱门口附近举牌接机的服务，本项服务不含接送机人员进入隔离区接送机服务。</view>
+                <view class="textIndent">11. “行李托运提取”是指客户购买本公司贵宾类会员产品并扣除相应的费用或次数后，本公司可协助客户办理行李托运或协助提取托运行李。提取行李件数超出每位服务人员的能力范围，则需增加服务人员提取托运行李，增加的服务人员按照300元/人次收取。</view>
+                <view class="textIndent">12. “预约全球/全国服务”是指客户购买本公司贵宾类会员产品并扣除相应的费用或次数后，本公司可提供全球/全国签约机场贵宾服务或头等舱休息室候机服务，具体服务内容以当地机场提供的服务标准为准。</view>
+                <view class="textIndent">13. 天津机场贵宾服务以及本公司各类会员产品的内容、收费标准、收费方式及服务条款应以本公司最新发布的通知为准。</view>
+                <view class="textIndent">14. 客户在享受本公司提供的服务过程中应遵守各地机场相关规定。</view>
+                <view class="litTitle">五、天津机场贵宾服务购买条款的修改</view>
+                <view class="textIndent">1. 本公司有权随时修改本服务条款，一旦本服务条款的内容发生变动，本公司将会在“天津机场贵宾服务”微信公众号重要界面、本公司官方网站上公布修改之后的服务条款内容。</view>
+                <view class="textIndent">2. 如果不同意本公司对本服务条款所做的修改，会员可要求停止使用本服务。如果会员继续使用本服务，则视为会员同意并接受本公司对本服务条款所作之修改。</view>
+                <view class="litTitle">六、违约责任</view>
+                <view class="textIndent">1. 您同意保障和维护本公司及其他用户的利益，如因您违反有关法律、法规或本服务条款项下的任何条款而给本公司或任何其他第三人造成损失，您同意承担由此造成的损害赔偿责任。</view>
+                <view class="textIndent">2. 如果会员客户在使用本服务时，因本公司的过错而受到损失，本公司仅对会员客户在享受该次服务时受到的直接损失承担任。</view>
+                <view class="litTitle">七、免责条款</view>
+                <view class="textIndent">1. 因不可抗力、计算机病毒或黑客攻击、国家相关行业主管部门及电信运营商的调整、系统不稳定等原因造成您无法及时充入服务点数的风险，本公司不予承担任何责任，亦不对该等风险提供任何形式的担保。</view>
+                <view class="textIndent">2. 因不可抗力、机场/高铁站临时管控措施、休息室饱和而使您无法使用本服务的风险，本公司不予承担任何责任，亦不对该等风险提供任何形式的担保。</view>
+                <view class="litTitle">八、用户资料及保密</view>
+                <view class="textIndent">1. 注册时，请您如实填写用户名、密码、电话，并按页面提示提交相关信息。您对使用的用户名和密码负有保密义务，并承担在该用户名和密码下因使用所有本服务而发生的全部责任。</view>
+                <view class="textIndent">2. 因计算机病毒、黑客行为或您自身对用户名和密码保护的疏忽而对您造成损失，本公司不承担任何责任。</view>
+                <view class="textIndent">3. 本公司仅通过您的用户名和密码识别您的身份信息和操作指示。您应当妥善保管您的用户名和密码，对于因密码泄露所致的损失，本公司不承担任何责任。</view>
+                <view class="textIndent">4. 除法律法规规定或您的明确授权外，本公司不会向本服务所涉及相关方之外的其他方公开或透露您的个人资料。</view>
+                <view class="litTitle">九、其它</view>
+                <view class="textIndent">1. 本服务条款的订立、履行、解释及争议的解决均适用中华人民共和国法律。</view>
+                <view class="textIndent">2. 如您就本服务的使用与本公司发生争议，双方应尽量友好协商解决；协商不成，任何一方均可向本公司所在地人民法院提起诉讼，您不可撤销地同意将该等争议排他地提交至本公司住所地的人民法院通过诉讼的方式解决。</view>
+                <view class="textIndent">3. 本公司未行使或执行本服务条款项下的任何权利，不构成对该等权利之放弃。</view>
+                <view class="textIndent">4. 如本服务条款中的任何条款无论因何种原因完全或部分无效或不具有执行力，本服务条款的其他条款仍有效并具有拘束力。</view>
+                <view class="textIndent">5. 本公司保留本服务条款之解释权。</view>
+            </scroll-view>
+        </view>
+    </i-action-sheet>
+    <i-toast id="toast"/>
+    <button class="btn-default next {{nextDisable?'btn-disabled':''}}" disabled="{{nextDisable}}" bindtap="bindNext">下一步</button>
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

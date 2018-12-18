@@ -1,0 +1,8 @@
+{
+ "usingComponents":{
+   "i-tabs": "../../components/iview/tabs/index",
+   "i-tab": "../../components/iview/tab/index",
+   "i-toast": "../../components/iview/toast/index",
+   "unionhuatong-footer":"../../components/footer/footer"
+ }
+}

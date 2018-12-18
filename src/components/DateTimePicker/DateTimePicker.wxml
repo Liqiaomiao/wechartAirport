@@ -1,0 +1,5 @@
+<view>
+    <picker mode="multiSelector" range="{{range}}" value="{{timecurrent}}" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange"  >
+        <view>{{timeText}}</view>
+    </picker>
+</view>

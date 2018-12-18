@@ -1,0 +1,112 @@
+<view class="serviceReservationConfirm">
+    <card-info desc="{{desc}}" hd="{{hd}}">
+        <view slot="content" class="content-text"> 
+            <text>服务价格</text>
+            <text> ¥ {{formatTotalFee}} 元 </text>
+            <view class="left-round"></view>
+            <view class="right-round"></view>
+        </view>
+    </card-info>
+    <service-panel wx:if="{{showServer}}" serivce="{{services}}" cardData="{{cardData}}" passagerText="{{passagerText}}" bind:stepchange="_changeServer"></service-panel>
+    <view class="panel-border-gray mt10">
+        <i-tabs current="{{ current }}" bindchange="handleChange" color="#be9457" i-class="tabs">
+            <i-tab key="travellers" title="出行人"></i-tab>
+            <i-tab key="contacters" title="联系人"></i-tab>
+            <i-tab key="cars" title="车辆"></i-tab>
+        </i-tabs>
+       <!-- 出行人-->
+        <view class="flex-icon-panel" hidden="{{current!='travellers'}}">
+            <block wx:if="{{travellers.length>0}}">
+                <view wx:for="{{travellers}}"  class="panel-list"  wx:key="{{index}}" >
+                    <view class="panel-hd">
+                        <view class="icons">
+                            <icon class="iconfont man"></icon>
+                        </view>
+                    </view>
+                    <view class="panel-bd">
+                        <view>{{item.name}}<text wx:if="{{item.post}}">{{'[ ' + item.post + ' ]'}}</text></view>
+                        <view>
+                            <text wx:if="{{item.isHonor == 1}}" class="tag danger">主宾</text>
+                            <text wx:if="{{item.isSpecial == 1}}" class="tag danger">特殊人群</text>
+                            <text wx:if="{{item.identityNum}}" class="tag primary">{{item.identityNum}}</text>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else><view class="noInfo">暂无出行人信息.</view></block>
+        </view>
+       <!-- 联系人-->
+         <view class="flex-icon-panel" hidden="{{current!='contacters'}}">
+            <block wx:if="{{contacters.length>0}}">
+                <view wx:for="{{contacters}}" class="panel-list" wx:key="{{index}}">
+                    <view class="panel-hd">
+                        <view class="icons">
+                            <icon class="iconfont man"></icon>
+                        </view>
+                    </view>
+                    <view class="panel-bd">
+                        <view>{{item.contactName}}</view>
+                        <view>
+                            <text>{{item.contactPhone}}</text>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else><view class="noInfo">暂无联系人信息.</view></block>
+        </view>
+       <!-- 车辆-->
+        <view class="flex-icon-panel" hidden="{{current!='cars'}}">
+            <block wx:if="{{cars.length>0}}">
+                <view wx:for="{{cars}}"  class="panel-list" wx:key="{{index}}">
+                    <view class="panel-hd">
+                        <view class="icons">
+                            <icon class="iconfont car"></icon>
+                        </view>
+                    </view>
+                    <view class="panel-bd">
+                        <view>{{item.carNum}}</view>
+                        <view>
+                            <text wx:if="{{item.isMain == 1}}" class="tag danger">主宾车</text>
+                            <text wx:if="{{item.isHeavySvc == 1}}" class="tag danger">重保服务</text>
+                            <text wx:if="{{item.isOvernight == 1}}" class="tag success">过夜停车</text>
+                            <text wx:if="{{item.memo}}" class="tag primary">{{item.memo}}</text>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else><view class="noInfo">暂无车辆信息.</view></block>
+        </view>
+    </view>
+    <view class="btn-area">
+        <button class="btn-default" bindtap="_handleConfirm">马上预约</button>
+        <button class=".btn-gray">取消预约</button>
+    </view>
+    <i-action-sheet visible="{{popoverVisible}}"  bind:cancel="popoverHide" i-class="reservationPopover">
+        <view slot="header"  class="reservation_ctx">
+            <view>
+                <block  wx:if="{{cardData.cardCat != '1'}}" > <view class="cost">￥0.00元</view> </block>
+                <block wx:else> <view class="cost">￥ {{formatTotalFee}} 元</view> </block>
+                <view class="cardnum"><text class="cardnum-hd">卡号</text><text>{{formatCardNo}}</text></view>
+                <view class="ft-title ft-center title-with-line"><view class="linebefore"></view><text>预授权金额确认</text><view class="lineafter"></view></view>
+                <view class="desc-list"><view class="ft-title">预达时间</view><view class="time">{{formData.arriveTime}}</view></view>
+                <view class="desc-list"><view class="ft-title">航班号</view><view class="time">{{formData.flightNo}}</view></view>
+                <view class="desc-list"><view class="ft-title">航程</view><view class="time">{{formData.departureAirport}} - {{formData.destinationAirport}}</view></view>
+                <view class="desc-list"><view class="ft-title">起降时间</view><view class="time">{{formData.takeoffTime}} ~ {{formData.landingTime}}</view></view>
+                <view class="ft-title ft-center bt">预授权金额说明</view>
+                <view class="infos">
+                    <view>
+                        1、若贵宾因个人原因不能到达预约地点享受服务，则需要在航班起飞或到达时间2小时前取消预约且无需承担任何费用；
+                    </view>
+                    <view>
+                        2、若在航班起飞或到达时间2小时前没有取消预约，则视为有效预约，有效预约后，若贵宾未按时到达预约地点，系统将自动扣除预授权金额。
+                    </view>
+                </view>
+            </view>
+            <view class="btn-area">
+                <button class="btn-default" bindtap="_handleReservation">确定</button>
+            </view>
+        </view>
+    </i-action-sheet>
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

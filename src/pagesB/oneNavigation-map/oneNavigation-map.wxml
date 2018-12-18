@@ -1,0 +1,6 @@
+<view id="oneNavigate-map">
+    <!-- 腾讯地图小程序插件 -->
+    <map-tx wx:if="{{routeInfo.endName}}" route-info="{{routeInfo}}"></map-tx>
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

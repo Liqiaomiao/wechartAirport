@@ -1,0 +1,8 @@
+{
+    "component":true,
+    "usingComponents":{
+        "i-icon": "../../components/iview/icon/index",
+        "i-toast": "../../components/iview/toast/index",
+        "i-modal": "../../components/iview/modal/index"
+    }
+}

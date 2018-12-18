@@ -1,0 +1,5 @@
+{
+    "usingComponents" : {
+        "unionhuatong-load" : "../../components/loading/loading"
+    }
+}

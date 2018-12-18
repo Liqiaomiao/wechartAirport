@@ -1,0 +1,25 @@
+<view id="my">
+     <view class="userInfo-contianer">
+         <view class="userInfo-view">
+             <view bindtap="_navMyInfo" class="user-info {{userAvatarUrl && userNickName ? 'rotateX-user-info transation-delay' : 'transation'}}">
+                <image class="user-img" src="{{userAvatarUrl}}"></image>
+                <text class="user-nick">{{userNickName}}</text> 
+            </view>
+            <view class="default-item {{userAvatarUrl && userNickName ? 'rotateX-item transation' : 'transation-delay'}}">
+                <i-icon i-class="icon" type="mine_fill" size="48" color="#b99156"></i-icon>
+                <button class="login-btn" open-type="getUserInfo" bindtap="_clickLogin">点击登陆</button>
+            </view>
+        </view>
+        <view class="cell-item" wx:for="{{cellData}}" wx:key="{{index}}" data-params="{{item.params}}" data-urls="{{item.urls}}" data-is-use="{{item.isUse}}" bindtap="_cellOperate">
+            <view class="item-left">
+                <icon class="iconfont {{item.icon}}" />
+                <text class="cell-title">{{item.text}}</text>
+            </view>
+            <i-icon type="enter" size="24" color="#b99156"></i-icon>
+        </view>
+     </view>
+    <!-- 底部操作栏 -->
+    <unionhuatong-footer></unionhuatong-footer>
+    <!-- 轻提示 -->
+    <i-toast id="toast" />
+</view>

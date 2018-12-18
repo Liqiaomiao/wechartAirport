@@ -1,0 +1,78 @@
+
+@import "../../assets/css/common";
+
+$backgroundColor:#FFFFFF;
+
+.home-swiper{
+    
+    position: relative;
+
+    .swiperClass{
+        height : 420rpx;
+    }
+    .swiper-ft{
+        // position: absolute;
+        font-weight:bold;bottom: 30rpx;
+        width: 100%;height:90rpx;box-sizing: border-box;
+        left: 0;font-size:28rpx;background: rgba(255,255,255,0.3);color: #78361f;display: flex;
+        flex-direction: column;justify-content: center;
+        .cell{
+            &.flex-start{justify-content: flex-start;align-items: center;}
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20rpx;
+        }
+    }
+/*    .userName{
+        position:absolute;
+        left:30rpx;
+        bottom:50rpx;
+        font-size:30rpx;
+        color:#FFFFFF;
+        // color:#e9eaec;
+        font-weight:bold;
+    }*/
+    .slide-image{
+        width: 100%;
+        height : 420rpx;
+    }
+    /*用来包裹所有的小圆点  */
+
+    .dots {
+
+        width: 100%;
+        height: 10rpx;
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        right: 0;
+        bottom: 110rpx;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        transform: translateX(-50%);
+
+         /*未选中时的小圆点样式 */
+    
+        .dot {
+            width: 20rpx;
+            height: 10rpx;
+            border-radius: 10rpx;
+            margin-right: 20rpx;
+            background-color: $backgroundColor;
+            align-items:center;
+            transition: width .5s ease-out;
+        }
+        
+        /*选中以后的小圆点样式  */
+        
+        .active {
+            width: 40rpx;
+            background-color: $color-gold;
+        }
+    }
+    .getCard{
+        text-align: left;
+        color: #b99156;
+        padding: 0 40rpx;
+    }
+}

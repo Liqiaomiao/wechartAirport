@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText":"会员卡选择",
+  "usingComponents":{
+    "i-toast":"../../components/iview/toast/index",
+    "i-modal": "../../components/iview/modal/index",
+    "i-icon": "../../components/iview/icon/index",
+    "unionhuatong-footer":"../../components/footer/footer"
+  }
+}

@@ -1,0 +1,62 @@
+
+<view id="flightDetail">
+    <view class="flight-view {{flightDetail.startairport ? 'flightDetail-show' : ''}}">
+        <view class="aircompany">
+            <text class="air-msg">{{flightDetail.aircompanyname + ' ' + flightDetail.flightcode}}</text>
+            <text class="air-date">{{pageParams.date}}</text>
+        </view>
+        <view class="detail-contianer">
+            <i-row>
+                <i-col i-class="detail-left" span="12">
+                    <text class="airplane">乘机人</text>
+                    <view class="start">{{flightDetail.startcity}}</view>
+                    <view class="plan">计划 <text>{{startTime}}</text></view>
+                </i-col>
+                <i-col i-class="detail-right" span="12">
+                    <view class="end">{{flightDetail.endcity}}</view>
+                    <view class="plan">计划 <text>{{endTime}}</text></view>
+                </i-col>
+            </i-row>
+            <i-row i-class="detail-msg"> 
+                <i-col i-class="msg-item msg-border" span="12">
+                    <text space decode class="msgTitle">航&ensp;站&ensp;楼</text>
+                    <text space decode class="msg">---</text>
+                </i-col>
+                <i-col i-class="msg-item" span="12">
+                    <text space decode class="msgTitle">登&ensp;机&ensp;口</text>
+                    <text space decode class="msg">{{flightDetail.dengjikou ? flightDetail.dengjikou : '---'}}</text>
+                </i-col>
+                <i-col i-class="msg-item msg-border" span="12">
+                    <text space decode class="msgTitle">耗&emsp;&emsp;时</text>
+                    <text space decode class="msg">{{flightDetail.costtime ? flightDetail.costtime : '---'}}</text>
+                </i-col>
+                <i-col i-class="msg-item" span="12">
+                    <text space decode class="msgTitle">行李转盘</text>
+                    <text space decode class="msg">{{flightDetail.xinglizhuanpan ? flightDetail.xinglizhuanpan : '---'}}</text>
+                </i-col>
+                <i-col i-class="msg-item msg-border" span="12">
+                    <text space decode class="msgTitle">到&ensp;达&ensp;口</text>
+                    <text space decode class="msg">{{flightDetail.daodakou ? flightDetail.daodakou : '---'}}</text>
+                </i-col>
+                <i-col i-class="msg-item" span="12">
+                    <text space decode class="msgTitle">餐饮信息</text>
+                    <text space decode class="msg">{{flightDetail.isfood ? flightDetail.isfood : '---'}}</text>
+                </i-col>
+                <i-col i-class="msg-item" span="24">
+                    <text space decode class="msgTitle">值机柜台</text>
+                    <text space decode class="msg">{{flightDetail.zhijiguitai ? flightDetail.zhijiguitai : '---'}}</text>
+                </i-col>
+            </i-row>
+        </view>
+        <view wx:if="{{pageParams.isFlight}}">
+            <view class="btns {{flightDetail.isfollow ? 'folloeBtns' : ''}}" data-type="{{flightDetail.isfollow}}" data-flight-code="{{flightDetail.flightcode}}" bindtap="_followFlight">{{flightDetail.isfollow ? '取消关注' : '关注'}}</view>
+            <view class="btns" bindtap="_navigateServer">服务预约</view>
+        </view>
+        <view wx:else>
+            <view class="btns"  bindtap="_chooseFlight">选择</view>
+        </view>
+        
+    </view>
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

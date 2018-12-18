@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText":"电话预约",
+  "usingComponents" : {
+    "unionhuatong-load" : "../../components/loading/loading"
+  }
+}

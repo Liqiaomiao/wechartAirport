@@ -1,0 +1,234 @@
+
+@import "../../assets/css/common.scss";
+$commonBckColor : #edeadb ; 
+$boxShadow : 5px 5px 10px 0px #b7b3b3 ;
+$dotColor : #838282;
+
+
+#fastRecharge{
+
+    .prudecue-img{
+
+        height : 320rpx;
+        padding : 40rpx 0 40rpx 0;
+        text-align : center;
+        position:relative;
+        background : $color-gray ;
+
+        .swiper{
+            height: 320rpx;
+        }
+        .text{
+            position:absolute;
+            font-size:42rpx;
+            left:50%;
+            bottom:75rpx;
+            color:#b99156;
+            transform:translateX(-50%);
+            width:500rpx;
+
+        }
+        .img{
+            width : 100%;
+            height : 300rpx;
+            box-shadow: $boxShadow;
+            border-radius: 40rpx;
+        }
+        .normalItem{
+            transform:scale(1);
+            transition : all .25s ease-in-out;
+          }
+          .scaleItem{
+            transform:scale(.8);
+          }
+         /*用来包裹所有的小圆点  */
+
+    .dots {
+
+        width: 100%;
+        height: 10rpx;
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        left: 50%;
+        bottom: 20rpx;
+        flex-wrap: nowrap;
+        justify-content: center;
+        transform: translateX(-50%);
+
+         /*未选中时的小圆点样式 */
+    
+        .dot {
+            width: 20rpx;
+            height: 10rpx;
+            border-radius: 10rpx;
+            margin-right: 20rpx;
+            background-color: $dotColor;
+            align-items:center;
+            transition: width .5s ease-out;
+        }
+        
+        /*选中以后的小圆点样式  */
+        
+        .active {
+            width: 40rpx;
+            background-color: $color-gold;
+        }
+    }
+    }
+
+    .purchaseCard-contioner{
+        background : $commonBckColor;
+        border-radius:10rpx;
+        color:$color-gold;
+        padding:10rpx 35rpx;
+        font-size:30rpx;
+        height:800rpx;
+        padding-bottom: 280rpx;
+
+        .showNotCIP{
+            height: 0;
+            overflow: hidden;
+            transition:all .25s ease-in-out;
+        }
+        .showNotCIP-show{
+            height: 190rpx;
+        }
+        .price{
+            text-align:center;
+            padding:20rpx 0;
+            font-size:42rpx;
+            font-weight:bold;
+        }
+        .cardNum-price{
+            text-align:center;
+            font-size:26rpx;
+            padding:0 0 20rpx 0;
+        }
+        .cardNumber-view{
+            background : $color-gray ;
+            padding:15rpx;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            .cardNumber-title{
+                padding:0 15rpx 0 10rpx;
+                letter-spacing:10rpx;
+                width:80rpx;
+            }
+            .cardNumber-num{
+                display: inline-block;
+                width:550rpx;
+                text-overflow:ellipsis;
+                white-space:nowrap;
+                overflow:hidden;
+
+            }
+        }
+        .cardMoney-view{
+            background : $color-gray ;
+            padding:15rpx;
+            margin: 20rpx 0 ;
+            .cardMoney-title{
+                padding:0 20rpx 0 10rpx; 
+                letter-spacing:10rpx;
+                width:80rpx;
+            }
+        }
+        .keyMoney-view{
+            background : $color-gray ;
+            padding:15rpx;
+            text-align:center;
+            margin:20rpx 0;
+        }
+        .buyDetail{
+            position:relative;
+            text-align:center;
+            padding:20rpx 0 ;
+        }
+        .buyDetail:before{
+            content: '';
+            position:absolute;
+            top:50%;
+            left:0;
+            width:240rpx;
+            background:linear-gradient(to left,#b99156,#FFFFFF);
+            height:2rpx;
+        }
+        .buyDetail:after{
+            content: '';
+            position:absolute;
+            top:50%;
+            right:0;
+            width:240rpx;
+            background:linear-gradient(to left,#FFFFFF,#b99156);
+            height:2rpx;
+        }
+        .invoice-view{
+            padding-bottom:20rpx;
+            border-bottom:2rpx solid #b99156;
+            .invoice-title{}
+            .invoice-state{
+                float:right;
+                color:#bbb;
+            }
+        }
+        .activeName{
+            color:#bbb;
+            float:right;
+            padding:20rpx 0 10rpx 0;
+            height : 0 ;
+            overflow:hidden;
+            transition : all .25s ease-in-out;
+            line-height:70rpx;
+        }
+        .activeName-show{
+            height:70rpx;
+        }
+        .money-view{
+            clear:both;
+            padding:15rpx 0;
+            .money-payable{float:left;}
+            .money-real{float:right;}
+        }
+        .payType-title{
+            clear:both;
+            padding:30rpx 0;
+        }
+        .payType-icon{
+            display:inline-block;
+            color:#2aa515;
+        }
+        .icon-wxpay::before{
+            content:'\e807';
+            font-size:64rpx;
+        }
+        .payType-name{
+            display:inline-block;
+            line-height:40rpx;
+            position:relative;
+            top:-15rpx;
+            left:20rpx;
+        }
+        .payType-radio{
+            display:inline-block;
+            float:right;
+            margin-top : 10rpx;
+        }
+        .payType-list{
+            float:left;
+        }
+        .rechargeNow,.rechargeNowForOther{
+            background:#b99156;
+            color:#FFFFFF;
+            text-align:center;
+            padding:20rpx 0;
+            border-radius:8rpx;
+            margin:20rpx 0;
+            font-size : 32rpx;
+            font-weight : bold;
+        }
+
+
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText":"预约评价",
+  "usingComponents":{
+    "order-card-common":"../../components/ordercardCommon/ordercardCommon",
+    "i-toast": "../../components/iview/toast/index",
+    "i-rate": "../../components/iview/rate/index",
+    "i-icon": "../../components/iview/icon/index",
+    "unionhuatong-footer":"../../components/footer/footer"
+  }
+
+}

@@ -1,0 +1,89 @@
+
+@import "../../assets/css/common.scss";
+
+#myInfo{
+    background: $color-gray;
+    .my-cell{
+        border-bottom: 1px solid $line-color;
+    }
+
+    .userImg{
+        width: 100rpx;
+        height: 100rpx;
+        border-radius: 50%;
+    }
+
+    .hobby{
+        padding:10rpx 10rpx 20rpx 10rpx;
+        margin-top: 10rpx ;
+        border-top: 1px solid $line-color;
+        background:#FFFFFF;
+        .hobby-list{
+            text-align: center;
+        }
+        .hobby-item{
+            // background:#b99156;
+            margin:6rpx 0;
+            border-radius:8rpx;
+            .typeName{
+                display:inline-block;
+                width:170rpx;
+                border-radius:8rpx;
+                font-size:28rpx;
+                height:60rpx;
+                line-height:60rpx;
+                overflow: hidden;
+                color:#000000;
+            }
+            .typeCheck{
+                position: relative;
+                background:$color-gold;
+                color:#FFFFFF;
+            }
+            .typeCheck::after{
+                content: '';
+                position: absolute;
+                width: 6rpx;
+                height: 12rpx;
+                color: $color-gold;
+                border-bottom: 1px solid;
+                border-right: 1px solid;
+                bottom: 2.5%;
+                right: 2.5%;
+                transform-origin: center;
+                transform: translate(-50%, -30%) rotate(45deg);
+                -webkit-transform: translate(-50%, -30%) rotate(45deg);
+            }
+            .typeCheck::before{
+                position:absolute;
+                bottom: 0;
+                right: 0;
+                border-left:20px solid transparent;
+                border-top:20px solid transparent;
+                border-right:20px solid #FFFFFF;
+                content:" ";
+                display:block;
+                width:0;
+                height:0
+            }
+        }
+        .title{
+            font-size:32rpx;
+            text-align:center;
+            padding:10rpx 0;
+        }
+    }
+    .exitLogin{
+        padding:64rpx 24rpx 63rpx 24rpx;
+        text-align:center;
+        .exitBtn{
+            margin:0 20%;
+            border-radius:8rpx;
+            height:70rpx;
+            line-height:70rpx;
+            background:#888888;
+            color:#FFFFFF;
+            font-size:32rpx;
+        }
+    }
+}

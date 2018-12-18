@@ -1,0 +1,88 @@
+@import "../../assets/css/common";
+.serviceReservationOnline{
+  .mt10{margin-top: 10rpx;}
+  .mt20{margin-top: 20rpx;}
+  .mb20{margin-bottom: 20rpx;}
+  .mt40{
+    margin-top: 40rpx;
+  }
+
+  .panel-add{border: 1px solid $border-color-light;border-left:0;border-right:0;padding: 0 40rpx;background: #fff;
+    .title{color:$color-555;font-size: 30rpx;padding: 20rpx 0 ;display: flex;justify-content: space-between;font-weight: bold}
+    .add{display: flex;align-items: center}
+    .add:before{content:'\e623';font-size: 36rpx;color: $background-color}
+    .desc{border-top: 1px solid $border-color-light;
+      .panel-info{
+        background: $background-color-service;border-radius: 10rpx;
+        /*border-left: 4px solid $color-gold;*/
+       display: flex;padding:20rpx;justify-content: space-between;margin-bottom: 20rpx;
+        margin-top: 20rpx;align-items: center;
+        .man{width: 110rpx;height: 110rpx;border-radius: 50%;background: #ba9255;color:#fff;line-height:110rpx;text-align:center;margin-right: 20rpx;}
+        .man:after{content:'\e603';font-size: 60rpx;}
+        .panel-bd{
+          display: flex;flex-direction: column;
+          text{align-self: baseline; margin-bottom: 10rpx;border-radius: 2px;}
+          .name{font-size: 30rpx;color:$color-333;font-weight: bold}
+          .cardId,.ifmain{font-size: 24rpx;padding: 4rpx 10rpx;color: #fff;}
+          .cardId{background:$tag-color-primary;}
+          .ifmain{background:$tag-color-danger;}
+          .phone{font-size: 30rpx;color: $color-333;}
+        }
+        .panel-bds{
+          display: flex;flex-direction: row;justify-content: space-between;
+          text{align-self: baseline; margin-bottom: 10rpx;border-radius: 2px;}
+          .name{font-size: 30rpx;color:$color-333;font-weight: bold}
+          .cardId,.ifmain{font-size: 24rpx;padding: 4rpx 10rpx;color: #fff;}
+          .cardId{background:$tag-color-primary;}
+          .ifmain{background:$tag-color-danger;}
+          .phone{font-size: 30rpx;color: $color-333;}
+        }
+        .panel-ft{
+          button{
+            background: $color-gold!important;
+            color:#fff!important;
+            border-radius:5px;
+            padding:10rpx 26rpx!important;
+            line-height:1!important;
+            font-size:30rpx;margin-bottom: 20rpx;
+          &:last-child{margin-bottom: 0}
+
+          }
+        }
+
+      }
+      .tips{font-size: 28rpx;color:$color-aaa;padding-bottom: 20rpx;}
+    }
+    .nodesc{
+      border: none;
+      .nomarning {
+        margin-bottom: 0 !important;
+      }
+    }
+
+  }
+  .panel-popover{background: $background-color-service;
+   .panel-bd{background:$background-color-service;
+      form{text-align: left;display: flex;flex-direction: column;font-size: 30rpx;margin-bottom:40rpx;
+        .cell-list{border-bottom: 1px solid $border-color-light;padding-left: 40rpx;}
+        .cell{border-bottom: 1px solid $border-color-light;padding: 20rpx 40rpx 20rpx 0 ;display: flex;align-items:center;
+          &.flex-between{justify-content: space-between;}
+          &:last-child{border-bottom: none}
+          .cell-hd{width: 200rpx;color:$color-333;}
+        }
+      }
+      .btn-area{padding: 0 40rpx;margin:40rpx 0 20rpx 0;
+        button{margin-bottom: 20rpx;}
+      }
+
+    }
+  }
+  .panel-footer{
+    padding: 0 20rpx 60rpx 20rpx;font-size: 30rpx;margin-top:20rpx;
+    .btn-area{margin: 20rpx 0;}
+    .infotitel{color:$font-color-gray;text-align: center;margin-top: 20rpx;}
+
+  }
+
+
+}

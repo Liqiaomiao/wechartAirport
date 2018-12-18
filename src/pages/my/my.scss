@@ -1,0 +1,111 @@
+@import "../../assets/css/common.scss";
+@import "../../assets/iconfont-svg/iconfont-svg.scss";
+
+$icon-size:36rpx;
+
+#my{
+    // padding-bottom:500rpx;
+    background:$color-gray;
+    padding-bottom:600rpx;
+
+    .userInfo-contianer{
+        background:#FFFFFF;
+        display:relative;
+        .userInfo-view{
+            height:150rpx;
+            border-bottom:2rpx solid $line-color;
+            line-height:150rpx;
+            padding:0 60rpx;
+
+            .user-info{
+                height:150rpx;
+                line-height:150rpx;
+                position:absolute;
+                right:60rpx;
+                left:60rpx;
+                transform: rotateX(-90deg);
+                .user-img{
+                    width:100rpx;
+                    height:100rpx;
+                    border-radius:50%;
+                    border:3px solid #b99156;
+                    position:absolute;
+                    top:50%;
+                    transform:translateY(-50%);
+    
+                }
+                .user-nick{
+                    float:right;
+                    color:$color-gold ;
+                }
+            }
+            .icon{
+    
+            }
+            .text{
+                color:$color-gold;
+            }
+            .login-btn{
+                display:inline;
+                margin-left:360rpx;
+                background:$color-gold;
+                color:#ffffff;
+                padding:10rpx 20rpx;
+                font-size:28rpx;
+
+            }
+        }
+
+        .default-item{
+            transform: rotateX(0deg);
+        }
+        .rotateX-item{
+            transform: rotateX(90deg);
+
+        }
+        .rotateX-user-info{
+            transform: rotateX(0deg) !important;
+        }
+        .transation{
+            transition: all .25s ease-in-out;
+        }
+        .transation-delay{
+            transition: all .25s ease-in-out .25s;
+        }
+
+        .cell-item{
+            padding:20rpx 30rpx ;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            border-bottom:1px solid $color-gold;
+            color: $color-gold;
+            .item-left{
+                display:flex;
+                align-items:center;
+                .cell-title{
+                    font-size:28rpx;
+                    padding-left:20rpx;
+                    padding-top:12rpx;
+                }
+                .icon-zhanghu:before{
+                    content:'\e67c';
+                    font-size:$icon-size;
+                }
+                .icon-phone:before{
+                    content:'\e683';
+                    font-size:$icon-size;
+                }
+                .icon-car:before{
+                    content:'\e670';
+                    font-size:$icon-size;
+                }
+                .icon-our:before{
+                    content:'\e67a';
+                    font-size:$icon-size;
+                }
+            }
+            
+        }
+    }
+}

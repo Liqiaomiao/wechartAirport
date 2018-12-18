@@ -1,0 +1,37 @@
+<view id="myInfo">
+    <i-cell-group i-class="my-cell">
+        <i-cell title="头像">
+            <image wx:if="{{wxUserInfo.avatarUrl}}" class="userImg" slot="footer" src="{{wxUserInfo.avatarUrl}}" />
+            <i-icon wx:else type="mine_fill" slot="footer" size="56" color="#b99156"></i-icon>
+           
+        </i-cell>
+        <i-cell title="昵称" value="{{wxUserInfo.nickName}}"></i-cell>
+        <i-cell title="真实姓名" value="无"></i-cell>
+        <i-cell title="生日" value="无"></i-cell>
+        <i-cell title="性别" is-link value="{{wxUserInfo.gender == 1 ? '男' : wxUserInfo.gender == 2 ? '女' : ''}}"></i-cell>
+        <i-cell title="地区" is-link value="{{wxUserInfo.province}}"></i-cell>
+        <i-cell title="口味偏好" value="无"></i-cell>    
+    </i-cell-group>
+    <view class="hobby">
+        <view class="title">兴趣爱好</view>
+        <view>
+           <i-row i-class="hobby-list">
+               <i-col i-class="hobby-item" span="6" wx:for="{{hobbyList}}" wx:key="{{index}}">
+                   <view bindtap="_checkHobby" data-list-index="{{index}}" class="typeName {{hobbyCheck[index] ? 'typeCheck' : ''}}">{{item.text}}</view>
+               </i-col>
+           </i-row>
+        </view>
+    </view>
+    <view class="exitLogin">
+        <button bindtap="_showExitModal" class="exitBtn">退出登陆</button>
+    </view>
+    <!-- 底部操作栏 -->
+    <!-- <unionhuatong-footer></unionhuatong-footer> -->
+    <!-- 轻提示 -->
+    <i-toast id="toast" />
+    <!-- 退出对话框 -->
+    <i-modal visible="{{ exitModal }}" actions="{{exitActions}}" bind:click="_exitLogin">
+        <view>确定要退出吗</view>
+    </i-modal>
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

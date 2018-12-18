@@ -1,0 +1,8 @@
+{
+  "usingComponents":{
+    "unionhuatong-footer" : "../../components/footer/footer",
+    "i-toast": "../../components/iview/toast/index",
+    "i-modal": "../../components/iview/modal/index",
+    "search-page":"../../components/searchPage/searchPage"
+  }
+}

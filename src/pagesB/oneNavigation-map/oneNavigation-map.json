@@ -1,0 +1,7 @@
+{
+    "usingComponents" : {
+        "map-tx" : "plugin://maptx/mapRoute",
+        "i-toast": "../../components/iview/toast/index",
+        "unionhuatong-load" : "../../components/loading/loading"
+    }
+}

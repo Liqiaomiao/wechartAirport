@@ -1,0 +1,105 @@
+@import "../../assets/css/common";
+$info-height:70rpx;
+.radius-right-30{border-top-right-radius: $info-height/2;border-bottom-right-radius:$info-height/2}
+.serviceReservationInstantConsumption{
+
+  .content-text{
+    border-top:1rpx solid #FFFFFF;
+    height:60rpx;
+    line-height:110rpx;
+    display:flex;
+    justify-content:space-between;
+    margin:0 30rpx;
+    position:relative;
+    font-size:36rpx;
+    color:#7b7565;
+}
+.left-round{
+  position:absolute;
+  width:30rpx;
+  height:40rpx;
+  border-radius:0 80rpx 80rpx 0;
+  background-color:#FFFFFF;
+  left:-30rpx;
+  top:-20rpx;  
+}
+.right-round{
+  position:absolute;
+  width:30rpx;
+  height:40rpx;
+  border-radius:80rpx 0 0 80rpx;
+  background-color:#FFFFFF;
+  right:-30rpx;
+  top:-20rpx;  
+}
+
+  picker-view-column{height:400rpx;view{line-height: 34px;} }
+  .service{padding:10rpx 0 0 0;
+    .panel-border-gray{border:1px solid $border-color-light;border-left:0;border-right:0;background: #fff;padding: 0 20rpx;
+      .title{padding: 20rpx 0;font-size: 30rpx;color: $color-555;border-bottom: 1px solid $border-color-light;margin-bottom: 20rpx;font-weight: bold}
+      .service-panel{
+       /* border-left: 4px solid $color-gold;*/
+        border-radius:6px;background:$background-color-service;display: flex;height: 140rpx;padding: 0 20rpx;justify-content: space-between;
+        align-items: center;margin-bottom: 20rpx;
+        &>view{height: 100rpx;}
+        .cell-hd{margin-right: 20rpx;
+          .icons{width: 100rpx;height: 100rpx;border-radius: 50%;background: #ba9255;color:#fff;line-height:100rpx;text-align:center;
+            icon:before{
+              content: '\e601';font-size: 50rpx;
+            }
+          }
+        }
+        .cell-bd{display: flex;flex-direction:column;align-items:space-between;justify-content: space-around;
+          .name{font-size: 32rpx;color:$color-555;font-weight: bold;}
+          .last{background: #f67a17;color: #fff;font-size: 24rpx;align-self: baseline;padding:0  10rpx;border-radius: 3px;text-align: center;
+            line-height: 1.5;
+          }
+        }
+        .cell-ft{
+
+        }
+
+      }
+      .tips{
+        font-size: 30rpx;color:$font-color-gray;margin-bottom: 20rpx;
+      }
+    }
+
+  }
+  .hasread{padding: 20rpx;font-size: 30rpx;}
+  .btn-area{padding:0  40rpx;
+    button{margin-bottom: 20rpx;}
+  }
+  .readInfo{
+    padding-bottom: 40rpx;
+    .title{font-size: 30rpx;color:$font-color-gray;text-align: center;}
+    .info{font-size: 30rpx;padding:0 20rpx;white-space:wrap;word-break:break-all;}
+    .notice{font-size:28rpx;text-indent:56rpx;color:#495060;}
+  }
+  .useImmediately{background:$background-color-service;
+    border-top-left-radius: 10px;border-top-right-radius: 10px;overflow: hidden;
+    .i-as-cancel{display: none;}
+  }
+  .use{
+    .ft-title{color:$color-gold;font-weight: bold;font-size: 31rpx;}
+    padding: 40rpx;background:#f0eada;font-size: 28rpx;padding-bottom: 160rpx;
+    .cost{text-align: center;color:$color-gold;font-size: 52rpx;font-weight: bold}
+    .cardnum{background:#efefef;color:$color-gold;display: flex;padding: 20rpx;margin:20rpx 0;
+      .cardnum-hd{width: 175rpx;text-align: center;letter-spacing:18px;}
+    }
+    .title-with-line{display: flex;align-items: center;
+      text{margin: 0 5px;}
+      .linebefore,.lineafter{height: 1px;background: $color-gold;flex-shrink: 0;flex-grow: 1;}
+      .linebefore{background:  linear-gradient(to left, $color-gold,#fff)}
+      .lineafter{background: linear-gradient(to right,$color-gold,#fff)}
+    }
+    .advanceTime{display: flex;justify-content: space-between;padding: 20rpx 10rpx;border-bottom: 1px solid $color-ddd;}
+    .ft-center{padding: 10rpx 0 0 0;}
+    .infos{
+      view{text-align: left}
+    }
+    .btn-area{position: fixed;bottom: -10px;left: 0;right: 0;padding: 0;
+      .btn-default{border-radius: 0;}
+    }
+  }
+}

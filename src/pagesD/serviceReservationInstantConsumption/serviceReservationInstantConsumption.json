@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText":"即时消费",
+  "usingComponents": {
+    "i-action-sheet": "../../components/iview/action-sheet/index",
+    "i-input-number": "../../components/iview/input-number/index",
+    "service-panel":"../../components/service/service",
+    "card-info":"../../components/cardInfo/cardInfo",
+    "unionhuatong-load" : "../../components/loading/loading",
+    "parse-html" : "../../components/parseHtml/parseHtml",
+    "i-toast": "../../components/iview/toast/index",
+    "i-modal": "../../components/iview/modal/index"
+  }
+}

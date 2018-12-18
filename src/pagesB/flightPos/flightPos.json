@@ -1,0 +1,13 @@
+{
+    "usingComponents":{
+        "i-index": "../../components/iview/index/index",
+        "i-index-item": "../../components/iview/index-item/index",
+        "i-tabs": "../../components/iview/tabs/index",
+        "i-tab": "../../components/iview/tab/index",
+        "i-icon": "../../components/iview/icon/index",
+        "i-row": "../../components/iview/row/index",
+        "i-col": "../../components/iview/col/index",
+        "i-toast": "../../components/iview/toast/index",
+        "unionhuatong-load" : "../../components/loading/loading"
+    }
+}

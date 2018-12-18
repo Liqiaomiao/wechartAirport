@@ -1,0 +1,20 @@
+@import "../../assets/css/common";
+.transaction-detail{font-size: 30rpx;
+  .panel-border-gray{margin-bottom: 10rpx;}
+  .header{
+    padding: 40rpx 0 ;
+    text-align: center;
+    image{
+      width: 64rpx;height: 64rpx;border-radius: 50%;margin-right: 10rpx;
+
+    }
+    .color555{color:#888; }
+    .am-text-big{font-size:36rpx;
+      display: flex;align-items: center;justify-content: center;
+    }
+    .am-text-small{font-size:56rpx;line-height: 1.2;margin-bottom: 10rpx;}
+    .am-text-danger{color:$tag-color-danger}
+    .am-text-success{color:$tag-color-success}
+  }
+  .check{background: $color-gold;color: #fff;padding: 10rpx 20rpx;border-radius: 2px;}
+}

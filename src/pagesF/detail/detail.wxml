@@ -1,0 +1,37 @@
+<view class="transaction-detail" >
+    <view class="header">
+        <view class="am-text-big">
+            <image wx:if="{{detail.cardSeriesImgUrl}}" src="{{IMG_BASE_SERVER_URL}}{{detail.cardSeriesImgUrl}}"></image>
+            <text>{{detail.cardSeriesStr}}</text>
+        </view>
+        <view class="am-text-small {{(detail.actualPayFee < 0 || detail.consumeCount > 0)?'am-text-danger':''}} {{detail.actualPayFee >= 0?'am-text-success':''}}">
+            <text wx:if="detail.cardCat == '1'">{{detail.actualPayFeeFmt }}</text>
+            <text wx:elif="{{detail.cardCat != '1' && detail.tradeType != '4'}}">{{detail.actualPayFeeFmt}}</text>
+            <text wx:elif="{{detail.cardCat != '1' && detail.tradeType == '4'}}">-{{detail.consumeCount}}次</text>
+            <text wx:else>不限次</text>
+        </view>
+        <view class="color555">交易成功</view>
+
+    </view>
+    <view class="body">
+        <i-cell-group i-class="panel-border-gray">
+            <i-cell i-class="boder-b" title="卡号" is-link><view slot="footer">{{detail.cardInfoID}}</view></i-cell>
+            <i-cell i-class="boder-b" title="交易方式" is-link><view slot="footer">{{detail.tradeWayStr}}</view></i-cell>
+            <i-cell i-class="boder-b" title="交易类型" is-link><view slot="footer">{{detail.tradeTypeStr}}</view></i-cell>
+            <i-cell i-class="boder-b" wx:if="{{detail.actualPayReward}}" title="体验金使用" is-link><view slot="footer">{{detail.actualPayReward}}</view></i-cell>
+            <i-cell i-class="boder-b" wx:if="{{detail.actualPayPoints}}" title="积分奖励" is-link><view slot="footer">{{detail.actualPayPoints}}</view></i-cell>
+            <i-cell title="说明" is-link><view slot="footer">{{detail.tradeDes}}</view></i-cell>
+        </i-cell-group>
+        <i-cell-group i-class="panel-border-gray">
+            <i-cell i-class="border-b" title="创建时间" is-link><view slot="footer">{{detail.createdTimeFmt}}</view></i-cell>
+            <i-cell i-class="border-b" title="订单编号" is-link><view slot="footer">{{detail.tradeNo}}</view></i-cell>
+            <i-cell title="预约详情" is-link  wx:if="{{detail.tradeType == 4}}" >
+                <view slot="footer">
+                    <text class="check" data-pk="{{detal.orderInfoID}}" bindtap="goEvaluate">查看</text>
+                </view>
+            </i-cell>
+        </i-cell-group>
+    </view>
+    <i-toast id="toast"></i-toast>
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

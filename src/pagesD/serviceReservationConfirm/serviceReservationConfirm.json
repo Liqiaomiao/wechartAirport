@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText":"预约确认",
+  "usingComponents" :{
+    "card-info":"../../components/cardInfo/cardInfo",
+    "service-panel":"../../components/service/service",
+    "i-tabs": "../../components/iview/tabs/index",
+    "i-tab": "../../components/iview/tab/index",
+    "i-action-sheet": "../../components/iview/action-sheet/index",
+    "i-toast": "../../components/iview/toast/index",
+    "unionhuatong-load" : "../../components/loading/loading"
+  }
+}

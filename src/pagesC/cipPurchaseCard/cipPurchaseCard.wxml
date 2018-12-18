@@ -1,0 +1,41 @@
+<view id="purchaseCard">
+    <view class="prudecue-img">
+        <view class="items">
+            <image src="{{imgUrl + cipData.cardInfos[0].CardPicWithoutNoUrl}}" ></image>
+            <view class="imgNumber">{{carnoFormat}}</view>
+            <view class="text">CIP - “易出行”卡</view>
+        </view>
+        <view class="items">
+            <image src="{{imgUrl + cipData.cardInfos[1].CardPicWithoutNoUrl}}" ></image>
+            <view class="imgNumber">{{plannoFormat}}</view>
+            <view class="text">CIP - “易接机”卡</view>
+        </view>
+    </view>
+    <view class="purchaseCard-contioner">
+        <view class="price">活动价 ¥ 600 元</view>
+        <view class="cardNumber-view">
+            <text class="cardNumber-title">易出行卡号</text><text class="cardNumber-num">{{carnoFormat}}</text>
+        </view>
+        <view class="cardNumber-view">
+           <text class="cardNumber-title">易接机卡号</text><text class="cardNumber-num">{{plannoFormat}}</text>
+        </view>
+        <view class="buyDetail">购买详情</view>
+        <view class="invoice-view">
+            <text class="invoice-title">申请开票</text><text class="invoice-state">未填写</text>
+        </view>
+        <view class="activeName">折扣优惠活动：{{activeName}}</view>
+        <view class="money-view">
+            <view class="money-payable">应付款：{{payableMoney}} 元</view>
+            <view class="money-real">实付款：{{realMoney}} 元</view>
+        </view>
+        <view class="payType-title">支付方式</view>
+        <view class="iconfont icon-wxpay payType-icon"></view>
+        <view class="payType-name">微信支付</view>
+        <view class="payType-radio">
+            <i-icon type="success_fill" size="28" color="#b99156"></i-icon>
+        </view>
+        <view class="buyNow" bindtap="_buyCardNow">立即购买</view>
+    </view>
+     <i-toast id="toast" />
+     <unionhuatong-load id="load"></unionhuatong-load>
+</view> 

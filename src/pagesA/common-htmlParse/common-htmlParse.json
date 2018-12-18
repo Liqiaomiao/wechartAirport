@@ -1,0 +1,6 @@
+{
+    "usingComponents":{
+        "i-toast": "../../components/iview/toast/index",
+        "unionhuatong-load" : "../../components/loading/loading"
+    }
+}

@@ -1,0 +1,32 @@
+<view class="serviceReservationSuccess">
+    <view class="panel-hd">
+        <icon type="success" size="40" color="#be9457"></icon>
+        <view>预约成功</view>
+    </view>
+    <view class="panel-border-gray">
+        <view class="default-group">
+            <view class="default-cell">
+                <view class="cell-hd">预约人</view><view class="cell-bd flex-grow-2">{{formData.appointmenter}}</view><view class="cell-ft"><icon class="iconfont arrow-right"></icon></view>
+            </view>
+            <view class="default-cell">
+                <view class="cell-hd">联系方式</view><view class="cell-bd flex-grow-2">{{formData.cellphone}}</view><view class="cell-ft"><icon class="iconfont arrow-right"></icon></view>
+            </view>
+            <view class="default-cell">
+                <view class="cell-hd">卡号</view><view class="cell-bd flex-grow-2">{{formData.memberCardNum}}</view><view class="cell-ft"><icon class="iconfont arrow-right"></icon></view>
+            </view>
+            <view class="default-cell">
+                <view class="cell-hd">订单编号</view><view class="cell-bd flex-grow-2">{{formData.orderNum}}</view><view class="cell-ft"><icon class="iconfont arrow-right"></icon></view>
+            </view>
+            <view class="default-cell">
+                <view class="cell-hd">备注</view><view class="cell-bd flex-grow-2">{{formData.memo01}}</view><view class="cell-ft"><icon class="iconfont arrow-right"></icon></view>
+            </view>
+        </view>
+
+    </view>
+    <view  class="btn-area">
+        <button bindtap="_btnRouter" class="btn-default" data-type="order">查看订单</button>
+        <button bindtap="_btnRouter" class="btn-default" data-type="serviceReservationIndex">继续预约</button>
+        <button bindtap="_btnRouter" class="btn-default" data-type="home">返回首页</button>
+    </view>
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

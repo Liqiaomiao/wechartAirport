@@ -1,0 +1,36 @@
+<view id="flightPos">
+
+    <view class="search-pos">
+        <input class="inputs" type="text" placeholder="搜索要去的城市" placeholder-class="input-placeholder"/>
+        <i-icon class="icons" type="search" size="24" color="#FFFFFF"></i-icon>
+    </view>
+    <i-tabs current="{{ currentTabs }}" color="#B99156" bindchange="handleChange">
+        <i-tab class="title-tab" i-class="tab-con" key="domestic" title="国内航班"></i-tab>
+        <i-tab class="title-tab" i-class="tab-con" key="foreign" title="国际·港澳台"></i-tab> 
+    </i-tabs>
+    <view class="location-city" wx:if="{{nowCity}}">
+        <view class="titles">当前定位城市</view>
+        <view class="cities"><text class="texts" bindtap="_chooseCitoesItem" data-city="{{nowCity}}">{{nowCity}}</text></view>
+    </view>
+     <view class="using-city" wx:if="{{commonCity}}">
+        <view class="titles">常用城市</view>
+        <view class="cities" style="height:{{commonViewHeight}}rpx">
+            <view class="items" wx:for="{{commonCity}}" wx:key="{{index}}" wx:if="{{index < 9}}" bindtap="_chooseCitoesItem" data-city="{{item.cityName}}">{{item.cityName}}</view>
+        </view>
+    </view>
+
+    <view class="observeDom"></view>
+    <view class="scroll-view">
+        <scroll-view id="scroll-pos"  style="height:{{scrollPosHeight}}rpx;" bindscroll="_scrollView" scroll-into-view="{{choosePosID}}" scroll-y scroll-with-animation enable-back-to-top>
+            <view wx:for="{{cityData}}" wx:key="{{index}}" id="{{item.id}}">
+                <view class="pos-title" >{{item.id}}</view>
+                <view class="pos-items" bindtap="_chooseCitoesItem" data-city="{{itemCity}}" wx:for="{{item.cityItem}}" wx:key="{{item}}" wx:for-item="itemCity">{{itemCity}}</view>
+            </view>
+            
+        </scroll-view>
+        <view class="posBtns">
+            <view class="{{choosePosID == item.id || setPosId == item.id ? 'posBtns-item' : ''}}" bindtap="_posBtnClick" data-ids="{{item.id}}" wx:for="{{cityData}}" wx:key="{{index}}">{{item.id}}</view>
+        </view>
+    </view>
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

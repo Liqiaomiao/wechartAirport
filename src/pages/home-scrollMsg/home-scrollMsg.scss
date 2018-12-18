@@ -1,0 +1,82 @@
+
+@import "../../assets/css/common";
+
+$borderRadius : 8rpx;
+$scrollBckColor : #F4F4F4;
+$scrollTextColor : #B5B5B5;
+$boxShadow : 5px 5px 10px 0px #b7b3b3 ;
+.home-scroll-msg{
+
+    .msg-contioner{
+
+        padding:30rpx 15rpx;
+        background: $scrollBckColor;
+
+        .msg-title{
+
+            padding:10rpx 10rpx;
+            font-size: 36rpx;
+            // letter-spacing: 2rpx;
+            text-align: center;
+
+            .msg-text{
+                 color:$scrollTextColor;
+                 letter-spacing:15rpx;
+                 line-height:40rpx;
+            }
+            .msg-more{
+                padding:2rpx 0;
+                background:#b99156;
+                border-radius:8rpx;
+                color:#FFFFFF;
+                font-size:22rpx;
+                margin:10rpx 16rpx 0 0;
+            }
+        }
+
+        .msg-detial{
+
+            position: relative;
+            height: 150rpx;
+
+            .msg-item{
+                font-size:26rpx;
+                text-indent:56rp;
+                padding:16rpx;
+                height:108rpx;
+                overflow:hidden;
+                width:500rpx;
+                background:#FFF;
+                border-radius:12rpx;
+                color: $color-gold;
+                box-shadow: $boxShadow;
+                opacity: 1;
+                transition: all .5s ease-in-out
+            }
+            .msg-item-hidden{
+                position: absolute;
+                transform: translate(0,0);
+                opacity: 0;
+                z-index:0;
+            }
+            .msg-item-bofore{
+                position: absolute;
+                transform: translate(0,8%);
+                z-index: 10;
+            }
+            .msg-item-middle{
+                position: absolute;
+                transform: translate(5%,-8%);
+                z-index: 5;
+            }
+            .msg-item-after{
+                position: absolute;
+                transform: translate(10%,-24%);
+                opacity: 0;
+                z-index: 0;
+            }
+        }
+    }
+}
+
+

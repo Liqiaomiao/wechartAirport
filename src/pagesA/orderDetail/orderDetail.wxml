@@ -1,0 +1,207 @@
+<view class="orderDetail">
+    <order-card-common list="{{list}}"></order-card-common>
+
+    <view class="panel-border-gray">
+        <i-tabs current="{{ current }}" bindchange="handleChange" color="#be9457" i-class="tabs">
+            <i-tab key="travellers" title="出行人"></i-tab>
+            <i-tab key="contacters" title="联系人"></i-tab>
+            <i-tab key="cars" title="车辆"></i-tab>
+        </i-tabs>
+        <!-- 出行人-->
+        <view class="flex-icon-panel" hidden="{{current!='travellers'}}">
+            <block wx:if="{{list.travellers.length>0}}">
+                <view wx:for="{{list.travellers}}" class="panel-list" wx:key="{{index}}">
+                    <view class="panel-hd">
+                        <view class="icons">
+                            <icon class="iconfont man"></icon>
+                        </view>
+                    </view>
+                    <view class="panel-bd">
+                        <view>{{item.name}}{{item.post}}</view>
+                        <view>
+                            <text wx:if="{{item.isHonor == 1}}" class="tag danger">主宾</text>
+                            <text wx:if="{{item.isSpecial == 1}}" class="tag danger">特殊人群</text>
+                            <text wx:if="{{item.identityNum}}" class="tag primary">{{item.identityNum}}</text>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="noInfo">暂无出行人信息.</view>
+            </block>
+        </view>
+        <!-- 联系人-->
+        <view class="flex-icon-panel" hidden="{{current!='contacters'}}">
+            <block wx:if="{{list.contacters.length>0}}">
+                <view wx:for="{{list.contacters}}" class="panel-list" wx:key="{{index}}">
+                    <view class="panel-hd">
+                        <view class="icons">
+                            <icon class="iconfont man"></icon>
+                        </view>
+                    </view>
+                    <view class="panel-bd">
+                        <view>{{item.contactName}}</view>
+                        <view>
+                            <text>{{item.contactPhone}}</text>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="noInfo">暂无联系人信息.</view>
+            </block>
+        </view>
+        <!-- 车辆-->
+        <view class="flex-icon-panel" hidden="{{current!='cars'}}">
+            <block wx:if="{{list.cars.length>0}}">
+                <view wx:for="{{list.cars}}" class="panel-list" wx:key="{{index}}">
+                    <view class="panel-hd">
+                        <view class="icons">
+                            <icon class="iconfont car"></icon>
+                        </view>
+                    </view>
+                    <view class="panel-bd">
+                        <view>{{item.carNum}}</view>
+                        <view>
+                            <text wx:if="{{item.isMain == 1}}" class="tag danger">主宾车</text>
+                            <text wx:if="{{item.isHeavySvc == 1}}" class="tag danger">重保服务</text>
+                            <text wx:if="{{item.isOvernight == 1}}" class="tag success">过夜停车</text>
+                            <text wx:if="{{item.memo&&item.memo.length>0}}" class="tag primary">{{item.memo}}</text>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="noInfo">暂无车辆信息.</view>
+            </block>
+        </view>
+    </view>
+    <view class="panel-border-gray mt10">
+        <i-tabs current="{{ current2 }}" bindchange="handleChange2" color="#be9457" i-class="tabs">
+            <i-tab key="ordertrace" title="订单跟踪"></i-tab>
+            <i-tab key="detail{{list.state}}" title="消费明细"></i-tab>
+            <i-tab key="comment{{list.state}}" title="预约评价" i-class="disabed"></i-tab>
+        </i-tabs>
+        <!-- 订单跟踪-->
+        <view class="flex-icon-panel ordertrace" hidden="{{current2!='ordertrace'}}">
+            <view class="title">
+                <view class="flex-grow-2 left">
+                    <text class="mr10">航班倒计时:</text>
+                    <view class="time">
+                        <count-time wx:if="{{list.id}}"
+                                    bind:timeend="timeend"
+                                    endDes="{{list.inOutPort == 1 ? '航班已经降落了' : '航班已经起飞了'}}"
+                                    endTime="{{list.inOutPort == 1 ? list.landingTime : list.takeoffTime}}"
+                        ></count-time>
+                    </view>
+                </view>
+
+                <view class="">
+                    <button class="btn-default {{canCancel?'':'btn-disabled'}}" wx:if="{{list.state == 1}}"
+                            disabled="{{!canCancel}}" bindtap="cancelOrder">取消预约
+                    </button>
+                </view>
+            </view>
+            <view class="tips">起飞/降落前两小时不允许取消服务</view>
+            <view class="step-container">
+                <i-steps current="{{verticalCurrent}}" direction="vertical">
+                    <i-step wx:for="{{log}}" wx:key="log_{{index}}">
+                        <view slot="content" class="step-ctx">
+                            <view class="step-title">
+                                <view>{{item.operateTypeStr}}</view>
+                                <view class="time"><icon class="iconfont "></icon>{{item.operateTime}}
+                                </view>
+                            </view>
+
+                            <view class="step-desc">{{item.operateDesc}}</view>
+                        </view>
+                    </i-step>
+
+                </i-steps>
+            </view>
+
+        </view>
+        <!-- 消费明细-->
+        <view class="flex-icon-panel" hidden="{{current2!='detail'+list.state}}">
+            <view class="consumes">
+                <view class="title">{{consumesname}}</view>
+                <view class="list" wx:for="{{consumesObj}}" wx:key="consumesObj{{index}}">
+                    <view class="cell" wx:if="{{item.consumeType==1}}">
+                        <view class="cell-hd">
+                            <icon class="iconfont balance-pay"></icon>
+                            <text>{{item.cardService.serviceName}} x{{item.serviceAmount}}</text>
+                        </view>
+                        <view class="cell-ft">
+                            ￥{{item.serviceTotal}}
+                        </view>
+                    </view>
+                    <view class="cell" wx:if="{{item.consumeType==2}}">
+                        <view class="cell-hd">
+                            <icon class="iconfont balance-pay"></icon>
+                            <text>{{item.cardService.serviceName}} x{{item.consumeCount}}</text>
+                        </view>
+                        <view class="cell-ft">
+                            剩余{{item.surplusCount}}次
+                        </view>
+                    </view>
+                </view>
+                <view class="list-foot">
+                    <view>本次服务消费总计</view>
+                    <view class="danger">￥{{list.discountMoney}}</view>
+                </view>
+            </view>
+
+        </view>
+        <!-- 预约评价-->
+        <view class="flex-icon-panel" hidden="{{(current2!='comment'+list.state)&&detail.state!=9}}">
+            <block  wx:if="{{evaluates.length>0}}" >
+                <view class="evaluateDetail" wx:key="evaluate{{index}}"  wx:for="{{evaluates}}">
+                    <view class="panel-hd">
+                        <image wx:if="{{memberPortrait}}" src="{{webServer+memberPortrait}}"></image>
+                        <icon class="iconfont "></icon>
+                    </view>
+                    <view class="panel-bd flex-grow-2">
+                        <view class="title">
+                            <text class="name">{{item.realName}}</text>
+                            <text class="time flex-grow-2">评价于 {{item.tranTs}}</text>
+                            <view class="scores">
+                                <text>{{item.evaluateScore}}</text>
+                                <i-icon type="collection_fill" color="#be9457" class="star"  />
+                            </view>
+                        </view>
+                        <view class="ctxt-cells">
+                            <view class="cell"><view>服务态度</view><i-rate size="16" disabled="{{true}}" value="{{item.svcMannerRate }}"></i-rate></view>
+                            <view class="cell"><view>服务质量</view><i-rate size="16" disabled="{{true}}" value="{{item.svcQualityRate}}"></i-rate></view>
+                            <view class="cell"><view>环境设施</view><i-rate size="16" disabled="{{true}}" value="{{item.facilitiesRate}}"></i-rate></view>
+                        </view>
+                        <view class="ctx">
+                            <view>{{item.evaluateContent}}</view>
+                            <view class="imagesList">
+                                <view wx:for="{{item.images}}" wx:key="img{{index}}" wx:for-item="img" class="img_container">
+                                    <image src="{{webServer+img.imagePath}}"></image>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block  wx:else>
+                <view bindtap="goRelative">
+                    <icon class="iconfont"></icon>
+                    <text>还没有评价，快去评价获取会员积分吧！</text>
+                </view>
+
+            </block>
+
+        </view>
+    </view>
+    <!--确定删除-->
+    <i-modal title="警告" visible="{{ cancalModal }}" bind:ok="handleClose1" bind:cancel="modalCancel">
+        <view>确认取消该预约?</view>
+
+    </i-modal>
+    <i-toast id="toast"/>
+    <!-- 底部操作栏 -->
+
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

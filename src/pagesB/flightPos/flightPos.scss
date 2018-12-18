@@ -1,0 +1,109 @@
+
+@import "../../assets/css/common.scss";
+#flightPos{
+    background: $color-gray;
+    color:$font-color-gray;
+    .search-pos{
+        padding:20rpx;
+        position:relative;
+        color:#FFFFFF;
+        .inputs{
+            background:#b99156;
+            color:#FFFFFF;
+            border-radius:8rpx;
+            font-size:28rpx;
+            padding:6rpx 40rpx 6rpx 20rpx;
+        }
+        .input-placeholder{
+            font-size: 28rpx;
+            color:#FFFFFF;
+        }
+        .icons{
+            position:absolute;
+            top:20rpx;
+            right:20rpx;
+            z-index:2;
+        }
+    }
+
+    .location-city{
+        padding:10rpx 0;
+        font-size:32rpx;
+        .titles{
+            padding:10rpx 20rpx;
+        }
+        .cities{
+            background:#FFFFFF;
+            padding:10rpx 20rpx;
+            .texts{
+                display:inline-block;
+                text-align:center;                
+                width:135rpx;
+                padding:10rpx;
+                background:#b99156;
+                margin:10rpx;
+                border-radius:8rpx;
+                color:#FFFFFF;
+                font-size:28rpx;
+            }
+        }
+    }
+
+    .using-city{
+        font-size:32rpx;
+        .titles{
+            padding:10rpx 20rpx;
+        }
+        .cities{
+            background:#FFFFFF;
+            padding:15rpx;
+            text-align:center;
+            min-height: 80rpx;
+            max-height:160rpx;
+        }
+        .items{
+            display:inline-block;
+            width:135rpx;
+            padding:10rpx;
+            background:#b99156;
+            margin:10rpx;
+            float:left;
+            border-radius:8rpx;
+            color:#FFFFFF;
+            font-size:28rpx;
+        }
+    }
+    .observeDom{
+        position:relative;
+        top:60rpx;
+        height: 1rpx;
+    }
+    .scroll-view{
+        .pos-title{
+            padding:10rpx 20rpx;
+        }
+        .pos-items{
+            color:$color-gold;
+            background:#FFF;
+            padding:20rpx 20rpx;
+            font-size:32rpx;
+            border-bottom:1px solid #F2F2F2;
+        }
+        .posBtns{
+            position:fixed;
+            top:50%;
+            right:10rpx;
+            transform:translateY(-50%);
+            font-size:28rpx;
+            text-align: center;
+            width:40rpx;
+            .posBtns-item{
+                background:#b99156;
+                border-radius:50%;
+                color:#FFFFFF;
+                width:40rpx;
+                height:40rpx;
+            }
+        }
+    }
+}

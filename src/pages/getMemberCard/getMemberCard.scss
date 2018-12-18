@@ -1,0 +1,190 @@
+@import "../../assets/css/common.scss";
+@import "../../assets/iconfont-svg/iconfont-svg.scss";
+$title-height:60rpx;
+$h30:30px;
+$color-ef: #efefef;
+.checkNumber{
+    .cardImgTitle{
+        text-align:center;
+        color:#b99156;
+        background:#FFF;
+        font-size:36rpx;
+        font-weight:bold;
+    }
+  .panel-hd{
+    padding: 40rpx 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    .panel-hd-container{
+      position: relative;
+      box-shadow:2px 2px 8px rgba(0, 0, 0, 0.5);
+      border-radius:40rpx;
+      overflow: hidden;
+      width:522rpx;
+      height:330rpx;
+      image{
+        width: 522rpx;
+        height: 330rpx;
+      }
+      .imgNumber{
+        position:absolute;
+        width:100%;
+        display:block;
+        bottom:65rpx;
+        text-align:center;
+        font-size:44rpx;
+        color: $color-gold;
+      }
+    }
+
+  }
+
+  .panel-bd-hd{
+    display: flex;
+    color: $color-gold;
+    height:$title-height;
+    line-height: $title-height;
+    padding: 0 40rpx;
+    font-size: 28rpx;
+    .flex-grow-1{font-weight: bold;}
+    .radio_container{display: flex;font-size: 28rpx;
+      label{flex-shrink: 0;display: flex;width: 50%;position: relative;
+        .triangle{
+          display: block;
+          content: "";
+          width: 0;
+          height: 0;
+          position: absolute;
+          border: 20rpx solid transparent;
+          border-bottom:20rpx solid $color-ef;
+          bottom: -20rpx;
+          left: 0;
+        }
+        .label_radio{position: relative;width: 36rpx;height: 36rpx;border-radius: 50%;overflow: hidden;top:10rpx;
+          radio{position: absolute;top:100%}
+        .fake{position: absolute;width: 36rpx;height: 36rpx;left: 0;top: 0;line-height: 1.2;
+            &:after{content: '\e6c9';}
+            &.radio-checked:after{content: '\e69c';}
+          }
+        }
+      }
+    }
+  }
+  .user-info{
+    margin: 20rpx;
+    background:$color-ef;
+    display: block;
+    position: relative;
+    .cell{
+      padding: 0 20rpx;
+      display: flex;
+      height:$h30 ;
+      align-items: center;
+      width: 100%;
+      border-bottom: 1px solid $color-ddd;
+      box-sizing: border-box;
+      text{color:#606060;font-size: 24rpx;width: 160rpx;}
+      input{color: #9f9f9f;font-size: 24rpx;width: 466rpx;}
+      &:last-child{border-bottom: 0}
+    }
+
+  }
+  .panel-title{
+    margin:0 20rpx;
+    padding: 0 20rpx;
+    border-bottom: 1px solid $color-ef;
+    height: 80rpx;
+    line-height: 80rpx;
+    display: flex;
+    justify-content: space-between;
+    .left{font-size: 28rpx;color:#333;}
+    .right{font-size: 24rpx;color:#555 }
+  }
+  .panel-body{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 20rpx;
+    justify-content: space-between;
+    position: relative;
+    .num{
+      padding: 16rpx 0;
+      background: #efe7dc;
+      width: 338rpx;
+      margin: 10rpx;
+      border-radius: 5px;
+      color:#555;
+      font-size: 28rpx;
+      text-align: center;
+      text{display: block}
+      &.selected{
+        background:#b68d57;
+      }
+      &:nth-child(2n+1){
+        margin-right: 0;
+      }
+      &.current{
+        background:#b19057;
+        color:#fff;
+      }
+    }
+    .posA{position: absolute;bottom: 10rpx;right:40rpx;font-size: 24rpx;color:#555;}
+    &.pb40{padding-bottom: 40rpx;}
+  }
+  .search{display: flex;padding: 10rpx 40rpx; input{font-size: 28rpx;}
+    button{margin: 0;color: #fff;font-size: 28rpx;}
+  }
+  .scroll-container{height:650rpx;}
+  .next_operate{
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    .next_server{
+        width:50%;
+        font-size:30rpx;
+        border-radius:0;
+        padding:10rpx;
+        background:#f0f0f1 !important;
+        color:#b99156;
+        font-weight:bold;
+    }
+    .next_get{
+        width:50%;
+        font-size:30rpx;
+        border-radius:0;
+        padding:10rpx;
+        background:#b99156 !important;
+        font-weight:bold;
+        color:#FFFFFF;
+    }
+    
+  }
+  .next{position: absoulte;bottom: 0;width: 100%;border-radius: 0;}
+  .vipCardIntroduce{
+    margin:30rpx;
+    font-size:30rpx;
+    border-radius:8rpx;
+    border:6rpx solid #bbbec4;
+    padding:30rpx;    
+  }
+  .read{display: flex;font-size: 28rpx;color:#555;align-items: center;padding:20rpx;
+    .label_text{
+        text{color:$color-gold;text-decoration:underline;}
+    }
+  }
+  .protocol_bd{
+    .title{text-align: center;color: $color-gold;font-size: 30rpx;}
+    .titles{text-align: center;line-height: 1.5;font-size: 28rpx;color:#333;}
+    view{text-align: left;color:#555;}
+    .textIndent{text-indent: 2em;}
+  }
+  .getCard{
+      text-align: left;
+      color: #b99156;
+      padding: 0 40rpx;
+  }
+}

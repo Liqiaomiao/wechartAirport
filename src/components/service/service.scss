@@ -1,0 +1,34 @@
+@import "../../assets/css/common";
+@import "../../assets/iconfont-svg/iconfont-svg.scss";
+.service{
+  .panel-border-gray{border:1px solid $border-color-light;border-left:0;border-right:0;background: #fff;padding: 0 20rpx;
+    .title{padding: 20rpx 0;font-size: 30rpx;color: $color-333;border-bottom: 1px solid $border-color-light;margin-bottom: 20rpx;font-weight: bold}
+    .service-panel{
+      /* border-left: 4px solid $color-gold;*/
+      border-radius:6px;background:$background-color-service;display: flex;height: 140rpx;padding: 0 20rpx;justify-content: space-between;
+      align-items: center;margin-bottom: 20rpx;
+      &>view{height: 100rpx;}
+      .cell-hd{margin-right: 20rpx;
+        .icons{width: 100rpx;height: 100rpx;border-radius: 50%;background: #ba9255;color:#fff;line-height:100rpx;text-align:center;
+          icon:before{
+            content: '\e601';font-size: 50rpx;
+          }
+        }
+      }
+      .cell-bd{display: flex;flex-direction:column;align-items:space-between;justify-content: space-around;
+        .name{font-size: 32rpx;color:$color-555;font-weight: bold;}
+        .last{background: #2d8cf0;color: #fff;font-size: 24rpx;align-self: baseline;padding:4rpx 10rpx;border-radius: 2px;text-align: center;
+          line-height: 1.5;
+        }
+      }
+      .cell-ft{
+
+      }
+
+    }
+    .tips{
+      font-size: 30rpx;color:$font-color-gray;margin-bottom: 20rpx;
+    }
+  }
+
+}

@@ -1,0 +1,155 @@
+@import "../../assets/css/common.scss";
+
+#flightResult{
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    background: $color-gray;
+    color:#495060;
+    .fixed-view{
+        position:fixed;
+        width:100%;
+        background:$color-gray;
+        padding-bottom:10rpx;
+        z-index:10;
+        .date-choose{
+            padding:10rpx 10rpx 10rpx 20rpx;
+            text-align:center;
+            color:#FFFFFF;
+            background: $color-gold;
+            position: relative;
+            .texts{
+                display:inline-block;
+                font-size: 30rpx;
+            }
+            .icons{
+                color:#FFFFFF;
+                position:absolute;
+                right:10rpx;
+                top:6rpx;
+            }
+        }
+    }
+    .result-tip{
+        color: $font-color-gray;
+        text-align:center;
+        font-size:24rpx;
+        padding-top:10rpx;
+    }
+    .calendar-view{
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        width:100%;
+        z-index:10;
+        height:0;
+        overflow:hidden;
+        background:$color-gray;
+        transition: all .35s ease-in-out;
+
+        .calendar-overflow{
+            background:#FFFFFF;
+            padding-bottom:20rpx;
+            z-index:10;
+        }
+
+         /* 日历背景色 */
+        .calendar-bak{}
+        /* 日历标题颜色 */
+        .calendar-header{}
+         /* 日历主面板颜色 */
+        .calendar-board{}
+
+        .close-date{
+            margin-top:-30rpx;
+            position:absolute;
+            left:50%;
+            transform:translateX(-50%);
+            z-index:10;
+
+            .icons{ 
+                background:$color-gold;
+                padding:10rpx;
+                border-radius:50%;
+                box-shadow:0 0 5px 1px $color-gold;                
+            }
+        }
+    }
+    .calendar-transition{
+        height:100%;
+    }
+    .result-contianer-show{
+        opacity: 1 !important;
+    }
+    .result-contianer{
+        margin-top:128rpx;
+        padding-bottom: 10rpx;
+        background: $color-gray;
+        opacity: 0;
+        transition: all 1s ease-in-out;
+        .result-item{
+            background:#FFFFFF;
+            margin:10rpx 0;
+            .item-left{
+                padding:10rpx 20rpx;
+                .air{
+                    font-size:28rpx;
+                    padding:10rpx 0;
+                    .endAir{
+                        float: right;
+                    }
+                }
+                .company{
+                    font-size:26rpx;
+                    height:50rpx;
+                    line-height:50rpx;
+                    .logos{
+                        width:40rpx;
+                        height:40rpx;
+                        border-radius:50%;
+                        margin-right:15rpx;
+                        position:relative;
+                        top:10rpx;
+                    }
+                    .text{
+                        
+                    }
+                    .icon-plan::before{
+                        padding-right:5rpx;
+                        content:'\e675';
+                        font-size: 40rpx;
+                        padding-right:10rpx;
+                        margin-top: 10rpx;
+                        position: relative;
+                        top: 4rpx;
+                        color:$color-gold;
+                    }
+                }
+            }
+            .btns{
+                background:#b99156;
+                margin:20rpx;
+                text-align:center;
+                color:#FFFFFF;
+                border-radius:8rpx;
+                font-size:28rpx;
+                padding:6rpx 0;
+            }
+            .btns-choose{
+                background:#b99156;
+                margin:62rpx 20rpx;
+                text-align:center;
+                color:#FFFFFF;
+                border-radius:8rpx;
+                font-size:28rpx;
+                padding:8rpx 0;
+            }
+            .folloeBtns{
+                background:$font-color-gray;
+            }
+        }
+    }
+}

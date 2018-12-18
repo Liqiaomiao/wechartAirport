@@ -1,0 +1,18 @@
+<view class="oneNavigation">
+    <view class="panel-head">
+        <image src="{{imgHd}}" mode="widthFix"></image>
+    </view>
+    <view class="panel-border" wx:for="{{navigations}}" wx:key="{{index}}">
+            <view class="panel-list-hd">
+                <image class="imgTitleBackground" src="{{imgTb}}" ></image>
+                <image class="imgTitlePoint" src="{{imgTt}}" ></image>
+                <text class="imgTitle">点击图片开始导航</text>
+            </view>
+            <view class="panel-list-bd">
+                <image class="imgBorderBack" src="{{imgIb}}" ></image>
+                <image class="imgItem" src="{{item.imgurl}}" bindtap="openLocation" data-info="{{item}}" ></image>
+                <text class="">{{item.name}}</text>
+            </view>
+    </view>
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

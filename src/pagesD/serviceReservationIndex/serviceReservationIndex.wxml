@@ -1,0 +1,58 @@
+<view class="serviceReservationIndex" wx:if="{{cardList}}">
+    <view class="panel-hd" >
+        <swiper duration="{{duration}}" current="{{currentIndex}}"
+                previous-margin="100rpx" 
+                next-margin="100rpx" 
+                circular
+                class="swipers"
+                bindchange="_homeServerSwiperChange"
+        >
+            <block wx:for="{{cardList}}" wx:key="{{index}}">
+                <swiper-item class="swiper-list">
+                    <view class="normalItem {{index != currentIndex ? 'scaleItem' : '' }}">
+                        <view class="cardNum ">{{item.formatCardNum}}</view>
+                        <image src="{{imgUrls + item.cardBigPicWithoutNoUrl}}" class="slide-image" />
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="dots">
+            <block wx:for="{{cardList}}" wx:key="{{index}}">
+                <view class="dot {{index == currentIndex ? ' active' : ''}}"></view>
+            </block>
+        </view>
+
+    </view>
+    <view class="panel-bd">
+        <view class="panel-bd-ctx">
+            <view wx:if="{{cardList[currentIndex].cardCat == '1'}}" class="title">余额 <text> ￥ {{cardList[currentIndex].walletMoney}} 元</text></view>
+            <view wx:elif="{{cardList[currentIndex].orderFlow != 1}}" class="title">剩余 <text> {{cardList[currentIndex].serviceCnt}} 次</text></view>
+            <view wx:else class="title"><text>有效期内不限次</text></view>
+            <view class="sub-title">{{cardList[currentIndex].cardSeriesStr}}</view>
+            <view class="panel-bd-detail">
+                <view class="cell">
+                    <text decode space class="cardNumText">卡&emsp;号</text>
+                    <text>{{cardList[currentIndex].formatCardNum}}</text>
+                </view>
+                <view class="cell">
+                    <view class="">有效期</view>
+                    <text>{{formatDate[currentIndex]}}</text>
+                </view>
+            </view>
+            <view class="buyDetail">预约方式</view>
+            <view class="btn_area">
+                <view class="btn" wx:for="{{btns}}" wx:key="{{index}}" data-index="{{index}}" data-isuse="{{item.isUse}}" bindtap="goLink">
+                    <icon class="iconfont {{item.icon}}"></icon>
+                    <text>{{item.text}}</text>
+                </view>
+
+            </view>
+        </view>
+    </view>
+    <view class="bottomTel">
+        <view >天津机场贵宾服务热线：400-649-6888</view>
+        <view >机场贵宾广告招商电话：022-24906868</view>
+    </view>
+     <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

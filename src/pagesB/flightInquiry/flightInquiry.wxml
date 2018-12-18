@@ -1,0 +1,40 @@
+<view id="flightInquiry">
+    <i-tabs current="{{ currentTabs }}" color="#B99156" bindchange="handleChange">
+        <i-tab class="title-tab {{currentTabs == 'flightCode' ? 'tab-check' : 'tab-grow'}}" i-class="tab-con" key="flightCode" title="航班号"></i-tab>
+        <i-tab class="title-tab {{currentTabs == 'destination' ? 'tab-check' : 'tab-grow'}}" i-class="tab-con" key="destination" title="目的地"></i-tab> 
+    </i-tabs>
+    <view class="calendar-view {{showCalendar ? 'calendar-transition' : ''}}">
+        <view class="calendar-overflow">
+            <calendar binddayClick="_dayClick" binddateChange="_dateChange" bindprevMonth="_dateChange" bindnextMonth="_dateChange" weeks-type="cn" lunar="true" active-type="rounded" days-color="{{calendarData}}" cell-size="40" calendar-style="calendar-bak" header-style="calendar-header" board-style="calendar-board" />
+        </view>
+        <view class="close-date">
+            <i-icon bindtap="_showCalendar" data-state="{{false}}"  i-class="icons" type="packup" size="24" color="#FFFFFF"></i-icon>
+        </view>
+    </view>
+    <view class="flight-contianer">
+        <view>
+            <view class="flight-code {{currentTabs == 'flightCode' ? '' : 'code-translateX'}}">
+                <i class="iconfont icon-flight"></i>
+                <text class="code-title">航班查询</text>
+                <input value="{{flightCode}}" bindinput="_flightCodeInput" class="code-input" type="text" placeholder="请输入航班号" confirm-type="done" />
+            </view>
+            <view class="flight-pos {{currentTabs == 'destination' ? 'pos-translateX' : ''}}">
+                <text class="pos-start" bindtap="_choosePos" data-type="start">{{startPos}}</text>
+                <i bindtap="_startChangeEnd" class="iconfont icon-change"></i>
+                <text class="pos-end" bindtap="_choosePos" data-type="end">{{endPos}}</text>
+            </view>
+            <view class="flight-date">
+                <i class="iconfont icon-date"></i>
+                <text class="date-title">查询日期</text>
+                <text class="date-input" bindtap="_showCalendar" data-state="{{true}}">{{searchDate}}</text>
+                <!-- <input  class="date-input" value="" type="text" placeholder="请输入查询日期" confirm-type="done" /> -->
+            </view>
+        </view>
+        <view>
+
+        </view>
+    </view>
+     <view class="searchNow" bindtap="_searchNow">立即查询</view>
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

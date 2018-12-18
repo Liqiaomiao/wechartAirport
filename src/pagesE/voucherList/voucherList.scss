@@ -1,0 +1,51 @@
+@import "../../assets/css/common";
+.voucherList{
+  font-size: 30rpx;
+    .list{
+      margin:20rpx;
+      .voucher-bd{
+        position: relative;color:$color-gold;
+        image{
+          width: 710rpx;height: 251rpx;
+        }
+        .posA{position:absolute;left:37rpx;top:98rpx;width:65%;}
+        .voucher-title{
+          font-size:43rpx;font-weight:bold;text-align:center;color:#5f441e;
+        }
+        .voucher-ctx{
+          display: flex;justify-content: space-between;margin-top: 10rpx;
+          text{color: $color-333;}
+        }
+        .voucherimg image{}
+      }
+      .voucher-ft{
+        display: flex;justify-content: center;margin-top: 10rpx;
+        button{border:1px solid $color-gold;line-height:58rpx;height:60rpx;padding:0 20rpx!important;font-size:30rpx;border-radius:60rpx;color: $color-gold;
+          margin:0 10rpx; }
+      }
+    }
+
+
+  .cells{
+    padding: 10rpx 20rpx;position: relative;
+    image{width:100% ;height:219rpx;}
+    .celllist{position: absolute;left: 40rpx;top: 20rpx;right:20rpx;bottom: 0;
+      color:$color-gold;display: flex;justify-content: space-between;
+      button{
+        padding:0 !important;
+        width:50rpx;
+        color:$color-gold;
+        line-height:1.5;
+        font-size:30rpx;
+        background:#fff;
+        border: 1px solid $color-gold!important;
+      }
+      .cell-hd{
+        .hd{
+          font-size: 47rpx;margin-bottom: 10rpx;
+        }
+      }
+    }
+  }
+
+}

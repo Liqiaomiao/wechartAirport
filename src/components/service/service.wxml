@@ -1,0 +1,36 @@
+<view class="service">
+    <view class="panel-border-gray">
+        <view class="title">服务选择</view>
+        <view class="service-panel" wx:for="{{serivce}}" wx:key="{{index}}">
+            <view class="cell-hd">
+                <view class="icons">
+                    <icon class="iconfont vip "></icon>
+                </view>
+            </view>
+            <view class="cell-bd flex-grow-1" >
+                <view class="name">{{item.serviceName}}</view>
+                <view class="last">
+                    <span wx:if="{{item.isCourtSvc == '1'}}" >享{{item.discount/10}}折优惠</span>
+                    <span wx:if="{{item.isCourtSvc == '0' && !item.servicePackage && cardData.cardCat == '1'}}">￥{{item.sellPrice}} /人次</span>
+                    <span wx:elif="{{item.isCourtSvc == '0' && item.servicePackage && item.servicePackage.servicePackageType !='0' && item.serviceCntRelation && item.serviceCntRelation.serviceCnt > 0}}" >剩余{{item.serviceCntRelation.serviceCnt}}次</span>
+                    <span wx:elif="{{item.isCourtSvc == '0' && item.servicePackage && item.servicePackage.servicePackageType !='0' && item.servicePackage.serviceAddCnt > 0 && item.serviceCntRelation && item.serviceCntRelation.serviceCnt == 0}}" >剩余{{item.serviceCntRelation.serviceCnt}}次</span>
+                    <span wx:elif="{{item.isCourtSvc == '0' && item.servicePackage && item.servicePackage.servicePackageType !='0' && item.serviceCntRelation && item.serviceCntRelation.serviceCnt == 0}}" >￥{{item.sellPrice}} /人次</span>
+                    <span wx:elif="{{item.isCourtSvc == '0' && item.servicePackage && item.servicePackage.servicePackageType !='0' && item.servicePackage.serviceAddCnt == 0 && item.serviceCntRelation && item.serviceCntRelation.serviceCnt == 0}}" >￥{{item.sellPrice}} /人次</span>
+                    <span wx:elif="{{item.isCourtSvc == '0' && item.servicePackage && item.servicePackage.servicePackageType =='0'}}">有效期内不限次使用</span>
+                    <span wx:elif="{{item.isCourtSvc == '0' && item.servicePackage && item.servicePackage.servicePackageType =='0' && cardData.orderFlow == 0}}">仅限1人使用</span>
+                </view>
+            </view>
+            <view class="cell-ft">
+                <i-input-number data-index="{{index}}" value="{{item.consumeCount}}" min="{{item.inputMin}}" max="{{item.inputMax}}" disabled="{{item.disabled}}" bindchange="_handlestepchange"/>
+                <!-- <i-input-number data-index="{{index}}" value="{{}}" min="0" max="{{}}" disabled="{{}}" bindchange="_changeServer" data-index="{{index}}" />
+                <i-input-number data-index="{{index}}" wx:elif="{{}}"  value="{{  }}" min="0" disabled="{{item.disabled}}"  bindchange="_changeServer"/>
+                <i-input-number data-index="{{index}}" wx:elif="{{}}" value="{{  }}" min="0" max="{{}}" disabled="{{}}"  bindchange="_changeServer"/>
+                <i-input-number data-index="{{index}}" wx:elif="{{}}" value="{{item.consumeCount}}" disabled="{{item.disabled}}" min="0" max="1"  bindchange="_changeServer"/>
+                <i-input-number data-index="{{index}}" wx:else value="{{item.consumeCount}}" disabled="{{item.disabled}}" min="0" max="1"  bindchange="_changeServer"/> -->
+            </view>
+        </view>
+        <view class="tips" wx:if="{{cardData.orderFlow == 2}}">* 免费1人可进入等候区休息，超出人次扣除接机次数</view>
+
+    </view>
+
+</view>

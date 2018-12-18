@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText":"在线预约",
+  "usingComponents":{
+    "card-info":"../../components/cardInfo/cardInfo",
+    "date-time-picker":"../../components/DateTimePicker/DateTimePicker",
+    "i-action-sheet": "../../components/iview/action-sheet/index",
+    "i-toast": "../../components/iview/toast/index",
+    "i-modal": "../../components/iview/modal/index",
+    "unionhuatong-load" : "../../components/loading/loading",
+    "parse-html" : "../../components/parseHtml/parseHtml"
+  }
+}

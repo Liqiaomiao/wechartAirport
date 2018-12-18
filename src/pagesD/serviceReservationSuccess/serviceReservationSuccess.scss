@@ -1,0 +1,14 @@
+@import "../../assets/css/common";
+.serviceReservationSuccess{
+  .panel-hd{display: flex;flex-direction: column;flex-direction:column;align-items:center;padding:40rpx;font-size:30rpx;
+    color:$color-888;
+    view{line-height: 1.5;padding-top:10px;font-weight:bold;}
+  }
+  .success:before{
+    content: '';
+  }
+  .btn-area{margin-top: 60rpx;margin-bottom: 40rpx;
+    button{margin:20rpx 50rpx;border-radius:8rpx;}
+  }
+  .panel-border-gray .default-group .default-cell .cell-bd{color:$color-555}
+}

@@ -1,0 +1,109 @@
+<view hidden="{{ifSearch}}">
+    <view class="order">
+        <view class="searchbarfixed panel-border-gray">
+            <view class="searchbar">
+                <view class="panel-hd" bindtap="showPopover1"><text class="arrow">筛选</text></view>
+                <view class="panel-bd" bindtap="showPopover2"><text class="arrow">分类</text></view>
+                <view class="panel-ft " bindtap="handleSearch"><text>搜索</text></view>
+            </view>
+        </view>
+        <view class="searchResult {{progressing.length==0?'pt70':''}}">
+            <block wx:if="{{progressing.length>0}}">
+                <view wx:for="{{progressing}}" wx:key="processing{{index}}" >
+                    <order-common list="{{item}}" bind:refreshData="refreshData" i-class="ordercard {{index>0?'pt10':''}}" data-itemid="{{item.id}}" bind:goDetail="goDetail" ></order-common>
+                </view>
+            </block>
+
+            <block wx:if="{{finished.length>0}}">
+                <view class="line">已完成的订单</view>
+                <view wx:for="{{finished}}" wx:key="finished{{index}}" >
+                    <order-common list="{{item}}" i-class="ordercard pt10 finished" data-itemid="{{item.id}}" bind:goDetail="goDetail"  ></order-common>
+                </view>
+            </block>
+            <view wx:if="{{noInfo}}" class="noInfo">
+                <icon class="iconfont"></icon>
+                <text >暂无订单信息</text>
+            </view>
+
+        </view>
+        <!--筛选-->
+        <view class="searchCondition" hidden="{{!searchConditionVisible1}}">
+            <form  class=""  bindsubmit="formSubmit">
+                <view class="group">
+                    <view class="title">预约来源</view>
+                    <view class="cell-list">
+                        <text class="cell {{item.checked?'checked iconfont':''}}" name="{{item.code}}" wx:for="{{orderSource}}" wx:key="cell_0_{{index}}" id="orderSource_{{index}}"  bindtap="selectcell1">{{item.text}}</text>
+                    </view>
+                </view>
+                <view class="group">
+                    <view class="title">时间范围</view>
+                    <view class="cell-list timeRange">
+                        <picker class="datepicker" mode="date" data-type="startDate" value="{{startDate}}" start="{{minDate}}"  bindchange="bindDateChange" name="startDate">
+                            <view class="picker" >{{startDate}} </view>
+                        </picker>
+                        -
+                        <picker class="datepicker" mode="date" data-type="endDate" value="{{endDate}}" start="{{minDate}}"  bindchange="bindDateChange" name="endDate">
+                            <view class="picker" >{{endDate}} </view>
+                        </picker>
+                    </view>
+
+                </view>
+                <view class="btn-area">
+                    <view>
+                        <button class="btn-gray" bindtap="close" data-type="searchConditionVisible1">取消</button>
+                    </view>
+                    <view>
+                        <button class="btn-default"  formType="submit">确定</button>
+                    </view>
+
+                </view>
+            </form>
+            <view class="masker" bindtap="close" data-type="searchConditionVisible1" ></view>
+        </view>
+        <!--分类-->
+        <view class="searchCondition" hidden="{{!searchConditionVisible2}}">
+            <form  class=""  bindsubmit="formSubmit">
+                <view class="group">
+                    <view class="title">服务区域</view>
+                    <view class="cell-list">
+                        <text class="cell {{item.checked?'checked iconfont':''}}" name="{{item.code}}" wx:for="{{svcArea}}" wx:key="cell_0_{{index}}" id="svcArea_{{index}}"  bindtap="selectcell">{{item.text}}</text>
+                    </view>
+                </view>
+                <view class="group">
+                    <view class="title">服务类型</view>
+                    <view class="cell-list">
+                        <text class="cell {{item.checked?'checked iconfont':''}}" name="{{item.code}}" wx:for="{{svcCategory}}" wx:key="cell_0_{{index}}" id="svcCategory_{{index}}"  bindtap="selectcell">{{item.text}}</text>
+                    </view>
+                </view>
+                <view class="group">
+                    <view class="title">国内/国际</view>
+                    <view class="cell-list">
+                        <text class="cell {{item.checked?'checked iconfont':''}}" name="{{item.code}}" wx:for="{{flightCategory}}" wx:key="cell_0_{{index}}" id="flightCategory_{{index}}"  bindtap="selectcell">{{item.text}}</text>
+                    </view>
+                </view>
+                <view class="group">
+                    <view class="title">进/出港</view>
+                    <view class="cell-list">
+                        <text class="cell {{item.checked?'checked iconfont':''}}" name="{{item.code}}" wx:for="{{inOutPort}}" wx:key="cell_0_{{index}}" id="inOutPort_{{index}}"  bindtap="selectcell">{{item.text}}</text>
+                    </view>
+                </view>
+                <view class="btn-area">
+                    <view>
+                        <button class="btn-gray" bindtap="close" data-type="searchConditionVisible2">取消</button>
+                    </view>
+                    <view>
+                        <button class="btn-default"  formType="submit">确定</button>
+                    </view>
+
+                </view>
+            </form>
+            <view class="masker" bindtap="close" data-type="searchConditionVisible2" ></view>
+        </view>
+        <i-toast id="toast" />
+        <!-- 底部操作栏 -->
+        <unionhuatong-footer></unionhuatong-footer>
+    </view>
+</view>
+<view hidden="{{!ifSearch}}">
+    <search-page searchtext="{{searchtext}}" bind:inputChange="inputChange" bind:inputComfirm="inputComfirm" bind:cancelSearch="cancelSearch"></search-page>
+</view>

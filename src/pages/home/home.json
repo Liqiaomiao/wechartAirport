@@ -1,0 +1,15 @@
+{
+    "usingComponents":{
+        "unionhuatong-footer" : "../../components/footer/footer",
+        "home-heard" : "../home-swiper/home-swiper",
+        "home-scroll-msg" : "../home-scrollMsg/home-scrollMsg",
+        "index-icons":"../index-icons/index-icons",
+        "cardDetial-swipers":"../../components/swipers/swiper",
+        "i-row": "../../components/iview/row/index",
+        "i-col": "../../components/iview/col/index",
+        "i-toast": "../../components/iview/toast/index",
+        "i-modal": "../../components/iview/modal/index",
+        "i-icon": "../../components/iview/icon/index",
+        "unionhuatong-load" : "../../components/loading/loading"
+    }
+}

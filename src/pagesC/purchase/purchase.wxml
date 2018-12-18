@@ -1,0 +1,60 @@
+<view class="purchase">
+    <view class="panel_hd">
+        <i-tabs current="{{ current }}" bindchange="handleChange" color="#b99156">
+            <i-tab class="itab {{current == '360' ? 'itab-choose' : ''}}" key="360" title="360系列服务产品" i-class="no-bar"></i-tab>
+            <i-tab class="itab {{current == 'easyCartoon' ? 'itab-choose' : ''}}" key="easyCartoon" title="CIP嘉宾服务套卡"  i-class="no-bar"></i-tab>
+        </i-tabs>
+    </view>
+    <view class="panel_container">
+        <view wx:if="{{current == '360'}}"  class="panel_lists" wx:for="{{cardListData}}" wx:key="{{item.activityID}}" wx:for-index="idx" >
+            <view class="panel_list">
+                <image src="{{ imgUrl + item.cardPicUrl}}"></image>
+                <view class="panel_bd">
+                    <text class="panel_bd_title">{{item.cardTypeName}}产品介绍</text>
+                    <parse-html class="panel_bd_dsc" wx:if="{{item.description}}" html="{{item.description}}"></parse-html>
+                </view>
+                <view class="btn-area">
+                    <view class="btn1 btn-default" >
+                        <text class="discount">￥ {{item.cardSellPrice}}</text>
+                        <text wx:if="{{item.cardSellPrice < item.cardFacePrice}}" class="price ">(原价 ￥ {{item.cardFacePrice}})</text>
+                    </view>
+                    <view type="primary" class="btn2 btn-default" bindtap="goDetail" id="{{idx}}">立即购买</view>
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{current == 'easyCartoon'}}" class="panel-right">
+            <view class="cardImg-con">
+                <view class="items">
+                    <image class="img" src="{{imgUrl + cipData.cardInfos[0].CardPicUrl }}"></image>
+                    <view class="title">CIP - ”易出行“卡</view>
+                </view>
+                <view class="items">
+                    <image class="img" src="{{imgUrl + cipData.cardInfos[1].CardPicUrl }}"></image>
+                    <view class="title">CIP - “易接机”卡</view>
+                </view>
+            </view>
+            <view class="cardText-con">
+                <view class="active-con">
+                    <view class="title">CIP - 嘉宾服务套卡简介</view>
+                    <view class="details">内含 CIP - “易出行” 以及 CIP - “易接机” 卡各一张，原价720元，打折优惠价格 600元，可体验嘉宾系列进出港全流程服务内容，最大程度满足您出行的使用需求</view>
+                </view>
+                <view class="card-con">
+                    <view class="items items-border">
+                        <view class="title">易出行产品简介</view>
+                        <view class="text">首次付款360元/人/半年，记名卡，充年费，可充值300元延期半年。本人无限次使用，每次可免费携带一名12岁以下儿童或婴儿。可享受天津机场嘉宾国内，国际出港服务</view>
+                    </view>
+                    <view class="items">
+                        <view class="title">易出行产品简介</view>
+                        <view class="text">首次付款360元/人/6次，车号记名卡，无年费，充值300元可顺延6次。超出1人次后按人数扣除相应次数。可享受天津机场贵宾车专用通道，嘉宾车场停车，等候区茶点，专人提醒航班到达等服务</view>
+                    </view>
+                </view>
+            </view>
+            <view class="btns">
+                <view class="price"><text class="normal">原价 720元</text> 活动价 600元</view>
+                <view class="buys" bindtap="_buysCip">立即购买</view>
+            </view>
+        </view>
+    </view>
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

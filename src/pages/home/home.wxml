@@ -1,0 +1,88 @@
+<view id="home">
+    
+    <view wx:if="{{showProm}}">
+        <!-- 定位 天气 -->
+        <view class="slide-location">
+           <!-- <i-icon class="locationIcon" wx:if="{{locations != ''}}" type="coordinates_fill" size="18" color="#80848f" />
+            <text space decode wx:if="{{locations != ''}}" class="location-text">{{locations}}</text>
+            <text space decode class="weather" wx:if="{{weathers != ''}}">{{weathers}}</text>-->
+            <i class="iconfont icon-card banner-icon"></i>
+        </view>
+        <!-- 头部轮播 -->
+        <home-heard locations="{{locations}}" weathers="{{weathers}}"></home-heard>
+
+        <view class="home-container">
+
+            <!-- 操作按钮 -->
+            <index-icons></index-icons>
+
+            <!-- 滚动公告 -->
+            <home-scroll-msg ></home-scroll-msg>
+
+            <!-- 产品轮播 -->
+            <view class="card-server">
+                <view class="server-title">会员专享</view>
+                <cardDetial-swipers></cardDetial-swipers>
+                <view class="cell-phone phone-card" bindtap="_callPhone" data-phone="400-649-6888">
+                    <view class="iconfont icon-phone icon-min icon-pos" ></view>
+                    <text>会员咨询电话：400-649-6888</text>
+                </view>
+            </view>
+
+            <!-- 招商合作 -->
+            <view class="investment-server">
+            <view class="investment-bck">
+                    <view class="server-title">招商合作</view>
+                    <i-row>
+                        <i-col span="8" bindtap="_investmentDetail" data-index="{{item.type}}" wx:for="{{investmentList}}" wx:key="{{index}}" class="investmentList">
+                            <view class="title">{{item.title}}</view>
+                            <image class="img" src="{{item.imgUrl}}" />
+                            <view class="details">{{item.details}}</view>  
+                        </i-col>
+                    </i-row>
+                    <view class="cell-phone phone-investment" bindtap="_callPhone" data-phone="022-24906868">
+                        <i class="iconfont icon-phone icon-min icon-pos" ></i>
+                        <text>招商合作电话：022-24906868</text>
+                    </view>
+            </view>
+            </view>
+            <view class="bottom-name">天津机场贵宾服务</view>
+        </view>
+    </view>
+
+    <view >
+        <!-- 绑定手机 -->
+        <view class="bind-user-phone {{bindUserPhone ? 'bind-user-phone-show' : ''}}">
+            <i-icon bindtap="_hideBindPhone" class="icons" type="close" size="22" color="#b99156"></i-icon>
+            <view class="title">绑定手机号</view>
+            <view class="tips">如手机号未注册，验证后将自动注册</view>
+            <view class="user-input"> 
+                <view class="user-phone"><text decode space>姓&emsp;名</text><input value="{{rgName}}" bindinput="_setName"  class="phone-input" type="text" placeholder="请输入姓名" /><view ><i-icon wx:if="{{rgName.length > 0}}" bindtap="_setName" data-settype="clear" class="icons-phone" type="delete_fill" color="#80848f" size="22"></i-icon></view></view>
+                <view class="user-phone"><text >手机号</text><input value="{{userPhone}}" bindinput="_setPhone"  class="phone-input" type="number" placeholder="请输入手机号" /><view ><i-icon wx:if="{{userPhone.length > 0}}" bindtap="_setPhone" data-settype="clear" class="icons-phone" type="delete_fill" color="#80848f" size="22"></i-icon></view></view>
+                <view class="user-code"><text >验证码</text><input value="{{rgCode}}" bindinput="_setCode"  maxlength="6" class="code-input" type="number" placeholder="请输入验证码" /><view class="clearIcon"><i-icon wx:if="{{rgCode.length > 0}}" bindtap="_setCode" class="icons-code" data-settype="clear" type="delete_fill" color="#80848f" size="22"></i-icon></view><text bindtap="_getSMS" class="code {{codeText != '获取验证码' ? 'rgxBck' : ''}}">{{codeText}}</text></view>
+            </view>
+            <view class="bindPhone" bindtap="_bindPhone">绑定</view>
+            
+        </view>
+        <view class="bindBck {{bindUserPhone ? 'bindBck-show' : ''}}"></view>
+    </view>
+    <view class="cipActive" wx:if="{{cipActive}}">
+        <view class="contioner">
+            <image binderror="_closeCipPop" mode="widthFix" src="{{cipImgData}}" /> 
+            <view class="btns" bindtap="_cipActive"></view>
+            <i-icon bindtap="_closeCipPop" class="icons" type="close" color="#bbbec4" size="30"/>
+        </view>
+        <view class="bck"></view>
+    </view>
+    <!-- 底部操作栏 -->
+    <unionhuatong-footer></unionhuatong-footer>
+    <!--  -->
+    <!-- <i-modal title="绑定手机号" visible="{{ bindUserPhone }}" actions="{{userPhoneBtns}}" bind:click="_userPhoneClick">
+        <view class="user-phone"><text >手机号</text><input class="phone-input" type="number" placeholder="请输入手机号"/></view>
+        <view class="user-code"><text >验证码</text><input class="code-input" type="number" placeholder="请输入验证码"/><text class="code">获取验证码</text></view>
+        <text>(60s)</text> 
+    </i-modal> -->
+    <!--  -->
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

@@ -1,0 +1,76 @@
+@import "../../assets/css/common";
+
+.serviceReservationTel{
+  .panel-hd{
+    height:200rpx ;
+    background: url("http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg") no-repeat;
+    background-size:cover;
+    position: relative;
+    .phones{
+      border: 2px solid #fff;
+      background:$bg-color;
+      color: $color-gold;
+      font-size: 28rpx;
+      display: flex;
+      width: 400rpx;
+      position: absolute;
+      left: 30rpx;
+      bottom: 30rpx;
+      border-radius: 8px;
+      justify-content: center;
+      padding: 10rpx 0;
+      &>view{flex-shrink: 0;}
+      .cell-hd{text-align: right;}
+      .cell-bd{font-weight: bold}
+
+    }
+  }
+  .panel-bd{
+    padding:20rpx;
+    .tips{font-size: 30rpx;color:$font-color-gray;margin-bottom: 10rpx;}
+    .panel-desc{background:$bg-color;
+      .btn-area{padding: 40rpx;border-bottom: 1px solid $border-color-light;
+        .btn-default{
+          i:before{content:'\e612';font-size: 18px;margin-right: 16rpx;}
+        }
+      }
+      .panel-lists{
+        padding: 0 20rpx;
+        .panel-list{font-size: 28rpx;align-items: center;padding: 20rpx 0;display: flex;align-items: center;color:$font-color-gray-darken;border-bottom: 1px solid $border-color-light}
+        .panel-list:last-child{border-bottom: none;}
+        .panel-list::before{
+          display: inline-flex;
+          content: '';
+          width: 30rpx;
+          height: 30rpx;
+          border-radius: 50%;
+          background: radial-gradient(circle at 0 10px, #be9457, #f0eada);
+          margin:0 20rpx;
+        }
+      }
+    }
+  }
+  .popover{position: fixed;left: 0;top: 0;right: 0;bottom: 0;
+    .cells{background: $bg-color;border-radius: 6px;position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);width: 84%;z-index: 2;font-size: 28rpx;
+    .close:after{
+      content: '\e620';
+      color: #fff;position: absolute;right: -20rpx;top: -56rpx;font-size: 50rpx;
+    }
+      .cellList{
+        display: flex;align-items: center;justify-content: space-between;padding: 22rpx 0;border-bottom: 1px solid $color-gold;
+        &:last-child{border-bottom: 0}
+        .cell-hd{margin-left:40rpx;}
+        .cell-ft{margin-right:40rpx;}
+        .btn-default{line-height: 1.6!important;}
+        .btn-default i:after{content: '\e612';font-size: 18px;}
+      }
+    }
+    .masklayer{
+      position: absolute;
+      left: 0;right: 0;
+      top: 0;bottom:0;
+      background: rgba(0,0,0,.5);
+      z-index: 1;
+    }
+  }
+}

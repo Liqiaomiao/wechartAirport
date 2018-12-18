@@ -1,0 +1,62 @@
+<view class="userInfo_ctx order-info i-class">
+    <view class="userInfo" catchtap="goDetail">
+        <view class="panel-hd">
+            <view class="hd">{{list.orderSourceStr}}</view>
+            <view class="ft">航程：{{list.voyage||"--"}}</view>
+        </view>
+        <view class="panel-bd">
+            <view class="cell">
+                <view class="cell-hd">会员卡号：</view>
+                <view class="cell-ft"> {{list.memberCardNum||""}}</view>
+            </view>
+            <view class="cell">
+                <view class="cell-hd">预达时间：</view>
+                <view class="cell-ft"> {{list.arriveTime||""}}</view>
+            </view>
+            <view class="cell">
+                <view class="cell-hd">航班号：</view>
+                <view class="cell-ft"> {{list.flightNo||""}}</view>
+            </view>
+            <view class="cell" wx:if="{{list.orderSource!=4}}">
+                <view class="cell-hd">接待区域：</view>
+                <view class="cell-ft" wx:if="{{list.vipAreaId}}">[{{list.viplobbyInfo.areaCodeStr}}] {{list.viplobbyInfo.roomNo}}</view>
+                <view class="cell-ft" wx:else> {{'--'}}</view>
+            </view>
+            <view class="cell" wx:if="{{list.orderSource==4}}">
+                <view class="cell-hd">消费区域：</view>
+                <view class="cell-ft"> {{list.allotAreaStr||'--'}}</view>
+            </view>
+            <view class="cell" wx:if="{{list.state == 1 && ifcount  }}">
+                <view class="cell-hd">航班倒计时：</view>
+                <count-time bind:timeend="timeend" endTime="{{list.inOutPort == 1 ? list.landingTime : list.takeoffTime}}" i-class="order-time" ></count-time>
+            </view>
+            <view class="cell" wx:if="{{list.state == 7 && ifEvaluate }}">
+                <view class="cell-hd">评价倒计时：</view>
+                <count-time  bind:timeend="timeend"  endTime="{{evaluateTime}}" i-class="order-time"></count-time>
+            </view>
+            <slot name="content"></slot>
+        </view>
+        <view  class="cardInfo-footer">
+            <view class="footer-hd">
+                <text class="tag primary" wx:if="{{list.vipCategory}}">{{list.vipCategoryStr}}</text>
+                <text class="tag primary" wx:if="{{list.svcCategory}}">{{list.svcCategoryStr}}</text>
+                <text class="tag primary" wx:if="{{list.flightCategoryStr}}" >{{list.flightCategoryStr}}</text>
+                <text class="tag primary" wx:if="{{list.inOutPortStr}}">{{list.inOutPortStr}}</text>
+            </view>
+            <view class="footer-ft">
+                <button class="warning {{ifcancel?'btn-disabled':''}}" wx:if="{{list.state == 1}}"  id="{{list.id}}"  disabled="{{ifcancel}}" catchtap="cancelOrder" >取消预约</button>
+                <button  wx:if="{{list.state == 7 && !ifcancel}}" class="warning {{ifcancel?'btn-disabled':''}}" id="{{list.id}}" disabled="{{ifcancel}}" catchtap="goEvaluate">去评价</button>
+            </view>
+            <view class="footer-pa">
+                <icon wx:if="{{list.state <= 2}}" class="iconfont icon-wode-2"></icon>
+                <icon wx:elif="{{list.state == 3}}" class="iconfont icon-yiquxiao"></icon>
+                <icon wx:elif="{{(list.state > 3 && list.state <= 6) || list.state == 8}}" class="iconfont icon-wode-"></icon>
+                <icon wx:elif="{{list.state == 7 || list.state == 9}}" class="iconfont icon-wode-1"></icon>
+            </view>
+        </view>
+    </view>
+    <!--确定删除-->
+    <i-modal title="警告" visible="{{ cancalModal }}" bind:ok="confirmCancel" bind:cancel="closeCancel">
+        <view>确认取消该预约?</view>
+    </i-modal>
+</view>

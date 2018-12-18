@@ -1,0 +1,111 @@
+{
+  "window": {
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "天津机场贵宾服务VIP",
+    "enablePullDownRefresh": false,
+    "navigationStyle": "default",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f0f0f1",
+    "backgroundTextStyle": "light",
+    "backgroundColorBottom": "#FFFFFF"
+  },
+  "networkTimeout": {
+    "request": 30000,
+    "downloadFile": 10000
+  },
+  "pages": [
+    "pages/home/home",
+    "pages/my/my",
+    "pages/getMemberCard/getMemberCard",
+    "pages/order/order",
+    "pages/register/register"
+  ],
+  "subPackages" : [
+    {
+      "root": "pagesA",
+      "name": "common",
+      "pages": [
+        "orderDetail/orderDetail",
+        "evaluate/evaluate",
+        "carNumberMgt/carNumberMgt",
+        "common-htmlParse/common-htmlParse",
+        "customerHotline/customerHotline",
+        "myInfo/myInfo",
+        "scrollMsg/scrollMsg"
+      ]
+    },
+    {
+      "root": "pagesB",
+      "name":"flightAndMap",
+      "pages": [
+        "flightInquiry/flightInquiry",
+        "flightResult/flightResult",
+        "flightDetail/flightDetail",
+        "flightPos/flightPos",
+        "oneNavigation/oneNavigation",
+        "oneNavigation-map/oneNavigation-map"
+      ]
+    },
+    {
+      "root": "pagesC",
+      "name":"purchase",
+      "pages": [
+        "purchase/purchase",
+        "purchase-detail/purchase-detail",
+        "purchase-checkNumber/purchase-checkNumber",
+        "rechargeForOther/rechargeForOther",
+        "fastRecharge/fastRecharge",
+        "purchaseCard/purchaseCard",
+        "paySuccess/paySuccess",
+        "cipChooseNum/cipChooseNum",
+        "cipPurchaseCard/cipPurchaseCard"
+      ]
+    },
+    {
+      "root": "pagesD",
+      "name":"serviceReservation",
+      "pages": [
+        "serviceReservationIndex/serviceReservationIndex",
+        "serviceReservationTel/serviceReservationTel",
+        "serviceReservationConfirm/serviceReservationConfirm",
+        "serviceReservationInstantConsumption/serviceReservationInstantConsumption",
+        "serviceReservationOnline/serviceReservationOnline",
+        "serviceReservationSuccess/serviceReservationSuccess"
+      ]
+    },
+    {
+      "root": "pagesE",
+      "name":"cardVouchers",
+      "pages": [
+        "cardVouchers/cardVouchers",
+        "cardDetail/cardDetail",
+        "cardList/cardList",
+        "voucherList/voucherList",
+        "cardOwner/cardOwner",
+        "serviceReservationEmp/serviceReservationEmp"
+
+      ]
+    },
+    {
+      "root":"pagesF",
+      "name":"transaction",
+      "pages":[
+        "transactionDetail/transactionDetail",
+        "transactionLongPic/transactionLongPic",
+        "detail/detail"
+      ]
+    }
+
+  ],
+  "debug": true ,
+  "plugins": {
+    "calendar": {
+        "version": "1.1.3",
+        "provider": "wx92c68dae5a8bb046"
+    },
+    "maptx": {
+        "version": "1.0.6",
+        "provider": "wx5bc2ac602a747594"
+    }
+  }
+}

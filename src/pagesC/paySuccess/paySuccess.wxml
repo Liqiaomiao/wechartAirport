@@ -1,0 +1,21 @@
+<view id="paySuccess">
+    <view class="title">
+        <i-icon class="icons" type="success_fill" size="48" color="#b99156"></i-icon>
+        <text class="text">{{pageType != 'server'  ? '支付成功' : '预约成功'}}</text>
+    </view>
+    <i-cell-group>
+        <i-cell wx:for="{{cellList}}"  wx:key="{{index}}"  i-class="cellItems" title="{{item.text}}" value="{{item.value}}"></i-cell>
+    </i-cell-group>
+    <view wx:if="{{pageType == ''}}">
+        <view class="btns" wx:if="{{isOther == 0}}" bindtap="_navigateTo" data-type="cardVouchers">卡券管理</view>
+        <view class="btns" wx:if="{{isOther == 0}}" bindtap="_navigateTo" data-type="serviceReservationIndex">立即预约</view>
+        <!-- <view class="btns" bindtap="_navigateTo" data-type="">申请开票</view> -->
+    </view>
+    <view wx:if="{{pageType == 'server'}}">
+            <view class="btns" bindtap="_navigateTo" data-type="order">查看订单</view>
+            <view class="btns" bindtap="_navigateTo" data-type="serviceReservationIndex">继续预约</view>
+    </view>
+    <view class="btns" bindtap="_navigateTo" data-type="home">返回首页</view>
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

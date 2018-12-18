@@ -1,0 +1,50 @@
+<view class="cardVouchers">
+    <!--卡-->
+    <view class="panel-border">
+        <view class="title">
+            <view class="hd">
+                <icon class="iconfont icon-card"></icon>
+                <text>卡</text>
+            </view>
+            <view class="ft" wx:if="{{cards.length > 0}}" bindtap="getCardList">{{cardCount}}张 >></view>
+        </view>
+        <view class="desc card {{cards.length == 0 ? 'noData' : ''}}">
+            <view wx:if="{{cards.length == 0}}">没有找到会员卡</view>
+            <card-panel wx:if="{{cards.length > 0}}" wx:for="{{cards}}" wx:key="cards{{index}}"  list="{{item}}" bind:goCardDetail="goCardDetail"></card-panel>
+        </view>
+    </view>
+    <!--券-->
+    <view class="panel-border">
+        <view class="title">
+            <view class="hd">
+                <icon class="iconfont icon-voucher"></icon>
+                <text>券</text>
+            </view>
+            <view class="ft" wx:if="{{vouchers.length > 0}}" bindtap="getVouchers">查看更多 >></view>
+        </view>
+        <view class="desc voucher {{vouchers.length == 0 ? 'noData' : ''}}">
+            <view wx:if="{{vouchers.length == 0}}">没有找到优惠券</view>
+            <view class="list" wx:if="{{vouchers.length > 0}}" wx:for="{{vouchers}}" wx:key="vouchers{{index}}">
+                <view class="voucher-bd">
+                    <image src="{{item.picUrl}}"></image>
+                    <view class="posA">
+                        <view class="voucher-title">{{item.productName}}</view>
+                        <view class="voucher-ctx">
+                            <view>有效期至 {{item.validEndDate}}</view>
+                            <text>{{item.voucherNo}}</text>
+                        </view>
+                    </view>
+
+                </view>
+                <view class="voucher-ft">
+                    <button wx:if="{{item.voucherCat == 1}}" data-pk="{{item.id}}" bindtap="goReservationEmp">体验预约</button>
+                    <button bindtap="goSearch" data-voucherid="{{item.id}}">转增他人</button>
+                </view>
+            </view>
+             
+        </view>
+    </view>
+    <i-toast id="toast"/>
+    <unionhuatong-footer></unionhuatong-footer>
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

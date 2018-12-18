@@ -1,0 +1,10 @@
+<view class="searchPage panel-border-gray">
+    <view class="searchbar">
+        <view class="panel-hd flex-grow-2">
+            <icon class="iconfont icon-search"></icon>
+            <input  class="flex-grow-2" name="searchtext" value="{{searchtext}}" bindinput="handleChange" bindconfirm="handleConfirm" placeholder="{{placeholdertext}}"/>
+            <icon class="iconfont icon-del" wx:if="{{searchtext.length!=0}}" bindtap="delall"></icon>
+        </view>
+        <view class="panel-ft" bindtap="cancelSearch">取消</view>
+    </view>
+</view>

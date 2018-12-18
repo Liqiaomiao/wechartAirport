@@ -1,0 +1,127 @@
+@import "../../assets/css/common";
+$boxShadow : 5px 5px 10px 0px #b7b3b3 ;
+.serviceReservationIndex{
+  background:#edeadb;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  .panel-hd{position: relative;padding : 34rpx 0;margin-bottom: 0;}
+  .swipers{
+    height:350rpx;
+    padding:10rpx 0;
+    // width:540rpx;
+    margin: 0 auto;
+    .swiper-list{
+      height: 350rpx !important;
+      // width: $img-width!important;
+      // box-shadow: $box-shadow;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 30rpx;
+      text-align:center;
+      width:600rpx;
+      .cardNum{
+        position:absolute;
+        bottom:55rpx;
+        color:#b99156;
+        width:100%;
+        text-align:center;
+        font-size:50rpx;
+      }
+      image{
+        height: 350rpx;
+        width: 100%;
+      }
+    }
+    .normalItem{
+      transform:scale(1);
+      transition : all .25s ease-in-out;
+      box-shadow: $boxShadow;
+      height:99%;
+      border-radius:40rpx;
+    }
+    .scaleItem{
+      transform:scale(.8);
+    }
+  }
+  .panel-bd{
+    color:$color-gold;
+    padding: 10rpx 0;
+    .panel-bd-ctx{
+      padding: 20rpx;line-height: 1;font-size: 28rpx;
+      background:#FFF;
+      border-top:1rpx solid #bbbec4;
+      border-bottom:1rpx solid #bbbec4;
+      &>view{margin: 20rpx 0;}
+      .panel-bd-detail{
+        background:#e9eaec;
+        margin:0 20rpx;
+        border-radius:8rpx;
+        .cell:first-child{
+          border-bottom:1rpx solid #dddee1;
+        }
+        .cell{display: flex;padding:30rpx 50rpx;
+          .cardNumText,view{padding-right: 40rpx;width:100rpx;}
+        }
+      }
+      .buyDetail{
+          position:relative;
+          text-align:center;
+          padding:20rpx 0 ;
+      }
+      .buyDetail:before{
+          content: '';
+          position:absolute;
+          top:50%;
+          left:0;
+          width:240rpx;
+          background:linear-gradient(to left,#b99156,#FFFFFF);
+          height:2rpx;
+      }
+      .buyDetail:after{
+          content: '';
+          position:absolute;
+          top:50%;
+          right:0;
+          width:240rpx;
+          background:linear-gradient(to left,#FFFFFF,#b99156);
+          height:2rpx;
+      }
+      .title{font-size: 36rpx;text-align: center;font-weight: bold;
+        text{font-size: 46rpx;}
+      }
+      .title:first{border-bottom : 1rpx solid #e9eaec}
+      .sub-title{font-size: 28rpx;text-align: center;}
+      
+      .tel:before{
+        content: '\e612';
+      }
+      .plane:before{
+        content: '\e611';
+      }
+      .btn_area{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 40rpx;
+        .btn {
+          display: flex;flex-direction: column;align-items: center;
+          icon {width: 80rpx;height: 80rpx;border-radius: 50%;background: $color-gold;text-align: center;
+            color:#fff;font-size: 44rpx;line-height: 80rpx;margin-bottom:20rpx;}}
+      }
+    }
+
+
+  }
+  .bottomTel{
+    font-size:28rpx;
+    text-align:center;
+    position:absolute;
+    bottom:25rpx;
+    left:0;
+    width:100%;
+    color:#80848f;
+  }
+
+}

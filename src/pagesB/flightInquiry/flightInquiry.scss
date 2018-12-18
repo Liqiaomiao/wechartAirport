@@ -1,0 +1,164 @@
+@import "../../assets/css/common";
+
+$font-color:#6d6b6b;
+
+#flightInquiry{
+    background:#F4F4F4;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+
+    .title-tab{
+        flex-grow: 1;
+        border-bottom: 4rpx solid #FFFFFF;
+        transition: all .25s ease-in-out;
+    }
+    .tab-con{
+        font-size: 34rpx;
+    }
+    .tab-check{
+        border-bottom: 4rpx solid $color-gold;
+    }
+    .icon-flight::before{
+        content: '\e602';
+        font-size: 36rpx;
+    }
+    .icon-date::before{
+        content: '\e69b';
+        font-size: 36rpx;
+    }
+    .icon-change::before{
+        content: '\e7f2';
+        font-size: 36rpx;
+        color: #80848f;
+    }
+
+    .flight-contianer{
+        top:4rpx;
+        color: #80848f;
+        background: #FFFFFF;
+        padding:120rpx 10rpx 0 10rpx;
+        position: relative;
+        .flight-code{
+            padding:20rpx 10rpx;
+            height:80rpx;
+            line-height:80rpx;
+            border-bottom:1rpx solid #aaaaaa;
+            transform:translateX(0);
+            position:absolute;
+            transition: all .25s ease-in-out;
+            top: 0;
+            .code-title{
+                padding:0 10rpx;
+            }
+            .code-input{
+                color:$font-color;
+                width:500rpx;
+                text-align:right;
+                float:right;
+                padding:10rpx 0;
+            }
+        }
+        .flight-pos{
+            display:flex;
+            justify-content:center;
+            align-content:center;
+            padding:20rpx 10rpx;
+            height:80rpx;
+            line-height:80rpx;
+            border-bottom:1rpx solid #aaaaaa;
+            transform:translateX(110%);
+            position:absolute;
+            top: 0;
+            transition: all .25s ease-in-out;
+            .pos-start,.pos-end{
+                color:$font-color;
+                flex-grow:1;
+                text-align:center;  
+                width: 333rpx;              
+            }
+            .icon-change{
+                border:1px solid #80848f;
+                border-radius:50%;
+                height:40rpx;
+                width:40rpx;
+                text-align:center;
+                line-height:40rpx;
+                margin-top:20rpx;
+            }
+        }
+        .flight-date{
+            padding:20rpx 10rpx;
+            height:80rpx;
+            line-height:80rpx;
+            .date-title{
+                padding:0 10rpx;
+            }
+            .date-input{
+                color:$font-color;
+                text-align:right;
+                float:right;
+            }
+        }
+        .code-translateX{
+            transform:translateX(-110%);
+        }
+        .pos-translateX{
+            transform:translateX(0);
+        }
+    }
+    .searchNow{
+        margin:60rpx 15%;
+        text-align:center;
+        background:#b99156;
+        padding:15rpx 10rpx;
+        color:#FFFFFF;
+        border-radius:8rpx;
+        font-size:32rpx;
+    }
+    .calendar-view{
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        width:100%;
+        z-index:10;
+        height:0;
+        overflow:hidden;
+        background:$color-gray;
+        transition: all .35s ease-in-out;
+
+        .calendar-overflow{
+            background:#FFFFFF;
+            padding-bottom:20rpx;
+            z-index:10;
+        }
+
+         /* 日历背景色 */
+        .calendar-bak{}
+        /* 日历标题颜色 */
+        .calendar-header{}
+         /* 日历主面板颜色 */
+        .calendar-board{}
+
+        .close-date{
+            margin-top:-30rpx;
+            position:absolute;
+            left:50%;
+            transform:translateX(-50%);
+            z-index:10;
+
+            .icons{ 
+                background:$color-gold;
+                padding:10rpx;
+                border-radius:50%;
+                box-shadow:0 0 5px 1px $color-gold;                
+            }
+        }
+    }
+    .calendar-transition{
+        height:100%;
+    }
+}

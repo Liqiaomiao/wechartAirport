@@ -1,0 +1,78 @@
+<view class="cardDetail">
+    <view class="detail-hd">
+        <image src="{{imgUrl + cardInfo.cardBigPicWithoutNoUrl}}"></image>
+        <text>{{cardInfo.cardNo}}</text>
+    </view>
+    <view class="panel-border-gray detail-bd">
+        <i-tabs current="{{ current }}" bindchange="handleChange" color="#be9457" i-class="tabs">
+            <i-tab key="introduction" title="卡片介绍"></i-tab>
+            <i-tab key="detail" title="交易详情"></i-tab>
+        </i-tabs>
+        <!--卡片介绍-->
+        <view class="introduction" hidden="{{current!='introduction'}}">
+            <view class="cell">
+                <view class="cell-hd">姓名</view>
+                <view class="cell-bd">{{cardInfo.mainMemberName}}</view>
+            </view>
+            <view class="cell">
+                <view class="cell-hd">卡号</view>
+                <view class="cell-bd">{{cardInfo.cardNo}}</view>
+            </view>
+            <view class="cell">
+                <view class="cell-hd">手机号</view>
+                <view class="cell-bd">{{cardInfo.mainMemeberCellphone}}</view>
+            </view>
+            <view class="cell">
+                <view class="cell-hd">身份证号</view>
+                <view class="cell-bd">{{cardInfo.iDCardNo}}</view>
+            </view>
+        </view>
+        <!--交易详情-->
+        <view class="detail"  hidden="{{current!='detail'}}" >
+            <veiw class="cell" wx:for="{{tradeDetail}}" wx:key="tradeDetail{{index}}">
+                <view class="cell-hd">
+                    <view>{{item.serviceName}}</view>
+                    <text>{{item.useTime}}</text>
+                </view>
+                <view class="cell-bd">使用成功</view>
+                <view class="cell-ft">-1人次</view>
+            </veiw>
+        </view>
+    </view>
+    <view class="btn-area">
+        <button class="btn-default"
+                data-url="fastRecharge"
+                bindtap="goLink">快速充值</button>
+
+        <button class="btn-default"
+                data-url="serviceReservationIndex"
+                bindtap="goLink">立即预约</button>
+
+        <button class="btn-default"
+                data-url="serviceReservationInstantConsumption"
+                bindtap="goLink">即时消费</button>
+
+        <button class="btn-default"
+                data-url="transactionDetail"
+                bindtap="goLink">交易明细</button>
+
+        <button class="btn-default"
+                data-url="purchase-detail"
+                bindtap="goLink">服务介绍</button>
+
+        <button class="btn-default danger"
+                bindtap="handleDel"
+                wx:if="{{cardInfo.cardOwnerMax > 1 && cardInfo.isMain == false}}">解绑删除</button>
+        <button class="btn-default"
+                data-url="cardOwner"
+                bindtap="goLink"
+                wx:if="{{cardInfo.cardOwnerMax > 1 && cardInfo.isMain == true}}">管理有效预约人</button>
+    </view>
+    <i-toast id="toast"></i-toast>
+    <i-modal title="提示" visible="{{ delVisibel }}"  bind:ok="delComfirm" bind:cancel="delcancel">
+      <view>
+          确定解绑删除吗?
+      </view>
+    </i-modal>
+    <unionhuatong-footer></unionhuatong-footer>
+</view>

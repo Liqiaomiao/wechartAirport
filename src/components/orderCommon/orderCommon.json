@@ -1,0 +1,8 @@
+{
+  "component":true,
+  "usingComponents":{
+    "count-time":"../countTime/countTime",
+    "i-modal": "../../components/iview/modal/index"
+
+  }
+}

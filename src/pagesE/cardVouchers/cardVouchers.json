@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText":"卡券管理",
+  "usingComponents":{
+    "unionhuatong-footer" : "../../components/footer/footer",
+    "card-panel" : "../../components/cardPanel/cardPanel",
+    "unionhuatong-load" : "../../components/loading/loading",
+    "i-toast": "../../components/iview/toast/index"
+  }
+}

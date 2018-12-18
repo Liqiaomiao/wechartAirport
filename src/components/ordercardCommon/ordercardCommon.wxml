@@ -1,0 +1,71 @@
+<view class="order-card-common">
+    <view class="userInfo_ctx">
+        <view class="userInfo">
+            <view class="panel-hd">
+                <view class="hd">{{list.orderSourceStr||""}}</view>
+                <view class="ft">航程：{{list.voyage||"--"}}</view>
+            </view>
+            <view class="panel-bd">
+                <view class="cell">
+                    <view class="cell-hd">会员卡号：</view>
+                    <view class="cell-ft"> {{list.memberCardNum}}</view>
+                </view>
+                <view class="cell">
+                    <view class="cell-hd">预达时间：</view>
+                    <view class="cell-ft"> {{list.arriveTime||""}}</view>
+                </view>
+                <view class="cell">
+                    <view class="cell-hd">贵宾区：</view>
+                    <view class="cell-ft" wx:if="{{list.vipAreaId}}"> {{list.viplobbyInfo.areaCodeStr}}  {{list.viplobbyInfo.roomNo}}</view>
+                    <view class="cell-ft" wx:else > -- </view>
+                </view>
+                <view class="cell">
+                    <view class="cell-hd">航班号：</view>
+                    <view class="cell-ft"> {{list.flightNo||""}}</view>
+                </view>
+                <view class="cell">
+                    <view class="cell-hd">使用人次：</view>
+                    <view class="cell-ft"> {{list.passagerNum}}</view>
+                </view>
+                <view class="cell" wx:if="{{ifMoreVisible}}">
+                    <view class="cell-hd">起飞时间：</view>
+                    <view class="cell-ft"> {{list.takeoffTime||""}}</view>
+                </view>
+                <view class="cell" wx:if="{{ifMoreVisible}}">
+                    <view class="cell-hd">落地时间：</view>
+                    <view class="cell-ft"> {{list.landingTime||""}}</view>
+                </view>
+                <view class="cell" wx:if="{{ifMoreVisible}}">
+                    <view class="cell-hd">接机牌信息：</view>
+                    <view class="cell-ft"> {{list.relayCardInfo||""}}</view>
+                </view>
+                <view class="cell" wx:if="{{ifMoreVisible}}">
+                    <view class="cell-hd"> 预约人： </view>
+                    <view class="cell-ft">{{list.appointmenter}}</view>
+                </view>
+                <view class="cell" wx:if="{{ifMoreVisible}}">
+                    <view class="cell-hd">备注：</view>
+                    <view class="cell-ft"> {{list.memo01}}</view>
+                </view>
+            </view>
+            <view  class="cardInfo-footer">
+                <view class="footer-hd">
+                    <text class="tag primary" wx:if="{{list.vipCategory}}">{{list.vipCategoryStr}}</text>
+                    <text class="tag primary" wx:if="{{list.svcCategory}}">{{list.svcCategoryStr}}</text>
+                    <text class="tag primary" wx:if="{{list.flightCategoryStr}}" >{{list.flightCategoryStr}}</text>
+                    <text class="tag primary" wx:if="{{list.inOutPortStr}}">{{list.inOutPortStr}}</text>
+                </view>
+                <view class="footer-ft">
+                    <button class="btn-default" bindtap="showMore">{{btnText}}</button>
+                </view>
+                <view class="footer-pa">
+                    <icon wx:if="{{list.state <= 2}}" class="iconfont icon-wode-2"></icon>
+                    <icon wx:elif="{{list.state == 3}}" class="iconfont icon-yiquxiao"></icon>
+                    <icon wx:elif="{{(list.state > 3 && list.state <= 6) || list.state == 8}}" class="iconfont icon-wode-"></icon>
+                    <icon wx:elif="{{list.state == 7 || list.state == 9}}" class="iconfont icon-wode-1"></icon>
+                </view>
+            </view>
+        </view>
+
+    </view>
+</view>

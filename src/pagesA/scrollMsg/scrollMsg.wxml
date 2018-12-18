@@ -1,0 +1,20 @@
+<view id="scrollMsg">
+    <view class="msg-content">
+        <view wx:for="{{msgData}}" wx:key="{{index}}">
+            <view class="msgTime">{{item.createdTime}}</view>
+            <view class="msg-text {{index == currentIndex ? 'msgDetail' : ''}}">
+                <view class="icons" wx:if="{{index == currentIndex}}">
+                    <i-icon type="close" bindtap="_detail" data-type="{{false}}" size="18" color="#b99156" />
+                </view>
+                <view class="text">{{item.title}}</view>
+                <view class="details"  wx:if="{{index == currentIndex}}">
+                     <parse-html wx:if="{{item.detail}}" html="{{item.detail}}"></parse-html>
+                </view>
+                <i-cell i-class="more" wx:if="{{index != currentIndex}}" title="查看详情" data-index="{{index}}" data-type="{{true}}" bindtap="_detail" is-link></i-cell>
+            </view>
+        </view>
+    </view>
+    <!-- 轻提示 -->
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

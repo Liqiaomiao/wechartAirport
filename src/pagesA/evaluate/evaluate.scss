@@ -1,0 +1,46 @@
+@import "../../assets/css/common";
+$color-ccc:#ccc;
+.evaluate-panel{font-size: 30rpx;
+  .evaluate{
+    padding: 10rpx 20rpx;
+    .title{
+      border-bottom: 1px solid $border-color;
+      display: flex;justify-content: space-between;
+      align-items: center;
+      .my-rate{
+        color:red;
+        .i-rate-star{color:$color-gold}
+      }
+
+    }
+    textarea{width: 100%;padding:10rpx 10rpx 10rpx 1em;}
+    .img-display{
+      .img-lists{margin-right:20rpx;flex-wrap:wrap;
+        display: flex;
+        .list{margin-right: 20rpx;position: relative;margin-bottom: 10rpx;
+          image{width:134rpx;height: 134rpx;}
+          .iconfont:before{
+            font-size: 20px;color:rgba(0, 0, 0, 0.6) ;
+            content: '\e65f';
+            position: absolute;
+            z-index: 1;
+            right: -10px;top: -10px;
+          }
+        }
+      }
+      .addImg{width: 134rpx;height: 134rpx;border: 1px dashed $color-ccc;box-sizing: border-box;
+        display: flex;justify-content: center;align-items: center;position: relative;
+        .icon_container{position: absolute;top: 0;left: 0}
+        text{color: $color-ccc;font-size: 28rpx;}
+      }
+    }
+    .rates{
+      border-top: 1px solid $border-color;margin-top: 20rpx;
+      .rates-cell{
+        display: flex;justify-content: space-between;align-items: center;
+      }
+    }
+  }
+  .btn-area{padding: 0 20rpx;margin-top: 40rpx;}
+
+}

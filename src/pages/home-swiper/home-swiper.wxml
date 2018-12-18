@@ -1,0 +1,37 @@
+<view class="home-swiper">
+    <view wx:if="{{homeCarouselData.length > 0}}">
+        <swiper class="swiperClass" bindchange="_homeSwiperChange" indicator-color="#FFF" circular autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+            <block wx:for="{{homeCarouselData}}" wx:key="{{homeWwiper}}" wx:for-index="homeWwiper">
+                <swiper-item bindtap="_swiperDetail" data-index="{{homeWwiper}}">
+                    <image src="{{!item.urls ? imgUrl + item.carouselPicture : item.urls + item.carouselPicture}}" class="slide-image" />
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="dots">  
+            <block wx:for="{{homeCarouselData}}" wx:key="{{index}}">  
+                <view class="dot {{index == currentSwiper ? ' active' : ''}}"></view>  
+            </block>  
+        </view>
+    </view>
+    <view class="swiper-ft">
+        <view class="cell">
+            <view class="swiper-ft-hd">
+                <view class="userName" wx:if="{{userName != ''}}">尊敬的 {{userName}} ，您好！</view>
+            </view>
+            <text  class="weather"  space decode  wx:if="{{weathers != ''}}">{{weathers}}</text>
+        </view>
+        <view class="cell flex-start">
+            <i-icon class="locationIcon" wx:if="{{locations != ''}}" type="coordinates_fill" size="18" color="#78361f" />
+            <text space decode wx:if="{{locations != ''}}" class="location-text">{{locations}}</text>
+        </view>
+    </view>
+    <i-modal visible="{{ getCardVis }}" title="领取成功"  ok-text="知道了" show-cancel="{{false}}" bind:ok="_hiddenGetCard">
+        <view class="getCard">
+            <view>卡号：{{getCardData.cardno}}</view>
+            <view>卡类型：{{getCardData.cardTypeName}}</view>
+            <view>有效期：{{getCardData.selledDate}} 至 {{getCardData.deadlineDate}}</view>
+        </view>
+    </i-modal>
+    <!-- 轻提示 -->
+    <i-toast id="toast" />
+</view> 

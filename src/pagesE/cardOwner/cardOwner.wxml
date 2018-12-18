@@ -1,0 +1,58 @@
+<view class="cardOwner">
+    <view class="panel-border tac">
+       此卡共可设置有效预约人{{cardOwnerMax}}个，现已设置{{cardOwnerList.length}}个人
+    </view>
+    <view class="panel-border-gray mb10" wx:for="{{cardOwnerList}}" wx:key="cardOwner{{index}}">
+        <view class="default-group" >
+            <view class="default-cell"  >
+                <view class="cell-hd">姓名</view>
+                <view class="cell-bd">{{item.ownerName}}</view>
+            </view>
+            <view class="default-cell"  >
+                <view class="cell-hd">身份证号</view>
+                <view class="cell-bd">{{item.iDCardNo}}</view>
+            </view>
+            <view class="default-cell"  >
+                <view class="cell-hd">手机号</view>
+                <view class="cell-bd">{{item.cellPhone}}</view>
+            </view>
+            <view class="default-cell" wx-if="{{index!=0}}" >
+                <view class="cell-hd"></view>
+                <view class="cell-ft flex-grow-2">
+                    <view class="flex-end" data-index="{{index}}" bindtap="delContact">
+                        <i-icon type="trash" size="28" color="#be9457" />
+                        <view>删除</view>
+                    </view>
+
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="btn-area">
+        <button class="btn-default"  wx:if="{{cardOwnerMax > cardOwnerList.length}}"  bindtap="showSearch">添加有效预约人</button>
+    </view>
+    <!--号码查询-->
+    <i-modal visible="{{ visiblesearch }}" title="查询有效预约人" actions="{{action}}" bind:click="handleSearch" >
+        <view class="cell-phone">
+            <input value="{{cellphone}}"  focus="{{phone_focus}}" type="number" bindinput="inputblur" placeholder="请输入手机号"/>
+            <icon class="iconfont" wx:if="{{cellphone.length>0}}"  bindtap="clearInput"></icon>
+        </view>
+    </i-modal>
+    <!--添加预约人-->
+    <i-modal visible="{{visibleadd}}" class="addmodal" actions="{{actionAdd}}"  bind:click="handleAdd" >
+        <view class="cell">
+            <view class="cell-hd">姓名：</view>
+            <view class="cell-bd">{{addDetail.name}}</view>
+        </view>
+        <view class="cell">
+            <view class="cell-hd">身份证号：</view>
+            <view class="cell-bd">{{addDetail.idno}}</view>
+        </view>
+    </i-modal>
+    <!--是否删除预约人-->
+    <i-modal visible="{{visibleDel}}" actions="{{actionDel}}" bind:click="handleDel" >
+        <view class="">确定解绑删除吗?</view>
+    </i-modal>
+    <i-toast id="toast"/>
+    <unionhuatong-footer></unionhuatong-footer>
+</view>

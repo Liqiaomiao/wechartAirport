@@ -1,0 +1,46 @@
+<view id="rechargeForOther">
+    <view class="recharge-contioner">
+        <view class="price" wx:if="{{cardAllData.cardInfo}}">最低充值金额 ¥ {{cardAllData.cardInfo.rechargeMoneyMin}} 元</view>
+        <view class="cardNumber-view">
+            <i-row>
+                <i-col span="5"><text class="cardNumber-title">卡号</text></i-col>
+                <i-col span="18" offset="1"><input value="{{searchCardNum}}" type="number" placeholder="请输入卡号" placeholder-style="color:#B99156;" bindinput="_inputCardNum" bindblur="_blurCardNum"/></i-col>
+            </i-row>
+        </view>
+        <view class="otherInfo-view {{cardAllData.cardInfo ? 'otherInfo-view-show' : ''}}">
+            <i-row>
+                <i-col i-class="otherInfo-detail" span="12">
+                    <view class="otherInfo-detail">持卡人：{{cardAllData.cardInfo.buyerName}}</view>
+                    <view class="otherInfo-detail">手机号：{{cardAllData.cardInfo.buyerCellPhone}}</view>
+                    <view class="otherInfo-detail">卡类型：{{cardAllData.cardInfo.cardTypeName}}</view>
+                </i-col>
+                <i-col i-class="otherInfo-img-view" span="12">
+                    <view class="cardNum">{{searchCardNum}}</view>
+                    <image class="otherInfo-img" src="{{cardImgs}}" />
+                </i-col>
+            </i-row>
+            <view class="otherRecharge-tip"><i-icon i-class="tip-icon" type="prompt_fill" size="24" color="#b99156"></i-icon><text class="tip-text">请注意您正在为他人充值</text></view>
+        </view>
+        <view class="keyMoney-view" wx:if="{{keyInput}}">
+            <input value="{{rechargeMoney}}" type="number" placeholder="请输入充值金额" placeholder-style="color:#b99156;display:inline;" bindblur="_keyRechargeMoney" bindinput="_keyBordMoney" />
+        </view>
+        <view class="buyDetail">购买详情</view>
+        <view class="invoice-view">
+            <text class="invoice-title">申请开票</text><text class="invoice-state">未填写</text>
+        </view>
+        <view class="activeName" wx:if="{{activeityName}}">折扣优惠活动：{{activeityName}}</view>
+        <view class="money-view">
+            <view class="money-payable">应付款：{{payFeeMoney}} 元</view>
+            <view class="money-real">实付款：{{realMoney}} 元</view>
+        </view>
+        <view class="payType-title">支付方式</view>
+        <view class="iconfont icon-wxpay payType-icon"></view>
+        <view class="payType-name">微信支付</view>
+        <view class="payType-radio">
+            <i-icon type="success_fill" size="28" color="#b99156"></i-icon>
+        </view>
+        <view class="rechargeNowForOther" bindtap="_reachargeForOther">为他人充值</view>
+    </view>
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view> 

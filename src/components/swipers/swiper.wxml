@@ -1,0 +1,31 @@
+<view class="swipers_container">
+    <view class="loadText"  wx:if="{{cardProduce.length == 0}}">加载中...</view>
+    <view wx:else>
+        <swiper autoplay="{{autoplay}}"
+            interval="{{interval}}"
+            duration="{{duration}}"
+            display-multiple-items="3"
+            class="swipers"
+            bindchange="_homeServerSwiperChange"
+        >
+
+        <!-- indicator-active-color="#b99156"
+        indicator-dots="{{indicatorDots}}" -->
+
+            <block wx:for="{{cardProduce}}" wx:key="{{item.url}}">
+                <swiper-item class="swiper-list">
+                    <text class="swiper-hd">{{item.cardTypeName}}</text>
+                    <text class="swiper-dsc {{item.cardFacePrice > item.cardSellPrice ? 'sellPrice' : '' }}">{{item.cardFacePrice}}</text>
+                    <image src="{{imgUrl + item.cardPicUrl}}" class="slide-image" width="355" height="150"/>
+                    <text decode space class="swiper-dsc" >{{item.cardFacePrice > item.cardSellPrice ? '活动价 ' + item.cardSellPrice : '&emsp;'}}</text>
+                    <button size="mini" type="primary" class="btn-default mini" data-index="{{index}}" catchtap="_buyCard">购买</button>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="server_dots">  
+            <block wx:if="{{cardProduce.length - index > 2}}" wx:for="{{cardProduce}}" wx:key="{{index}}">  
+                <view class="dot {{index == currentServerSwiper ? ' active' : ''}}"></view>  
+            </block>  
+        </view>
+    </view>
+</view>

@@ -1,0 +1,44 @@
+<view id="flightResult">
+    <view class="fixed-view">
+        <view class="date-choose">
+        <view class="texts">{{dateFormat + ' 星期' + weeks}}</view>
+            <i-icon bindtap="_showCalendar" data-state="{{true}}" class="icons" type="time" size="28" color="#FFFFFF"></i-icon>
+        </view>
+    <view class="result-tip">以下时间均为当地时间</view>
+    </view>
+    <view class="calendar-view {{showCalendar ? 'calendar-transition' : ''}}">
+        <view class="calendar-overflow">
+            <calendar binddayClick="_dayClick" binddateChange="_dateChange" bindprevMonth="_dateChange" bindnextMonth="_dateChange" weeks-type="cn" lunar="true" active-type="rounded" days-color="{{calendarData}}" cell-size="40" calendar-style="calendar-bak" header-style="calendar-header" board-style="calendar-board" />
+        </view>
+        <view class="close-date">
+            <i-icon bindtap="_showCalendar" data-state="{{false}}"  i-class="icons" type="packup" size="24" color="#FFFFFF"></i-icon>
+        </view>
+    </view>
+    <view class="result-contianer {{resultData.length > 0  ? 'result-contianer-show' : ''}}">
+        <view class="result-item" wx:for="{{resultData}}" wx:key="{{index}}">
+            <i-row>
+                <i-col span="17" i-class="item-left" bindtap="_resultDetail" data-flight-code="{{item.flightcode}}" data-start="{{item.startairport}}" data-end="{{item.endairport}}">
+                    <view>
+                        <view ><text >{{item.planstarttime}}</text> - <text >{{item.planendtime}}</text></view>
+                        <view class="air"><text>{{item.startairport}}</text><text class="endAir">{{item.endairport}}</text></view>
+                        <view class="company">
+                            <i wx:if="{{!item.logo}}" class="iconfont icon-plan"></i>
+                            <image wx:else class="logos" src="{{item.logo}}" />
+                            <text class="text">{{item.aircompanyname + ' ' + item.flightcode}}</text>
+                        </view>
+                    </view>
+                </i-col>
+                <i-col span="7" wx:if="{{params.isFlight}}">
+                    <view class="btns {{item.isfollow ? 'folloeBtns' : ''}}" bindtap="_followFlight" data-type="{{item.isfollow}}" data-flight-code="{{item.flightcode}}">{{item.isfollow ? '取消关注' : '关注'}}</view>
+                    <view class="btns" bindtap="_navigateServer">预约服务</view>
+                </i-col>
+                <i-col span="7" wx:else>
+                    <view class="btns-choose" bindtap="_chooseFlight" data-type="{{item.isfollow}}" data-flight="{{item}}">选择</view>
+                </i-col>
+            </i-row>
+        </view>
+    </view>
+
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

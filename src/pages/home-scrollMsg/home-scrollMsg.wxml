@@ -1,0 +1,15 @@
+<view class="home-scroll-msg">
+    <i-row i-class="msg-contioner" wx:if="{{scrollText.length > 0}}">
+            <i-col span="5" i-class="msg-title">
+                <text class="msg-text">消息公告</text>
+                <view class="msg-more" bindtap="_seeMore">更多</view>
+            </i-col>
+            <i-col span="19" i-class="msg-detial"  bindtouchmove="_handMsgMove" bindtouchstart="_handMsgStart" bindtouchend="_handMsgEnd">
+                <view wx:for="{{scrollText}}" wx:key="{{index}}">
+                    <view bindtap="_details" data-msgid="{{item.id}}" class="msg-item {{scrollBeforeIndex != index && scrollMiddleIndex != index && scrollAfterIndex != index  ? 'msg-item-hidden' : '' }} {{ scrollBeforeIndex == index ? 'msg-item-bofore':''}} {{ scrollMiddleIndex == index ? 'msg-item-middle':''}} {{ scrollAfterIndex == index ? 'msg-item-after':''}}">
+                        <text>{{item.title}}</text>
+                    </view>
+                </view>
+            </i-col>
+    </i-row>
+</view>

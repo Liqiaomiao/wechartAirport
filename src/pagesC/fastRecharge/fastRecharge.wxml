@@ -1,0 +1,57 @@
+<view id="fastRecharge">
+    <view wx:if="{{showPage}}">
+        <view class="prudecue-img">
+            <swiper class="swiper" current="{{currentSwiper}}" previous-margin="140rpx" next-margin="140rpx" circular duration="{{duration}}" bindchange="_fastSwiperChange">
+            <block wx:for="{{memberCardData}}" wx:key="{{index}}">
+                <swiper-item>
+                    <view class="normalItem {{index != currentSwiper ? ' scaleItem' : ''}}">
+                        <text class="text">{{cardNumFormat[currentSwiper]}}</text>
+                        <image class="img" src="{{imgUrls[currentSwiper]}}"></image>
+                    </view>
+                </swiper-item>
+            </block>
+            </swiper>
+            <view class="dots">  
+                <block wx:for="{{imgUrls}}" wx:key="{{index}}">  
+                    <view class="dot {{index == currentSwiper ? ' active' : ''}}"></view>  
+                </block>  
+            </view>
+        </view>
+        <view class="purchaseCard-contioner">
+            <view class="price">最低充值金额 ¥ {{memberCardData[currentSwiper].rechargeMoneyMin}} 元</view>
+            <view class="cardNumber-view">
+                <text class="cardNumber-title">卡号</text><view class="cardNumber-num">{{cardNumFormat[currentSwiper] + ' (' + memberCardData[currentSwiper].cardTypeName + ')'}}</view>
+            </view>
+            <view class="showNotCIP {{showKeyInput[currentSwiper]? 'showNotCIP-show' : ''}}">
+                <view class="cardMoney-view">
+                    <text class="cardMoney-title">余额</text><text class="cardMoney-num">¥ {{priceFormat[currentSwiper]}} 元</text>
+                </view>
+                <view class="keyMoney-view">
+                    <input value="{{keyBordMoney}}" type="number" placeholder="请输入充值金额" placeholder-style="color:#b99156" bindinput="_keyInput" bindconfirm="_keyRechargeMoney" bindblur="_keyRechargeMoney" />
+                </view>
+            </view>
+            <view class="cardMoney-view" wx:if="{{!showKeyInput[currentSwiper]}}">
+                    <text class="cardMoney-title">有效期</text><text class="cardMoney-num">{{startData + ' 至 ' + endData}}</text>
+            </view>
+            <view class="buyDetail">购买详情</view>
+            <view class="invoice-view">
+                <text class="invoice-title">申请开票</text><text class="invoice-state">未填写</text>
+            </view>
+            <view class="activeName {{activeName ? 'activeName-show' : ''}}">折扣优惠活动：{{activeName}}</view>
+            <view class="money-view">
+                <view class="money-payable">应付款：{{payFeeMoney}} 元</view>
+                <view class="money-real">实付款：{{realMoney}} 元</view>
+            </view>
+            <view class="payType-title">支付方式</view>
+            <view class="iconfont icon-wxpay payType-icon"></view>
+            <view class="payType-name">微信支付</view>
+            <view class="payType-radio">
+                <i-icon type="success_fill" size="28" color="#b99156"></i-icon>
+            </view>
+            <view class="rechargeNow" bindtap="_rechargeNoe">立即充值</view>
+            <view class="rechargeNowForOther" bindtap="_rechargeForOther">为他人充值</view>
+        </view>
+    </view>
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view> 

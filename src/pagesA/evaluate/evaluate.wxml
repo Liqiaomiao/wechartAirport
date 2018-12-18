@@ -1,0 +1,75 @@
+<view class="evaluate-panel">
+   <order-card-common list="{{list}}"></order-card-common>
+
+   <view class="panel-border">
+      <view class="evaluate">
+         <view class="title">
+            <text>总体服务</text>
+            <view>
+               <i-rate i-class="my-rate"
+                       bind:change="startChange"
+                       id="startValue"
+                       value="{{startValue}}">
+               </i-rate>
+            </view>
+         </view>
+         <textarea placeholder="尊敬的客户，请发表您对本次服务的评价"
+                  name="evaluateContent"
+                  show-confirm-bar
+                  bindblur="handleblur"
+                   maxlength="-1"
+         ></textarea>
+         <view class="img-display">
+            <view class="img-lists">
+               <view class="list" wx:if="{{imageList.length>0}}" wx:for="{{imageList}}" wx:key="img{{index}}">
+                  <image src="{{item}}" data-src="{{item}}" bindtap="previewImage"></image>
+                  <icon class="iconfont"  data-index="{{index}}" bindtap="handleDel"></icon>
+               </view>
+               <view class="addImg" bindtap="chooseImage">
+                  <view class="icon_container">
+                     <i-icon type="camera_fill" size="16" color="#ccc" />
+                  </view>
+                  <text>添加照片</text>
+               </view>
+            </view>
+         </view>
+         <view class="rates">
+            <view class="rates-cell">
+               <view class="cell-hd">服务态度</view>
+               <view class="cell-ft">
+                  <i-rate i-class="my-rate"
+                          bind:change="startChange"
+                          id="startValue1"
+                          value="{{startValue1}}">
+                  </i-rate>
+               </view>
+            </view>
+            <view class="rates-cell">
+               <view class="cell-hd">服务质量</view>
+               <view class="cell-ft">
+                  <i-rate i-class="my-rate"
+                          bind:change="startChange"
+                          id="startValue2"
+                          value="{{startValue2}}">
+                  </i-rate>
+               </view>
+            </view>
+            <view class="rates-cell">
+               <view class="cell-hd">环境设施</view>
+               <view class="cell-ft">
+                  <i-rate i-class="my-rate"
+                          bind:change="startChange"
+                          id="startValue3"
+                          value="{{startValue3}}">
+                  </i-rate>
+               </view>
+            </view>
+         </view>
+      </view>
+   </view>
+   <view class="btn-area">
+      <button class="btn-default" bindtap="handelSubmit">提交评价</button>
+   </view>
+   <i-toast id="toast"></i-toast>
+   <unionhuatong-footer></unionhuatong-footer>
+</view>

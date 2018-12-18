@@ -1,0 +1,32 @@
+<view class="indexicons">
+    <!-- <view class="flex-wrp">
+        <block wx:for="{{lists}}" wx:key="{{item.text}}">
+            <view class="flex-item" bindtap="_operateUrl" data-operate-type="{{item.isUse}}" data-urls="{{item.url}}">
+                <icon class="iconfont {{item.icon}}"/>
+                <text class="flex-dsc">{{item.text}}</text>
+            </view>
+        </block>
+    </view> -->
+
+    <swiper class="operate-swiper" circular duration="{{duration}}" bindchange="_homeOperateChange">
+        <block wx:for="{{lists}}"  wx:key="{{index}}">
+            <swiper-item>
+                <view class="home-operate {{nums != item.child.length -1 ? 'borders' : ''}}" bindtap="_operateUrl" data-operate-type="{{items.isUse}}" data-urls="{{items.url}}" data-packages="{{items.packages}}" data-item-index="{{nums}}" wx:for="{{item.child}}" wx:for-index="nums" wx:key="{{nums}}" wx:for-item="items">
+                    <view class="operateIndex">{{items.title}}</view>
+                    <view class="operateText">{{items.text}}</view>
+                    <icon class="iconfont {{items.icon}}"/>
+                </view>
+            <!-- <image src="{{item}}" class="slide-image" width="355" height="150"/> -->
+            </swiper-item>
+        </block>
+    </swiper> 
+    <!-- wx:if="{{lists.length - index > 3}}" -->
+    <!-- <view class="dots">  
+        <block wx:for="{{lists}}"  wx:key="{{index}}">  
+            <view class="dot {{index == currentSwiper ? ' active' : ''}}"></view>  
+        </block>  
+    </view> -->
+    <!-- 轻提示 -->
+    <i-toast id="toast" />
+</view>
+

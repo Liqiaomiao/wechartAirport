@@ -1,0 +1,293 @@
+<view class="serviceReservationOnline">
+    <card-info desc="{{desc}}" hd="{{hd}}"></card-info>
+    <view class="panel-border-gray">
+        <view class="default-group">
+            <view class="default-cell" wx:for="{{radiogroup}}" wx:key="{{index}}" wx:if="{{item.visible}}">
+                <view class="cell-hd flex-grow-2">{{item.text}}</view>
+                <view class="cell-ft ">
+                    <radio-group bindchange="_radioChange" data-name="{{item.text}}" data-index="{{index}}" data-radio="{{item.radios}}">
+                        <label class="radio" wx:for="{{item.radios}}"   wx:key="{{index}}" wx:for-item="radiolist">
+                            <radio value="{{radiolist.name}}" checked="{{radiolist.checked}}" disabled="{{radiolist.disabled}}" color="#b99156"/>{{radiolist.value}}
+                        </label>
+                    </radio-group >
+                </view>
+            </view>
+
+        </view>
+    </view>
+    <view class="panel-border-gray mt10">
+        <view class="default-group">
+            <view class="default-cell">
+                <view class="cell-hd" >航班号</view>
+                <view class="cell-bd flex-grow-2" bindtap="_getAir">{{flightNo}}</view>
+                <view class="cell-ft">
+                    <icon class="iconfont arrow-right"></icon>
+                </view>
+            </view>
+            <view class="default-cell" wx:if="{{hasFlight}}">
+                <view class="cell-hd" >航程</view>
+                <view class="cell-bd flex-grow-2" >{{formData.departureAirport + ' - ' + formData.destinationAirport}}</view>
+            </view>
+            <view class="default-cell" wx:if="{{hasFlight}}">
+                <view class="cell-hd" >起飞时间</view>
+                <view class="cell-bd flex-grow-2" >{{formData.takeoffTime}}</view>
+            </view>
+            <view class="default-cell" wx:if="{{hasFlight}}">
+                <view class="cell-hd" >降落时间</view>
+                <view class="cell-bd flex-grow-2" >{{formData.landingTime}}</view>
+            </view>
+            <view class="default-cell">
+                <view class="cell-hd" >{{arriveTimeText}}</view>
+                <view class="cell-bd flex-grow-2">
+                    <date-time-picker timeText="{{arriveTime}}" bind:confirmTime="confirmTimeChange" ></date-time-picker>
+                </view>
+                <view class="cell-ft">
+                    <icon class="iconfont arrow-right"></icon>
+                </view>
+            </view>
+            <view class="default-cell" wx:for="{{flightgroup}}" wx:key="{{index}}" wx:if="{{inOutPortSel == '1' && cardData.orderFlow != 2}}">
+                <view class="cell-hd flex-grow-2">{{item.text}}</view>
+                <view class="cell-ft ">
+                    <radio-group bindchange="_isNeedRelay">
+                        <label class="radio" wx:for="{{item.radios}}"   wx:key="{{index}}" wx:for-item="radiolist">
+                            <radio value="{{radiolist.name}}" checked="{{radiolist.checked}}" color="#b99156"/>{{radiolist.value}}
+                        </label>
+                    </radio-group >
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="panel-border-gray mt10" wx:if="{{inOutPortSel == '1' && isNeedRelay == '1' && cardData.orderFlow != 2}}">
+        <view class="default-group">
+            <view class="default-cell align-top">
+                <view class="cell-hd">接机牌信息</view>
+                <view class="cell-bd flex-grow-2 tal">
+                    <textarea wx:if="{{!hasPopover}}" auto-height placeholder="请输入接机牌信息" value="{{relayCardInfo}}"  data-type="relayCard" bindinput="textareaChanges"></textarea>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="panel-border-gray mt10">
+        <view class="default-group">
+            <view class="default-cell align-top">
+                <view class="cell-hd">备注</view>
+                <view class="cell-bd flex-grow-2 tal">
+                    <textarea wx:if="{{!hasPopover}}" auto-height placeholder="{{cardData.isGroupCard == 1 ? '免费携带一名12岁以下儿童或婴儿':'请输入备注'}}" value="{{memo01}}" data-type="remark" bindinput="textareaChanges"></textarea>
+                    <!-- <view wx:if="{{hasPopover}}">{{textareaText||"请输入备注"}}</view> -->
+                </view>
+            </view>
+        </view>
+    </view>
+    <!--使用休息室人-->
+    <view class="panel-add mt10">
+        <view class="title">
+            <text>{{travellerText + '（' + passagerNum + '人）'}}</text>
+            <icon class="iconfont add" bindtap="addRoomUser"></icon>
+        </view>
+        <view class="desc" wx:if="{{travellers.length>0}}">
+            <view class="panel-info" wx:for="{{travellers}}" wx:key="{{index}}">
+                <view class='panel-hd'>
+                    <icon class="iconfont man"></icon>
+                </view>
+                <view class="panel-bd flex-grow-2">
+                    <text class="name">{{item.name}}<text  style="color:#80848f;" wx:if="{{item.post}}">{{ ' [' + item.post + ']'}}</text></text>
+                    <text class="ifmain" wx:if="{{item.isHonor == 1}}">主宾</text>
+                    <text class="ifmain" wx:if="{{item.isSpecial == 1}}">特殊人群</text>
+                    <text class="cardId" wx:if="{{item.identityNum}}">{{item.identityNum}}</text>
+                </view>
+                <view class="panel-ft">
+                    <button wx:if="{{item.canEdit}}" bindtap="editRoomUser" data-index="{{index}}">编辑</button>
+                    <button wx:if="{{item.canDel}}" bindtap="deleteRoomUser" data-index="{{index}}">删除</button>
+                </view>
+            </view>
+            <view class="tips" wx:if="{{cardData.orderFlow == 2 && travellers.length > 0}}">*免费1人可进入等候区休息，超出人次扣除接机次数</view>
+        </view>
+    </view>
+    <!--联系人信息-->
+    <view class="panel-add mt10 mb20">
+        <view class="title"><text>联系人信息</text>  <icon class="iconfont add" bindtap="addContact"></icon></view>
+        <view class="desc" wx:if="{{contacters.length>0}}">
+            <view class="panel-info" wx:for="{{contacters}}" wx:key="{{index}}">
+                <view class="panel-hd">
+                    <icon class="iconfont man"></icon>
+                </view>
+                <view class="panel-bd flex-grow-2">
+                    <text class="name">{{item.contactName}}</text>
+
+                    <text class="phone">{{item.contactPhone}}</text>
+                </view>
+                <view class="panel-ft">
+                    <button wx:if="{{item.canEdit}}" bindtap="editContact" data-index="{{index}}">编辑</button>
+                    <button wx:if="{{item.canDel}}" bindtap="deleteContact" data-index="{{index}}">删除</button>
+                </view>
+            </view>
+        </view>
+    </view>
+  <!--车辆信息-->
+    <view class="panel-add mt10" wx:if="{{hasCar}}">
+        <view class="title">
+            <text>车辆信息</text>
+            <icon wx:if="{{canAddCar}}" class="iconfont add" bindtap="_operationCarNum" data-type="{{true}}"></icon>
+        </view>
+        <view class="desc" wx:if="{{cars.length>0}}">
+            <view class="panel-info" wx:for="{{cars}}" wx:key="{{index}}">
+                <view class='panel-hd'>
+                    <icon class="iconfont man"></icon>
+                </view>
+                <view class="panel-bd flex-grow-2">
+                    <text class="name">{{item.carNum}}</text>
+                    <text class="ifmain" wx:if="{{item.isMain == 1}}">{{isMainText}}</text>
+                    <text class="ifmain" wx:if="{{item.isHeavySvc == 1}}">重保服务</text>
+                    <text class="ifmain" wx:if="{{item.isOvernight == 1}}">过夜停车</text>
+                    <text class="cardId" wx:if="{{item.memo}}">{{item.memo}}</text>
+                </view>
+                <view class="panel-ft">
+                    <button wx:if="{{item.canEdit}}" bindtap="editCars" data-index="{{index}}">编辑</button>
+                    <button wx:if="{{item.canDel}}" bindtap="deleteCars" data-index="{{index}}">删除</button>
+                </view>
+            </view>
+        </view>
+    </view>
+  <!--预约人-->
+    <view class="panel-add mt10" wx:if="{{cardData.isGroupCard == 1}}">
+        <view class="desc nodesc">
+            <view class="panel-info" >
+                <view class="panel-bds flex-grow-2">
+                    <text class="name nomarning">预约人</text>
+                    <text class="name nomarning">{{hd.rightValue}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="panel-footer">
+        <checkbox-group bindchange="readChange">
+            <label>
+                <checkbox checked color="#be9457" value="{{hasRead}}" ></checkbox>
+                我已经阅读服务须知
+            </label>
+
+        </checkbox-group>
+        <view class="btn-area">
+            <button class="btn-default" disabled="{{nextDisable}}" bindtap="handleNext">下一步</button>
+        </view>
+        <view class="infotitel">服务须知</view>
+         <parse-html class="notice" wx:if="{{cardData.serviceNotice}}" html="{{cardData.serviceNotice}}"></parse-html>
+
+    </view>
+    <!--使用休息室人弹窗-->
+    <i-action-sheet visible="{{roomVisible}}"  bind:cancel="canceladdRoomUser" i-class="panel-popover" mask-closable="{{ true }}">
+        <view slot="header"  class="panel-bd">
+            <form bindsubmit="formSubmit">
+                <view class="cell-list">
+                    <view class="cell">
+                        <view class="cell-hd">使用休息室人</view>
+                    </view>
+                    <view class="cell">
+                        <view class="cell-hd">姓名</view>
+                        <view class="cell-bd flex-grow-2"><input placeholder="请输入姓名" data-input="name" name="name" value="{{roomcurrent.name}}"/></view>
+                    </view>
+                    <view class="cell">
+                        <view class="cell-hd">身份证号</view>
+                        <view class="cell-bd flex-grow-2"><input placeholder="请输入身份证号" data-input="cardId" name="cardId" value="{{roomcurrent.identityNum}}" type="idcard"/></view>
+                    </view>
+                    <view class="cell">
+                        <view class="cell-hd">职务</view>
+                        <view class="cell-bd flex-grow-2"><input placeholder="请输入职务" data-input="job" name="job" value="{{roomcurrent.post}}"/></view>
+                    </view>
+                    <view class="cell flex-between">
+                        <view class="cell-hd">是否主宾</view>
+                        <view class="cell-bd ">
+                            <radio-group bindChange="_setTravelData" data-input="ifmain" name="ifmain">
+                                <label wx:for="{{radioarr}}" wx:key="{{index}}">
+                                    <radio value="{{item.value}}" checked="{{item.checked}}" color="#b99156"/>{{item.value}}
+                                </label>
+                            </radio-group>
+                        </view>
+                    </view>
+                </view>
+
+                <view class="btn-area">
+                    <button class="btn-default" formType="submit">{{roomtype == 'edit' ? '确定' : '新增'}}</button>
+                    <button class="btn-gray" bindtap="canceladdRoomUser">取消</button>
+                </view>
+            </form>
+        </view>
+    </i-action-sheet>
+    <!--联系人信息弹窗-->
+    <i-action-sheet  visible="{{contactVisible}}" bind:cancel="cancelContact" i-class="panel-popover" mask-closable="{{ true }}">
+        <view class="panel-bd" slot="header">
+            <form bindsubmit="submitContact">
+                <view class="cell-list">
+                    <view class="cell"><view class="cell-hd">联系人信息</view></view>
+                    <view class="cell flex-grow-2"><view class="cell-hd">联系人姓名</view><view class="cell-bd flex-grow-2"><input placeholder="请输入联系人姓名" name="name" value="{{contact.contactName}}"/></view></view>
+                    <view class="cell flex-grow-2"><view class="cell-hd">联系人电话</view><view class="cell-bd flex-grow-2"><input placeholder="请输入联系人电话" name="phone" value="{{contact.contactPhone}}" type="number"/></view></view>
+                </view>
+                <view class="btn-area">
+                    <button class="btn-default" formType="submit">{{ contacttype=='add' ? '新增' : '确定'}}</button>
+                    <button class="btn-gray" bindtap="cancelContact">取消</button>
+                </view>
+            </form>
+        </view>
+    </i-action-sheet>
+    <!--车辆信息弹窗-->
+    <i-action-sheet visible="{{carVisible}}"  bind:cancel="_operationCarNum" data-type="{{false}}" i-class="panel-popover" mask-closable="{{ true }}">
+        <view slot="header"  class="panel-bd">
+            <form bindsubmit="carsSubmit">
+                <view class="cell-list">
+                    <view class="cell">
+                        <view class="cell-hd">车辆信息</view>
+                    </view>
+                    <view class="cell">
+                        <view class="cell-hd">车牌照号</view>
+                        <view class="cell-bd flex-grow-2"><input placeholder="请输入车牌照号" name="carNum" value="{{carcurrent.carNum}}"/></view>
+                    </view>
+                    <view class="cell flex-between">
+                        <view class="cell-hd">是否主宾车</view>
+                        <view class="cell-bd ">
+                            <radio-group bindChange="raidoChangeForRoom" name="isMain">
+                                <label wx:for="{{carRadioarr}}" wx:key="{{index}}">
+                                    <radio value="{{item.value}}" checked="{{item.checked}}" color="#b99156"/>{{item.name}}
+                                </label>
+                            </radio-group>
+                        </view>
+                    </view>
+                    <view class="cell flex-between">
+                        <view class="cell-hd">是否过夜停车</view>
+                        <view class="cell-bd ">
+                            <radio-group bindChange="raidoChangeForRoom" name="isOvernight">
+                                <label wx:for="{{carRadioarrs}}" wx:key="{{index}}">
+                                    <radio value="{{item.value}}" checked="{{item.checked}}" color="#b99156"/>{{item.name}}
+                                </label>
+                            </radio-group>
+                        </view>
+                    </view>
+                    <view class="cell">
+                        <view class="cell-hd">备注</view>
+                        <view class="cell-bd flex-grow-2 tal">
+                            <textarea wx:if="{{carVisible}}" auto-height placeholder="请输入备注" value="{{textareaCarsText}}" data-type="cars" bindinput="textareaChanges"></textarea>
+                        </view>
+                    </view>
+                </view>
+
+                <view class="btn-area">
+                    <button class="btn-default" formType="submit">{{cartype == 'edit' ? '确定' : '新增'}}</button>
+                    <button class="btn-gray" bindtap="_operationCarNum" data-type="{{false}}">取消</button>
+                </view>
+            </form>
+        </view>
+    </i-action-sheet>
+    <i-toast id="toast" />
+    <i-modal visible="{{ delRoomUservisible }}" actions="{{ dialogActions }}" bind:click="_travelHandleClick" bind:ok="comfirmDelRoomUservisible" bind:cancel="handleClose" data-type="delRoomUservisible" >
+      <view>确认删除该出行人？</view>
+    </i-modal>
+    <i-modal visible="{{ delConcatvisible }}" actions="{{ dialogActions }}" bind:click="_concatHandleClick" bind:ok="comfirmDelCooncatvisible" bind:cancel="handleClose" data-type="delConcatvisible" >
+        <view>确认删除该联系人？</view>
+    </i-modal>
+    <i-modal visible="{{ delCarsvisible }}" actions="{{ dialogActions }}" bind:click="_carsHandleClick" bind:ok="comfirmDelCarsvisible" bind:cancel="handleClose" data-type="delCarsvisible" >
+        <view>确认删除该车辆？</view>
+    </i-modal>
+    <i-modal title="温馨提示" visible="{{ telServerVis }}" actions="{{ telServer }}" bind:click="_telServerClick" data-type="delCarsvisible" >
+        <view style="padding:20rpx;">预约订单进港航班降落地点必须为天津，异地服务暂时仅提供电话预约</view>
+    </i-modal>
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

@@ -1,0 +1,29 @@
+@import '../../assets/css/common' ;
+
+#paySuccess{
+    .title{
+        padding: 60rpx 0;
+        text-align: center;
+        .icons{
+            display: block;
+        }
+        .text{
+            color: $font-color-gray
+        }
+    }
+
+    .cellItems{
+        color: $font-color-gray;
+        // max-width:500rpx;
+    }
+
+    .btns{
+        text-align: center;
+        margin: 30rpx 15%;
+        padding: 20rpx;
+        border-radius: 8rpx;
+        font-size: 28rpx;
+        background: $color-gold;
+        color: #FFFFFF;
+    }
+}

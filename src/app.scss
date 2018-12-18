@@ -1,0 +1,19 @@
+
+ /*  
+ * 全局样式在 组件中 无效
+ */
+
+ /*  引用 svg 图标样式 */
+@import './assets/iconfont-svg/iconfont-svg';
+
+@import './assets/css/common.scss';
+
+$color-gold:#b99156;
+
+ /*  小程序的容器 */
+ page{
+    background: #f0f0f1;
+    // padding-bottom: 140rpx;
+}
+
+

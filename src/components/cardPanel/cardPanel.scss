@@ -1,0 +1,17 @@
+@import "../../assets/css/common";
+.cardpanel-list{position: relative;font-size: 30rpx;
+  display: flex;align-items: center;width: 750rpx;height: 296rpx;padding-left:40rpx;margin-bottom: -20rpx;
+  .imgbg{position: absolute;left: 0;top:0;width: 750rpx;height: 297rpx;z-index: 0}
+  .card-hd{
+    width: 336rpx;height: 214rpx;position: relative;margin-right: 20rpx;
+    image{width: 336rpx;height: 214rpx;}
+    text{position: absolute;bottom: 20%;color:#c69e44;width: 100%;text-align: center;font-size: 28rpx;left: 0}
+  }
+  .card-ft{font-size: 28rpx;color:$color-333;height:214rpx;display:flex;flex-direction:column;justify-content:space-between;position: relative;
+    .cell{
+      display: flex;
+    }
+
+
+  }
+}

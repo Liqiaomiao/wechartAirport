@@ -1,0 +1,194 @@
+@import "../../assets/css/common.scss";
+.purchase{
+  .panel_hd{position: fixed;top: 0;width: 100%;}
+  .itab-choose{
+    color:$color-gold;
+    border-bottom:6rpx solid $border-color !important;
+  }
+  .itab{
+    width:100%;
+    color:$font-color-gray;
+    border-bottom:6rpx solid #FFFFFF;
+    transition: all .25s ease-in-out;
+  }
+  .panel_container{
+    padding-top: 86rpx;
+  }
+  .panel_lists:first-child{
+    border-bottom:1px solid $border-color;
+    padding-top: 1px;
+    padding-bottom: 20rpx;
+    margin-bottom: 10rpx;
+  }
+  .panel_lists{
+    border-top: 1px solid $border-color;
+    border-bottom:1px solid $border-color;
+    padding-top: 1px;
+    padding-bottom: 20rpx;
+    margin-bottom: 10rpx;
+
+  }
+  .panel_list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-radius:5px;
+    margin-bottom: 20rpx;
+    overflow: hidden;
+    box-shadow: $box-shadow;
+    image{
+      @extend  .cardImg;
+      margin: 40rpx 0;
+    }
+
+    .panel_bd{
+      width: 100%;
+      border-top: 1px solid $border-color;
+      padding: 30rpx 40rpx;
+      .panel_bd_title{
+        @extend .commontitle;
+      }
+      .panel_bd_dsc{
+        text-indent: 2em;
+        font-size: 28rpx;
+        padding: 0 20rpx;
+        color:#333;
+      }
+    }
+    .btn-area{
+      width: 100%;
+      display: flex;
+      height: 92rpx;
+      .btn-default{
+        text-align: center;
+        line-height: 92rpx;
+        color:#fff;
+        text{
+          color:#fff;
+        }
+        &.btn1{
+          flex-grow: 2;
+          display: flex;
+          margin-right: 1px;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          justify-content: center;
+          .discount{font-size:34rpx; }
+          .price{
+            color: $color-nouse;
+            font-size: 28rpx;
+            margin-left:20rpx;
+            text-decoration:line-through;
+            // &:after{
+            //   content:'';
+            //   display: block;
+            //   width: 100%;
+            //   height: 2rpx;
+            //   background: $color-nouse;
+            //   position: absolute;
+            //   top: 50%;
+            //   transform:rotate(-8deg);
+            // }
+          }
+        }
+        &.btn2{
+          flex-grow: 1;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+
+        }
+
+
+      }
+
+    }
+  }
+  .panel-right{
+    padding-bottom:20rpx;
+    .cardImg-con{
+      display:flex;
+      justify-content:space-around;
+      align-items:center;
+      padding:30rpx 0;
+      .items{
+        width:50%;
+        text-align:center;
+        font-size:30rpx;
+        .img{
+          width:300rpx;
+          height:200rpx;
+          padding:20rpx 0;
+        }
+        .title{}
+      }
+    }
+    .cardText-con{
+      background: #FFFFFF;
+      .active-con{
+        padding:20rpx;
+        border-bottom:2rpx solid #b99156;
+        .title{
+          text-align:center;
+          padding:15rpx;
+          font-size:34rpx;
+          color:#1c2438;
+        }
+        .details{
+          font-size:26rpx;
+          text-indent:34rpx;
+          color:#495060;
+        }
+      }
+      .card-con{
+        margin-top:10rpx;
+        border-top:2rpx solid #b99156;
+        display:flex;
+        justify-content:space-around;
+        .items{
+          width:50%;
+          padding:10rpx;
+          .title{
+            text-align:center;
+            font-size:30rpx;
+            padding:10rpx;
+            color:#1c2438;
+          }
+          .text{
+            font-size:26rpx;
+            padding:10rpx;
+            text-indent:30rpx;
+            color:#495060;
+          }
+        }
+        .items-border{
+          border-right:2rpx dashed #b99156;
+        }
+      }
+    }
+    .btns{
+      display:flex;
+      justify-content:space-between;
+      background:#b99156;
+      color:#ffffff;
+      border-radius:0 0 8rpx 8rpx;
+      color:#ffffff;
+      .price{
+        width:70%;
+        padding:25rpx 0;
+        text-align:center;
+        font-weight:bold;
+        .normal{
+          text-decoration: line-through;
+        }
+      }
+      .buys{
+        width:30%;
+        text-align:center;
+        border-left:4rpx solid;
+        padding:25rpx 0;
+        font-weight:bold;
+      }
+    }
+  }
+}

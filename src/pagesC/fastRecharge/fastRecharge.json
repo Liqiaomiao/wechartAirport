@@ -1,0 +1,8 @@
+{
+    "usingComponents":{
+        "i-radio": "../../components/iview/radio/index",
+        "i-icon": "../../components/iview/icon/index",
+        "i-toast": "../../components/iview/toast/index",
+        "unionhuatong-load" : "../../components/loading/loading"
+    }
+}

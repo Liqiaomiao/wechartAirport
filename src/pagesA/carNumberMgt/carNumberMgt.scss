@@ -1,0 +1,105 @@
+@import '../../assets/css/common';
+
+#carNumberMgt{
+
+    .addCarNumber{
+        position:fixed;
+        left:0;
+        bottom:0;
+        width:100%;
+        background:$color-gold;
+        color:#FFFFFF;
+        text-align:center;
+        font-size:28rpx;
+        padding:20rpx 0;
+        .add-icon{
+            position:relative;
+            top:-2rpx;
+        }
+    }
+    .carList-show{
+        opacity: 1 !important;
+    }
+    .carList{
+        opacity: 0;
+        transition: all .25s ease-in-out;
+        .carItem{
+            background:#FFFFFF;
+            margin:20rpx 40rpx;
+            border-radius:8rpx;
+            color: $color-gold;
+            box-shadow: 2rpx 10rpx 20rpx 0 #cccbcb;
+            .car-title{
+                padding:20rpx 0;
+                border-bottom:1rpx solid $color-gold;
+                margin:0 20rpx;
+                .index{
+                    float:right;
+                }
+            }
+            .operation{
+                padding:20rpx;
+                font-size:32rpx;
+                .edit{
+                    display:inline-block;
+                }
+                .del{
+                    display:inline-block;
+                    padding-left:20rpx;
+                }
+                .edit-icon{
+                    position:relative;
+                    top:-3rpx;
+                }
+                .del-icon{
+                    position:relative;
+                    top:-2rpx;
+                }
+            }
+           
+        }
+    }
+    .operationDialog{
+        position:fixed;
+        left:0;
+        bottom:-60rpx;
+        width:100%;
+        background:#FFFFFF;
+        text-align:right;
+        height:0;
+        transition: all .25s ease-in-out;
+        border-top-left-radius: 8rpx;
+        border-top-right-radius: 8rpx;
+        padding:30rpx 0;
+        z-index:10;
+        .close-icon{
+            position:relative;
+            top:-20rpx;
+            right:10rpx;            
+        }
+        .input-view{
+            margin-right: 60rpx;
+            position:relative;
+            .del-input-icon{
+                position:absolute;
+                top:14rpx;
+                right:-15rpx;
+            }
+        }
+    }
+    .operationDialog-show{
+        height:218rpx;
+        bottom:0;
+    }
+    .operationBtns{
+        background:#B99156;
+        color:#FFFFFF;
+        text-align:center;
+        padding:10rpx;
+        margin:20rpx 40rpx;
+        border-radius:8rpx;
+        font-size:28rpx;
+    }
+    
+    
+}

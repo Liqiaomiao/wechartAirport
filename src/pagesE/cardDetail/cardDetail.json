@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText":"会员卡详情",
+  "usingComponents":{
+    "i-tabs": "../../components/iview/tabs/index",
+    "i-tab": "../../components/iview/tab/index",
+    "i-toast": "../../components/iview/toast/index",
+    "i-modal": "../../components/iview/modal/index",
+    "unionhuatong-footer":"../../components/footer/footer"
+  }
+}

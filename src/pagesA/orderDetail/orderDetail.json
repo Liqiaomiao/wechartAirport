@@ -1,0 +1,19 @@
+{
+  "navigationBarTitleText":"订单详情",
+  "usingComponents":{
+    "unionhuatong-footer" : "../../components/footer/footer",
+    "card-info":"../../components/cardInfo/cardInfo",
+    "card-common":"../../components/orderCommon/orderCommon",
+    "order-card-common":"../../components/ordercardCommon/ordercardCommon",
+    "i-tabs": "../../components/iview/tabs/index",
+    "i-tab": "../../components/iview/tab/index",
+    "i-icon": "../../components/iview/icon/index",
+    "count-time":"../../components/countTime/countTime",
+    "i-steps": "../../components/iview/steps/index",
+    "i-step": "../../components/iview/step/index",
+    "i-modal": "../../components/iview/modal/index",
+    "unionhuatong-load" : "../../components/loading/loading",
+    "i-toast": "../../components/iview/toast/index",
+    "i-rate": "../../components/iview/rate/index"
+  }
+}

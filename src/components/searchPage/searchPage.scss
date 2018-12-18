@@ -1,0 +1,26 @@
+@import "../../assets/css/common";
+@import "../../assets/iconfont-svg/iconfont-svg.scss";
+.searchPage{
+  font-size: 30rpx;height: 60rpx;
+  .searchbar{
+    display: flex;justify-content: space-between;padding: 0 20rpx;align-items: center;
+    .panel-hd{margin-right: 20rpx;background: #fff;border-radius: 3px;display: flex;justify-content: space-between;align-items: center;
+      padding:4rpx 20rpx;
+      icon{display: flex;align-items: center;color: $color-888;}
+      .icon-search{
+        &:after{
+          content: '\e61b';
+        }
+      }
+      .icon-del{
+        &:after{
+          content:'\e65f';
+
+        }
+      }
+      input{margin: 0 20rpx;}
+    }
+
+  }
+
+}

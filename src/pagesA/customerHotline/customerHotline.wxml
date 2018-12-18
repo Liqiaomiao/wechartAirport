@@ -1,0 +1,8 @@
+<view id="customerHotline">
+    <image class="banner" src="{{bannerImg}}" />
+    <view class="hotline" wx:for="{{lineList}}" wx:key="{{index}}" data-phone="{{item.lineNumber}}" bindtap="_phone">
+        <i class="iconfont icon-phone icon-min icon-pos icons"></i>
+        <text >{{item.lineName + ' : ' + item.lineNumber}}</text>
+    </view>
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

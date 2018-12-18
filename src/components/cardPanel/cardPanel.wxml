@@ -1,0 +1,35 @@
+<view class="cardpanel-list" bindtap="goCardDetail" data-cardno="{{list.cardNo}}" data-cardtypename="{{list.cardTypeName}}">
+    <image class="imgbg" src="{{imgbase}}cardsbg.png"></image>
+    <view class="card-hd">
+        <image src="{{imgServer + list.cardPicWithoutNoUrl}}" ></image>
+        <text>{{cardnum}}</text>
+    </view>
+    <view class="card-ft">
+        <view class="cell">
+            <view class="cell-hd">{{list.mainMemberName}}</view>  <!--姓名-->
+        </view>
+        <view class="cell">
+            <view class="cell-hd">{{list.cardTypeName}}</view>  <!--卡名称-->
+        </view>
+        <view class="cell" wx:if="{{list.cardCat == 1 ||  list.cardCat == 4}}">
+            <view class="cell-hd">余额：</view>
+            <view class="cell-ft">{{list.walletMoney}}元</view>
+        </view>
+        <view class="cell" wx:if="{{list.cardCat == 1}}">
+            <view class="cell-hd">次数：</view>
+            <view class="cell-ft">{{list.serviceCnt > 0 ? list.serviceCnt : '有效期内不限'}}次</view>
+        </view>
+        <view class="cell" wx:if="{{list.cardCat > 1 && list.cardCat != 4}}">
+            <view class="cell-hd">次数：</view>
+            <view class="cell-ft">{{list.serviceCnt > 0 ? list.serviceCnt : '有效期内不限'}}次</view>
+        </view>
+        <view class="cell">
+            <view class="cell-hd">开卡日期：</view>
+            <view class="cell-ft">{{list.selledDate}}</view>
+        </view>
+        <view class="cell">
+            <view class="cell-hd">有效期至：</view>
+            <view class="cell-ft">{{list.deadlineDate == '' ? '无' : list.deadlineDate == null ? '无' : list.deadlineDate}}</view>
+        </view>
+    </view>
+</view>

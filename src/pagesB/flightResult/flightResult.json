@@ -1,0 +1,10 @@
+{
+    "usingComponents":{
+        "calendar": "plugin://calendar/calendar",
+        "i-icon": "../../components/iview/icon/index",
+        "i-row": "../../components/iview/row/index",
+        "i-col": "../../components/iview/col/index",
+        "i-toast": "../../components/iview/toast/index",
+        "unionhuatong-load" : "../../components/loading/loading"
+    }
+}

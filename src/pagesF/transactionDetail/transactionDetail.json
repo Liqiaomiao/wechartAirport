@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText":"交易明细",
+  "usingComponents":{
+    "i-toast": "../../components/iview/toast/index",
+    "search-page":"../../components/searchPage/searchPage",
+    "unionhuatong-load":"../../components/loading/loading"
+  }
+}

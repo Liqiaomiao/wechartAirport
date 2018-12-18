@@ -1,0 +1,24 @@
+<view class="userInfo_ctx {{hd.order?'order-info':''}} i-class">
+    <view class="userInfo">
+        <view class="panel-hd">
+            <view class="hd">{{hd.left||"会员卡信息"}}</view>
+            <view class="ft">{{hd.rightKey||"会员姓名"}}：{{hd.rightValue}}</view>
+        </view>
+        <view class="panel-bd">
+            <view class="cell" wx:for="{{desc}}" wx:key="{{index}}">
+                <view class="cell-hd">{{item.title}}：</view>
+                <view class="cell-ft">
+                    <block wx:if="{{ item.type  }}" ><text wx:for="{{item.value}}" wx:for-item="list" wx:key="{{index}}" class="tab">{{list}}</text></block>
+                    <block wx:else>
+                        <block  wx:if="{{item.endTime}}">
+                            <count-time endTime="{{item.endTime}}"></count-time>
+                        </block>
+                        <text wx:else> {{item.value}}</text>
+                    </block>
+                </view>
+            </view>
+            <slot name="content"></slot>
+        </view>
+        <slot name="footer"></slot>
+    </view>
+</view>

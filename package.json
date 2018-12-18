@@ -1,0 +1,46 @@
+{
+  "name": "mini-programm-template",
+  "version": "0.0.4",
+  "description": "mini-programm-template",
+  "main": "src/app.js",
+  "devDependencies": {
+    "autoprefixer": "^9.0.1",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "del": "^3.0.0",
+    "eslint": "^5.2.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-eslint": "^5.0.0",
+    "gulp-postcss": "^7.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.1"
+  },
+  "scripts": {
+    "build": "gulp",
+    "start": "gulp watch:src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akiq2016/mini-programm-template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Akiq2016/mini-programm-template/issues"
+  },
+  "homepage": "https://github.com/Akiq2016/mini-programm-template#readme",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "dependencies": {}
+}

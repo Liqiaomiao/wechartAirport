@@ -1,0 +1,136 @@
+<view class="transactionDetail" catchtap="hideToggle">
+    <view wx:if="{{!searchVisible}}">
+        <view class="header">
+            <view class="cell-hd flex-grow-2">
+                <view bindtap="showOptions">
+                    <text>筛选</text>
+                    <icon class="arrow-down"></icon>
+                </view>
+            </view>
+            <view class="cell-ft">
+                <text class="mr10" bindtap="goSearch">搜索</text>
+                <text catchtap="handletoggle">生成长图</text>
+            </view>
+        </view>
+        <view class="toggle" hidden="{{ifhidetoggle}}">
+            <view class="line" bindtap="_longPic" data-type="normal">交易明细生成长图</view>
+            <view bindtap="_longPic" data-type="detail">交易详情生成长图</view>
+        </view>
+        <!--筛选-->
+        <view class="options" hidden="{{!optionsVisible}}">
+            <view class="option-group">
+                <view class="options-title">交易类型</view>
+                <view class="tags">
+                    <view class="tag-cell {{item.checked?'current':''}}" wx:for="{{tradeType}}" wx:key="tradeType{{index}}" data-index="{{index}}" bindtap="checkTag">
+                        <text>{{item.text}}</text>
+                        <icon class="iconfont"></icon>
+                    </view>
+                </view>
+            </view>
+            <view class="option-group">
+                <view class="options-title">时间范围</view>
+                <view class="times">
+                    <view class="time">
+                        <picker mode="date" value="{{tradeTimeST}}"  data-type="tradeTimeST" bindchange="bindDateChange">
+                            <view class="picker">
+                                {{tradeTimeST}}
+                            </view>
+                        </picker>
+                    </view>
+                    <view>-</view>
+                    <view class="time">
+                        <picker mode="date" value="{{tradeTimeET}}" start="{{tradeTimeST}}" data-type="tradeTimeET" bindchange="bindDateChange">
+                            <view class="picker">
+                                {{tradeTimeET}}
+                            </view>
+                        </picker>
+                    </view>
+                </view>
+
+
+            </view>
+            <view class="btn-area">
+                <text class="cancel"  bindtap="optionsCancel">取消</text>
+                <text class="comfirm" bindtap="optionsComfirm">确定</text>
+            </view>
+        </view>
+        <!--明细-->
+        <scroll-view class="transactionList"  scroll-y   bindscroll="scroll" hidden="{{!detailList.length>0}}">
+            <!--吸顶-->
+            <view class="faketitile">
+                <view class="title-hd">
+                    <view>
+                        {{detailList[Index].year}}年{{detailList[Index].month}}月
+                    </view>
+                    <view class="cost">
+                        支出：{{detailList[Index].payFeeSumFmt}}元
+                    </view>
+                </view>
+                <view class="title-ft">
+                    <icon class="iconfont"></icon>
+                </view>
+            </view>
+            <!--真实明细-->
+            <view class="detailList" wx:for="{{detailList}}" wx:key="detail{{index}}" wx:for-item="list">
+                <view class="title">
+                    <view class="title-hd">
+                        <view>
+                            {{list.year}}年{{list.month}}月
+                        </view>
+                        <view class="cost">
+                            支出{{list.payFeeSum}}元
+                        </view>
+                    </view>
+                    <view class="title-ft">
+                        <icon class="iconfont"></icon>
+                    </view>
+                </view>
+                <view class="content">
+                    <view class="contentList" wx:for="{{list.records}}" wx:key="content{{index}}"
+                          bindtap="goDetail" data-pk="{{item.id}}" data-tradetype="{{item.tradeType}}"
+
+                    >
+                        <view class="content-hd">
+                            <text wx:if="{{item.actualPayFee >= 0}}">进</text>
+                            <text wx:else>出</text>
+                        </view>
+                        <view class="content-bd">
+                            <view class="hd">
+                                <view>{{item.tradeName}}</view>
+                                <view class="am-text-sm">[{{item.cardSeriesStr}}] [{{item.tradeTypeStr}}]</view>
+                                <view class="am-text-sm">{{item.tradeTime}}</view>
+                            </view>
+                            <view
+                                    class="ft {{(item.actualPayFee < 0 || item.consumeCount > 0)?'am-text-danger':''}} {{item.actualPayFee >= 0?'am-text-success':''}}">
+                                <text wx:if="{{item.cardCat == '1'}}">{{item.actualPayFeeFmt }}</text>
+                                <text wx:elif="{{item.cardCat != '1' && item.tradeType != '4'}}">{{item.actualPayFeeFmt }}</text>
+                                <text wx:elif="{{item.cardCat != '1' && item.tradeType == '4'}}">-{{item.consumeCount}}次</text>
+                                <text wx:else>不限次</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+
+        </scroll-view>
+        <view wx:if="{{noinfoVisible}}">
+            <view class="noInfo">
+                <icon class="iconfont"></icon>
+                <text>暂无交易纪录</text>
+            </view>
+        </view>
+    </view>
+    <!--筛选遮罩-->
+    <view class="masker" hidden="{{!optionsVisible}}" bindtap="optionsCancel"></view>
+    <!--搜索-->
+    <search-page wx:if="{{searchVisible}}"
+                 bind:inputChange="inputChange"
+                 bind:inputComfirm="inputComfirm"
+                 bind:cancelSearch="cancelSearch"
+                 searchtext="{{searchtext}}"
+                 placeholdertext="请输入关键字"
+    ></search-page>
+    <i-toast id="toast"></i-toast>
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

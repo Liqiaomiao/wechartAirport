@@ -1,0 +1,53 @@
+@import "../../assets/css/common";
+.cardVouchers{
+  padding-bottom: $pd140;
+  font-size: 30rpx;
+  .noData{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:26rpx;
+    color:#80848f;
+  }
+  .title{display: flex;justify-content: space-between;padding: 20rpx;border-bottom: 1px solid $border-color;margin: 0 20rpx;align-items: center;
+    color:$color-gold;
+    .iconfont{margin-right: 20rpx;}
+    .icon-card:after{
+      content: "\e626";
+    }
+    .icon-voucher:after{
+      content: '\e606';
+    }
+  }
+  .desc.card{
+    min-height:296rpx;padding:20rpx 0 40rpx 0;
+  }
+  .desc.voucher{
+    min-height:214rpx;
+    .list{
+      margin:20rpx;
+      .voucher-bd{
+        position: relative;color:$color-gold;
+        image{
+          width: 710rpx;height: 251rpx;
+        }
+        .posA{position:absolute;left:60rpx;top:98rpx;width:63%;}
+        .voucher-title{
+          font-size:43rpx;font-weight:bold;text-align:center;color:#5f441e;
+        }
+        .voucher-ctx{
+          display: flex;justify-content: space-between;margin-top: 10rpx;
+          text{color: $color-333;}
+        }
+        .voucherimg image{}
+      }
+      .voucher-ft{
+        display: flex;justify-content: center;margin-top: 10rpx;
+        button{border:1px solid $color-gold;line-height:58rpx;height:60rpx;padding:0 20rpx!important;font-size:30rpx;border-radius:60rpx;color: $color-gold;
+          margin:0 10rpx; }
+      }
+    }
+
+  }
+
+}

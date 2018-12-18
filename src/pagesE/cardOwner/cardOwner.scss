@@ -1,0 +1,24 @@
+@import "../../assets/css/common";
+.tac{
+  text-align: center;padding: 26rpx 0;}
+.cardOwner{
+  font-size: 30rpx;
+  .btn-area{margin-top:40rpx;
+    padding:0 40rpx;
+  }
+.cell-ft{display:flex;justify-content:flex-end;
+  .flex-end{
+    display:flex;align-items:center;color:$color-gold;
+  }
+}
+  .addmodal{
+   .cell{display: flex;padding:10rpx 20rpx;}
+  }
+  .cell-phone{margin: 0 20rpx;position: relative;
+    input{width: 82%;margin: 0 auto;}
+    .iconfont{position: absolute;right: 0;top: 0}
+    .iconfont:after{
+      content:'\e65f';display: flex;align-items: center;
+    }
+  }
+}

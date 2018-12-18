@@ -1,0 +1,99 @@
+<view class="serviceReservationInstantConsumption" wx:if="{{serverData}}">
+    <card-info desc="{{desc}}" hd="{{hd}}" >
+        <view slot="content" class="content-text"> 
+            <text>服务价格</text>
+            <text> ¥ {{fotmatTotalFee}} 元 </text>
+            <view class="left-round"></view>
+            <view class="right-round"></view>
+        </view>
+    </card-info>
+    <view class="panel-border-gray mb10">
+        <view class="default-group">
+            <view class="default-cell">
+                <view class="cell-hd">消费区域</view>
+                <view class="cell-bd flex-grow-2" bindtap="getArea">{{area2currenttext}}</view>
+                <view class="cell-ft">
+                    <icon class="iconfont arrow-right"></icon>
+                </view>
+            </view>
+            <view class="default-cell align-start">
+                <text decode space class="cell-hd">备&emsp;&emsp;注</text>
+                <view class="cell-bd flex-grow-2 tal">
+                    <textarea auto-height="{{true}}" wx:if="{{!popoverVisible}}"  placeholder="请输入备注" value="{{textareaText}}" bindinput="_textareaChange"></textarea>
+                    <view wx:if="{{popoverVisible}}">{{textareaText||"请输入备注"}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <service-panel wx:if="{{showServer}}" serivce="{{services}}" cardData="{{cardData}}" bind:stepchange="_changeServer"></service-panel>
+    <view class="hasread">
+        <checkbox-group class="radio-group" bindchange="checkboxChange">
+            <label class="radio">
+                <checkbox  value="{{hasread}}" checked="{{hasread}}" color="#be9457"/>我已经阅读服务须知
+            </label>
+        </checkbox-group>
+    </view>
+    <view class="btn-area">
+        <button class="btn-default {{btndisabled?'btn-disabled':''}}" disabled="{{btndisabled}}"  bindtap="goUse">立即使用</button>
+        <button class="btn-gray" bindtap="_giveUpServer">放弃</button>
+    </view>
+    <view class="readInfo">
+        <view class="title">服务须知</view>
+        <parse-html class="notice" wx:if="{{cardData.serviceNotice}}" html="{{cardData.serviceNotice}}"></parse-html>
+        <view class="info"></view>
+    </view>
+    <!--服务区域级联-->
+    <i-action-sheet visible="{{ visible }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleCancel"
+                    bind:click="handleClickItem">
+        <view slot="header" style="padding: 16px">
+            <picker-view bindchange="bindChange">
+                <picker-view-column>
+                    <view wx:for="{{area1}}" wx:key="{{index}}">{{item}}</view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view wx:for="{{area2[current[0]]}}" wx:key="{{index}}">{{item}}</view>
+                </picker-view-column>
+            </picker-view>
+
+        </view>
+    </i-action-sheet>
+    <!--立即使用-->
+    <i-action-sheet visible="{{useVisible}}"  bind:cancel="handleCancel2" i-class="useImmediately">
+        <view slot="header"  class="use">
+            <view>
+                <view class="cost">￥ {{fotmatTotalFee}} 元</view>
+                <view class="cardnum"><text class="cardnum-hd">卡号</text><text>{{serverData.cardInfo.formatCardno}}</text></view>
+                <view class="ft-title ft-center title-with-line"><view class="linebefore"></view><text>预授权金额确认</text><view class="lineafter"></view></view>
+                <view class="advanceTime">
+                    <view class="ft-title"><text space decode>预&ensp;约&ensp;人</text></view>
+                    <view class="time">{{hd.rightValue}}</view>
+                </view>
+                <view class="advanceTime">
+                    <view class="ft-title">预达时间</view>
+                    <view class="time">{{useArriveTime}}</view>
+                </view>
+                <view class="ft-title ft-center">预授权金额说明</view>
+                <view class="infos">
+                    <view>
+                        1、若贵宾因个人原因不能到达预约地点享受服务，则需要在航班起飞或到达时间2小时前取消预约且无需承担任何费用；
+                    </view>
+                   <view>
+                       2、若在航班起飞或到达时间2小时前没有取消预约，则视为有效预约，有效预约后，若贵宾未按时到达预约地点，系统将自动扣除预授权金额。
+                   </view>
+                    <view wx:if="{{formData.svcCategory == 2}}">
+                        3、费用扣除将按照分配贵宾厅价格五折计算，具体金额可咨询服务热线：400-649-6888
+                    </view>
+                </view>
+            </view>
+            <view class="btn-area">
+                <button class="btn-default" bindtap="_handleComfirm">确定</button>
+            </view>
+        </view>
+    </i-action-sheet>
+    <i-modal visible="{{ giveUpVisable }}" actions="{{ giveUpAction }}" bind:click="_giveUpClick">
+        <view>确认取消即时消费</view>
+    </i-modal>
+     <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+
+</view>

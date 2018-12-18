@@ -1,0 +1,75 @@
+@import "../../assets/css/common";
+@import"../../assets/iconfont-svg/iconfont-svg.scss";
+.order{font-size: 30rpx;
+  padding-bottom: $pd140;
+  .searchbarfixed{position: fixed;z-index: 1;width: 100%;}
+  .searchbar{padding:10rpx 20rpx;color: $color-333;height: 64rpx;box-sizing: border-box;
+    view{float: left;}
+    .panel-hd{margin-right: 20rpx;}
+    .arrow{display: flex;align-items: center;}
+    .arrow:after{display: block;content: "";width: 0;height: 0;border: 10rpx solid transparent;border-top: 10rpx solid $color-555;margin-left: 8rpx;margin-top: 10rpx;}
+    .panel-ft{text-align: right;float:right;
+      text{padding-left:10rpx;border-left: 1px solid $border-color;}
+    }
+  }
+  .searchResult{
+    padding-top: 40rpx;
+    &.pt70{padding-top: 70rpx;}
+    .pt10{padding-top: 10rpx;}
+    .noInfo{
+      position:absolute;left:0;top:0;bottom:0;right:0;display:flex;flex-direction:column;justify-content:center;align-items:center;
+      color:$color-gold;
+      icon:before{
+        content:'\e60d';color:$color-gold;font-size: 100rpx;
+      }
+    }
+    .line{color:$color-888;display: flex;align-items: center;justify-content:space-around;flex-shrink: 0;margin: 10rpx  20rpx 0 20rpx;
+      &:before,&:after{
+        flex-shrink: 0;
+        margin: 0 10rpx;
+        display: block;
+        content: '';
+        width: 30%;
+        height: 1px;
+        border-top:1px dashed $color-888;
+        display: block;
+      }
+      &:before{
+        margin-left: 20rpx;
+      }
+    }
+
+
+  }
+  .searchCondition{position: fixed;top:68rpx;left: 0;right: 0;bottom: 0;
+    form{position: absolute;z-index: 1;background: $color-gray;left: 0;right: 0;font-size: 28rpx;
+      .group{margin-bottom: 20rpx;padding: 0 20rpx;
+        .title{
+          border-bottom: 1px solid $border-color;font-weight: bold;padding: 20rpx 0;color: $color-555;margin-bottom:10rpx;}
+        .cell-list{display: flex;align-items: center;
+          &.timeRange{justify-content: space-between}
+          .cell{
+            background: $background-color;color: $color-333;border: 1px solid $color-gold;border-radius: 3px;margin-right: 10rpx;width: 152rpx;height: 60rpx;line-height: 60rpx;overflow: hidden;
+            text-align: center;box-sizing: border-box;
+            &.checked{
+              background: $color-gold;color:#fff;position: relative;font-size:28rpx;border: 0;
+              &:after{
+                content:'\e66f';position: absolute;bottom: 0;right: 0;font-size: 40rpx; bottom:-6rpx;
+                line-height: 1;
+                right: -6rpx;
+              }
+            }
+          }}
+        .datepicker{border: 1px solid $color-gold;border-radius: 2px;
+          .picker{width: 332rpx;height:60rpx;display: flex;align-items: center;justify-content: center;}
+        }
+      }
+      .btn-area{display: flex;
+        &>view{width: 50%;}
+        button{border-radius: 0;}
+      }
+
+    }
+    .masker{background:rgba(0,0,0,.3);width: 100%;height: 100%;position: absolute;z-index: 0;}
+  }
+}

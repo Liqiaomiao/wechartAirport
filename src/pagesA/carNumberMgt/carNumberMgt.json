@@ -1,0 +1,10 @@
+{
+    "usingComponents":{
+        "i-icon": "../../components/iview/icon/index",
+        "i-toast": "../../components/iview/toast/index",
+        "i-input": "../../components/iview/input/index",
+        "i-panel": "../../components/iview/panel/index",
+        "i-modal": "../../components/iview/modal/index",
+        "unionhuatong-load" : "../../components/loading/loading"
+    }
+}

@@ -1,0 +1,59 @@
+<view class="voucherList">
+    <i-tabs current="{{ current }}" bindchange="handleChange" color="#be9457" i-class="tabs">
+        <i-tab key="tab0" title="未使用（{{tab0.length}}）"></i-tab>
+        <i-tab key="tab1" title="已使用"></i-tab>
+        <i-tab key="tab2" title="已过期"></i-tab>
+    </i-tabs>
+    <!--未使用-->
+    <view hidden="{{current!='tab0'}}" >
+        <view class="list" wx:if="{{tab0.length>0}}" wx:for="{{tab0}}" wx:key="vouchers{{index}}">
+            <view class="voucher-bd">
+                <image src="{{item.picUrl}}"></image>
+                <view class="posA">
+                    <view class="voucher-title">{{item.productName}}</view>
+                    <view class="voucher-ctx">
+                        <view>有效期至 {{item.validEndDate}}</view>
+                        <text>{{item.voucherNo}}</text>
+                    </view>
+                </view>
+
+            </view>
+            <view class="voucher-ft">
+                <button wx:if="{{item.voucherCat == 1}}" data-pk="{{item.id}}" bindtap="goReservationEmp">体验预约</button>
+                <button bindtap="goSearch"  data-voucherid="{{item.id}}">转增他人</button>
+            </view>
+        </view>
+    </view>
+    <!--已使用-->
+    <view hidden="{{current!='tab1'}}" >
+        <view class="list" wx:if="{{tab1.length>0}}" wx:for="{{tab1}}" wx:key="vouchers{{index}}">
+            <view class="voucher-bd">
+                <image src="{{item.picUrl}}"></image>
+                <view class="posA">
+                    <view class="voucher-title">{{item.productName}}</view>
+                    <view class="voucher-ctx">
+                        <view>有效期至 {{item.validEndDate}}</view>
+                        <text>{{item.voucherNo}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!--已过期-->
+    <view hidden="{{current!='tab2'}}" >
+        <view class="list" wx:if="{{tab2.length>0}}" wx:for="{{tab2}}" wx:key="vouchers{{index}}">
+            <view class="voucher-bd">
+                <image src="{{item.picUrl}}"></image>
+                <view class="posA">
+                    <view class="voucher-title">{{item.productName}}</view>
+                    <view class="voucher-ctx">
+                        <view>有效期至 {{item.validEndDate}}</view>
+                        <text>{{item.voucherNo}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <i-toast id="#toast"></i-toast>
+
+</view>

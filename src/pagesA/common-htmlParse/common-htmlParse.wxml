@@ -1,0 +1,9 @@
+
+<view id="commonHtmlParse">
+    <import src="../../libs/wxParse/wxParse.wxml"/>
+
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+
+    <i-toast id="toast" />
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

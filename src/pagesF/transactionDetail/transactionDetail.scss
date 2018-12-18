@@ -1,0 +1,145 @@
+@import "../../assets/css/common.scss";
+.transactionDetail{font-size: 30rpx;padding-bottom: $pd140;
+  .header{
+    z-index: 2;
+    background:#fff;display: flex;justify-content: space-between;padding: 10rpx 20rpx;align-items: center;
+    border-bottom: 1px solid $border-color;position: fixed;width: 100%;box-sizing: border-box;top: 0;left: 0;
+    height: 64rpx;
+    .flex-grow-2{border-right: 1px solid $color-ddd;margin-right: 10rpx;}
+    .cell-ft{
+      .mr10{margin-right: 10rpx;}
+    }
+    .arrow-down{
+      margin-left:10rpx;
+      position: relative;top:5rpx;
+      &:after{
+        display: block;
+        content: '';
+        border: 10rpx solid transparent;
+        border-top:10rpx solid $color-333;
+
+      }
+    }
+
+  }
+  .faketitile{position: fixed;top: 60rpx;}
+  .faketitile,.detailList .title{background: #fff;top: 60rpx;width: 100%;left: 0;
+    display: flex;padding: 20rpx 20rpx;background: $bg-color-gray;justify-content: space-between;
+    height: 122rpx;box-sizing: border-box;
+    .title-hd{
+      .cost{color:$color-888}
+    }
+    .title-ft{
+      .iconfont:after{
+        content: '\e605';
+        font-size: 26px;
+      }
+    }
+  }
+  .transactionList{
+    height: 1274rpx;position: relative;top: 60rpx;
+
+    .content{
+       background: $background-color;padding:20rpx 0 ;
+      .contentList{
+        display: flex;justify-content: space-between; padding: 0 20rpx;align-items: center;
+        .content-hd{
+            width: 100rpx;height: 100rpx;font-size: 42rpx;
+            background: $color-gold;border-radius: 50%;
+            color:#fff;text-align: center;line-height: 100rpx;margin-right: 30rpx;
+        }
+        .content-bd{
+          flex-grow: 2;padding:16rpx 0;
+          border-bottom: 1px solid $border-color;
+          display: flex;justify-content: space-between;
+          .am-text-sm{color: $color-aaa;font-size: 24rpx;}
+          .am-text-danger{color:$tag-color-danger}
+          .am-text-success{color:$tag-color-success}
+        }
+        &:last-child{
+          .content-bd{
+            border-bottom: none;
+          }
+        }
+
+      }
+
+    }
+  }
+  .options{
+    position: fixed;width: 100%;background: #fff;
+    z-index: 2;
+    top:65rpx;
+    .option-group{
+      padding:20rpx;
+
+    }
+    .options-title{border-bottom:1px solid $border-color;color: $color-555;padding-bottom: 10rpx;margin-bottom: 20rpx;}
+    .tags{display: flex;
+      .tag-cell{
+        border:1px solid $border-color;border-radius:3px;background:$background-color;color:#333;
+        width:120rpx;height:60rpx;box-sizing:border-box;font-size:28rpx;
+        display: flex;align-items: center;justify-content: center;margin-right: 20rpx;
+        &.current{
+          background: $color-gold;color: #fff;border: 1px solid $color-gold;position: relative;
+          .iconfont:after{
+            content: '\e66f';font-size: 20px;
+            position: absolute;bottom:-10rpx;right: -5rpx;
+          }
+        }
+      }
+    }
+    .times{
+      display: flex;justify-content: space-between;
+      .time{
+        border: 1px solid $border-color;
+        width: 280rpx;height: 60rpx;
+        .picker{width: 280rpx;height: 60rpx;line-height: 60rpx;text-align: center;}
+      }
+    }
+    .btn-area{
+      display: flex;border-top: 1px solid $border-color;margin-top: 30rpx;
+      text{flex-grow: 1;height:80rpx;text-align:center;line-height:80rpx;
+       &.cancel{color: $color-gold;}
+       &.comfirm{background: $color-gold;color: #fff;}
+      }
+    }
+
+  }
+  .masker{width: 100%;height: 100%;z-index: 1;position: fixed;left:0;top:0;background: rgba(0,0,0,.3)}
+  .noInfo{color: $color-gold;width: 100%;height:1274rpx;display: flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    .iconfont:after{
+      content: '\e672';
+      font-size:50px;
+      color: $color-gold;
+    }
+
+  }
+  .toggle{
+    position: fixed;right: 20rpx;top: 84rpx;z-index: 4;background: $background-color;
+    width:274rpx;height: 144rpx;border: 1px solid $border-color;box-sizing: border-box;
+    view{
+      height: 72rpx;box-sizing: border-box;text-align: center;line-height: 72rpx;
+      color: $color-333;font-size: 28rpx;
+    }
+    &:before,&:after{position: absolute;
+      display: block;content: '';
+      border: 10px solid  transparent;
+      right:40rpx;
+    }
+    &:after{
+      border-bottom: 10px solid $border-color;
+      z-index:1;
+      top:-21px;
+    }
+    &:before{
+      border-bottom:10px solid $background-color;
+      top:-20px;
+      z-index: 2;
+    }
+    .line{
+      border-bottom: 1px solid $border-color;
+    }
+  }
+}

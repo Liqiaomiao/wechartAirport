@@ -1,0 +1,150 @@
+
+@import "../../assets/css/common.scss";
+$commonBckColor : #edeadb ; 
+$boxShadow : 5px 5px 10px 0px #b7b3b3 ;
+
+
+#purchaseCard{
+
+    overflow:hidden;
+
+    .prudecue-img{
+
+        height : 300rpx;
+        padding : 20rpx 0;
+        text-align : center;
+        position:relative;
+        background : $color-gray ;
+
+        .text{
+            position:absolute;
+            font-size:42rpx;
+            left:50%;
+            bottom:75rpx;
+            color:#b99156;
+            transform:translateX(-50%);
+            width:500rpx;
+
+        }
+        .img{
+            width : 500rpx;
+            height : 300rpx;
+            box-shadow: $boxShadow;
+            border-radius: 40rpx;
+        }
+    }
+
+    .purchaseCard-contioner{
+        background : $commonBckColor;
+        border-radius:10rpx;
+        color:$color-gold;
+        padding:10rpx 40rpx;
+        font-size:30rpx;
+        height:800rpx;
+
+
+        .price{
+            text-align:center;
+            padding:20rpx 0;
+            font-size:48rpx;
+            font-weight:bold;
+        }
+        .cardNum-price{
+            text-align:center;
+            font-size:26rpx;
+            padding:0 0 20rpx 0;
+        }
+        .cardNumber-view{
+            background : $color-gray ;
+            padding:15rpx;
+            .cardNumber-title{
+                padding:0 20rpx 0 10rpx;
+                letter-spacing:15rpx;
+            }
+            .cardNumber-num{}
+        }
+        .buyDetail{
+            position:relative;
+            text-align:center;
+            padding:40rpx 0;
+        }
+        .buyDetail:before{
+            content: '';
+            position:absolute;
+            top:50%;
+            left:0;
+            width:240rpx;
+            background:linear-gradient(to left,#b99156,#FFFFFF);
+            height:2rpx;
+        }
+        .buyDetail:after{
+            content: '';
+            position:absolute;
+            top:50%;
+            right:0;
+            width:240rpx;
+            background:linear-gradient(to left,#FFFFFF,#b99156);
+            height:2rpx;
+        }
+        .invoice-view{
+            padding-bottom:20rpx;
+            border-bottom:2rpx solid #b99156;
+            .invoice-title{}
+            .invoice-state{
+                float:right;
+                color:#bbb;
+            }
+        }
+        .activeName{
+            color:#bbb;
+            float:right;
+            padding:20rpx 0 0 0;
+        }
+        .money-view{
+            clear:both;
+            padding:20rpx 0;
+            .money-payable{float:left;}
+            .money-real{float:right;}
+        }
+        .payType-title{
+            clear:both;
+            padding:30rpx 0;
+        }
+        .payType-icon{
+            display:inline-block;
+            color:#2aa515;
+        }
+        .icon-wxpay::before{
+            content:'\e807';
+            font-size:64rpx;
+        }
+        .payType-name{
+            display:inline-block;
+            line-height:40rpx;
+            position:relative;
+            top:-15rpx;
+            left:20rpx;
+        }
+        .payType-radio{
+            display:inline-block;
+            float:right;
+            margin-top : 10rpx;
+        }
+        .payType-list{
+            float:left;
+        }
+        .buyNow{
+            position:fixed;
+            left:0;
+            bottom:0;
+            width:100%;
+            text-align:center;
+            background:#b99156;
+            color:#FFFFFF;
+            padding:20rpx 0;
+            font-size:38rpx;
+        }
+
+
+    }
+}

@@ -1,0 +1,21 @@
+<view class="purchase-detail">
+    <view class="panel-hd">
+        <image src="{{cardData.cardImg}}"></image>
+    </view>
+    <view class="panel-bd">
+        <text class="panel-title">{{cardData.cardTypeName}}收费标准</text>
+        <parse-html wx:if="{{cardData.feeStandard}}" html="{{cardData.feeStandard}}"></parse-html>
+    </view>
+    <view class="panel-ft">
+        <page>
+            <image src="{{cardData.dcsImg}}" mode="widthFix"></image>
+        </page>
+
+    </view>
+    <view class="panel-fixed">
+        <view class="panel-text">共计：<text class="panel-text-price">￥{{cardData.cardSellPrice}}</text>元</view>
+        <view class="panel-btn" bindtap="goCheckNumber">购买</view>
+    </view>
+    <i-toast id="toast"/>
+    <unionhuatong-load id="load"></unionhuatong-load>
+</view>

@@ -1,0 +1,7 @@
+<view id="app-footer">
+    <i-tab-bar class="tabbarFont" current="{{ current }}" fixed color="#b99156" bindchange="_handleChange">
+        <i-tab-bar-item key="home" data-state="{{true}}" data-page-key="home" icon="homepage" current-icon="homepage_fill" title="首页">123</i-tab-bar-item>
+        <i-tab-bar-item key="cardVouchers" data-state="{{true}}" data-page-key="cardVouchers" icon="coupons" current-icon="coupons_fill" title="我的卡券">123</i-tab-bar-item>
+        <i-tab-bar-item key="my" data-state="{{true}}" data-page-key="my" icon="mine" current-icon="mine_fill" title="我的">123</i-tab-bar-item> 
+    </i-tab-bar>
+</view>

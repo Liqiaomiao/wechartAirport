@@ -1,0 +1,57 @@
+@import "../../assets/css/common.scss";
+
+$foot-height:100rpx;
+.purchase-detail{
+  .panel-hd{
+    text-align: center;
+    padding: 40rpx 0;
+    image{
+      @extend  .cardImg;
+    }
+    border-bottom: 1px solid $border-color;
+  }
+  .panel-bd{
+    border:2px solid #adaba8;
+    border-radius: 5px;
+    padding: 30rpx 40rpx;
+    margin: 30rpx;
+    .panel-title{
+      @extend .commontitle;
+    }
+    .panel-bd-dsc{font-size: 28rpx;line-height: 1.2}
+  }
+  .panel-ft{
+    padding-bottom: $foot-height+30rpx;
+    image{width: 100%;}
+  }
+  .panel-fixed{
+    display: flex;
+    width: 100%;
+    height:$foot-height;
+    background: #fff;
+    border-top: 1px solid $color-gold;
+    .panel-text{
+      @extend .flex-grow-2;
+      color:$color-gold;
+      font-size: 28rpx;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      line-height: $foot-height;
+      .panel-text-price{
+        font-weight: bold;
+        font-size: 50rpx;
+      }
+    }
+    .panel-btn{
+      @extend .flex-grow-1;
+      color:#fff;
+      font-size: 36rpx;
+      background: $color-gold;
+      text-align: center;
+      line-height:$foot-height ;
+      font-weight: bold;
+      width:150rpx;
+    }
+  }
+}

@@ -1,0 +1,156 @@
+@import "../../assets/css/common";
+.orderDetail{padding-bottom: 40rpx;
+}
+.avatar{
+  width:64rpx;height: 64rpx;
+}
+.orderDetail{
+  font-size: 30rpx;
+  .tabs{border-bottom: 1px solid $border-color}
+  .ordertrace{
+    background: $background-color;
+    .title{display: flex;align-items: center;
+      .left{display: flex;align-items: center;.mr10{margin-right: 10rpx;}}
+      .time{background:#313131;color:#fff;box-shadow:0 0 0 3px rgba(0, 0, 0, 0.2);position: relative;
+        &:after{
+          display: block;
+          content: '';
+          width: 100%;
+          height: 1px;
+          background: black;
+          position: absolute;
+          top: 50%;
+          left: 0;
+
+        }
+
+      }
+      button{padding:16rpx 20rpx!important;
+        background:#ff4546!important;
+        font-size:30rpx;
+        line-height:1;
+        &.btn-disabled{
+          background: #eee!important;
+          color: #aaa;
+        }
+      }
+
+    }
+    .tips{font-size: 24rpx;color:$color-888;margin-bottom:20rpx;line-height: 2}
+    .step-container{
+      padding-right: 40rpx;}
+    .step-title{display: flex;border-bottom: 1px solid $border-color;padding:20rpx;background: #fff;justify-content: space-between;
+      .time{display: flex;align-items: center;
+        icon{margin-right: 10rpx;}
+        icon:before{
+          content: '\e66a';display: flex;line-height: 1;
+        }
+      }
+
+    }
+    .step-ctx{border: 1px solid $border-color;font-weight: normal;border-radius: 5px;overflow: hidden;color:$color-card}
+    .step-desc{
+      padding: 20rpx;
+    }
+  }
+  .consumes{
+    background: $background-color;color:$color-card;padding:20rpx 0;
+    .title{text-align: center;}
+    .list{
+      padding: 0 40rpx;
+      .cell{display: flex;justify-content: space-between;margin-bottom: 20rpx;
+        .cell-hd{
+          font-weight: blod;
+
+        }
+
+
+      }
+
+    }
+    .list-foot{
+      border-top: 1px solid $border-color;padding:20rpx  40rpx 20rpx 40rpx;
+      display: flex;justify-content: space-between;position: relative;
+      &:before,&:after{
+        display: block;
+        content: "";
+        width: 40rpx;
+        height: 40rpx;
+        border-radius: 50%;
+        background: #fff;
+        position: absolute;
+        top:-20rpx;
+      }
+      &:before{
+        left: -20rpx;
+      }
+      &:after{
+        right:-20rpx;
+      }
+      .danger{font-size: 36rpx;color:$tag-color-danger}
+    }
+  }
+  .evaluateDetail{display: flex;
+    .panel-hd{margin-right: 10rpx;@extend .avatar;display: flex;justify-content: center;align-items: center;
+      .iconfont:before{
+        content: '\e604';color:$border-color;line-height: 1;
+      }
+      image{@extend .avatar}
+
+    }
+
+    .panel-bd{
+      position: relative;
+      &:after,&:before{
+        display: block;
+        position: absolute;
+        content: '';
+        width: 0;height: 0;
+        top: 16rpx;
+
+      }
+      &:after{
+        border: 16rpx solid transparent;
+        border-right: 16rpx solid $border-color;
+        z-index: 0;
+        right: 100%;
+      }
+      &:before{
+        border: 16rpx solid transparent;
+        border-right: 16rpx solid $color-gray;
+        z-index: 1;
+        left:-30rpx;
+      }
+      border:1px solid $border-color;
+      .title{
+        display: flex;padding: 10rpx 20rpx;align-items: center;color:$color-card;border-bottom: 1px solid $border-color;
+        background: $color-gray;
+        .name{font-weight: bold;margin-right: 20rpx;}
+        .scores{display: flex;align-items: center}
+        .star{margin-top: -3px;}
+      }
+      .ctxt-cells{
+        padding: 20rpx;border-bottom: 1px solid $border-color;background-color: $background-color;
+        display: flex;
+        .cell{flex-grow: 1;border-right: 1px solid $border-color;padding: 10rpx;
+          display: flex;flex-direction: column;justify-content: center;align-items: center;
+          &:last-child{border-right: none;}
+        }
+      }
+      .ctx{
+        padding: 20rpx;background-color: $background-color;
+        .imagesList{
+          display: flex;
+          flex-wrap: wrap;
+          .img_container{
+            margin-right: 10rpx;margin-bottom:10rpx;
+            image{
+              width:76rpx;height: 76rpx;
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
